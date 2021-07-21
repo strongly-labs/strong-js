@@ -1,14 +1,14 @@
-examples:
-  - example/*
-  - example/**/*
+backend:
+  - backend/*
+  - backend/**/*
 
-react:
-  - packages/react/*
-  - packages/react/**/*
+data:
+  - packages/data/*
+  - packages/data/**/*
 
-utils:
-  - packages/utils/*
-  - packages/utils/**/*
+generate:
+  - packages/generate/*
+  - packages/generate/**/*
 
 cypress:
   - cypress/*
