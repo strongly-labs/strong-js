@@ -3,11 +3,10 @@ import getActions, { CrudActions } from '../lib/getActions'
 import * as React from 'react'
 import useSwr from 'swr'
 import { plural, singular } from 'pluralize'
-import AdminSchema from '@stly/data/generated/admin/schema.json'
+import AdminSchema from '@strongly/data/generated/admin/schema.json'
 import { ColumnConfig, Context, ListProviderProps } from '../types/list'
 import { FormField } from '../types/form'
-import { fetcher, getIncludes } from '../lib/utils'
-import { capitalize } from '@stly/lib'
+import { capitalize, fetcher, getIncludes } from '../lib/utils'
 
 const defaultColumnConfig: ColumnConfig = {
   idColumn: 'id',
@@ -57,11 +56,10 @@ export const ListProvider = ({
   const [editorOpen, setEditorOpen] = React.useState(false)
   const [showFilters, setShowFilters] = React.useState(false)
 
-  const {
-    data: swrData,
-    error,
-    mutate,
-  } = useSwr(actions?.getAll() ?? null, fetcher)
+  const { data: swrData, error, mutate } = useSwr(
+    actions?.getAll() ?? null,
+    fetcher,
+  )
 
   React.useEffect(() => {
     try {
