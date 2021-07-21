@@ -1,4 +1,4 @@
-# TSDX Monorepo Example/Playground
+# Strongly Framework
 
 ## Usage
 

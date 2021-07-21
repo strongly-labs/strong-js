@@ -1,7 +1,7 @@
 {
   "name": "@strongly/data",
   "version": "0.0.1",
-  "description": "Strongly Prisma Generators",
+  "description": "Strongly Data",
   "author": "Strongly Pty Ltd",
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
@@ -30,15 +30,15 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
+    "@types/graphql-fields": "^1.3.4",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
-    "typescript": "^3.4.5",
-    "@types/graphql-fields": "^1.3.4",
     "graphql-fields": "^2.0.3",
-    "graphql-scalars": "^1.10.0"
+    "graphql-scalars": "^1.10.0",
+    "typescript": "^3.4.5"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "prisma": {
     "schema": "../../backend/schema.prisma"
