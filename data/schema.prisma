@@ -11,20 +11,21 @@ generator client {
   previewFeatures = ["referentialActions"]
 }
 
-// generator docs {
-//   provider = "node ../../node_modules/prisma-docs-generator"
-// }
+generator typegraphql {
+  provider           = "typegraphql-prisma"
+  output             = "./generated/graphql"
+  emitTranspiledCode = true
+}
 
-// generator typegraphql {
-//   provider           = "typegraphql-prisma"
-//   output             = "../generated/graphql"
-//   emitTranspiledCode = true
-// }
+generator api {
+  provider = "prisma-nextcrud-api-generator"
+  output   = "./generated/admin/api"
+}
 
-// generator jsonSchema {
-//   provider = "prisma-json-schema-generator"
-//   output   = "../generated/json-schema"
-// }
+generator admin {
+  provider = "prisma-admin-schema-generator"
+  output   = "./generated/admin"
+}
 
 // Features
 
