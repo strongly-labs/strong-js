@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
+      "@strongly/generate": ["packages/generate-admin-schema/src"],
       "@strongly/utils": ["packages/utils/src"],
       "@strongly/react": ["packages/react/src"],
       "$test/*": ["test/*"]

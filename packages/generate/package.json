@@ -1,0 +1,33 @@
+{
+  "name": "@strongly/generate",
+  "version": "0.0.1",
+  "description": "Strongly Prisma Generators",
+  "author": "Strongly Pty Ltd",
+  "bin": {
+    "prisma-admin-schema-generator": "dist/cli.js"
+  },
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepublish": "npm run build"
+  },
+  "module": "dist/generate.esm.js",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "dependencies": {
+    "@prisma/generator-helper": "^2.27.0",
+    "@prisma/sdk": "^2.27.0",
+    "superjson": "^1.7.4",
+    "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
