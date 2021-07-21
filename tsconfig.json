@@ -1,14 +1,13 @@
 {
   "extends": "./tsconfig.build.json",
-  "include": ["packages", "types", "scripts", "example"],
+  "include": ["packages", "types", "scripts"],
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
       "@strongly/generate": ["packages/generate/src"],
-      "@strongly/utils": ["packages/utils/src"],
-      "@strongly/react": ["packages/react/src"],
+      "@strongly/data": ["packages/data/src"],
       "$test/*": ["test/*"]
     }
   }
