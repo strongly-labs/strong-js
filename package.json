@@ -15,6 +15,7 @@
     "typesync": "^0.8.0"
   },
   "workspaces": [
+    "features/*",
     "packages/*"
   ],
   "scripts": {
