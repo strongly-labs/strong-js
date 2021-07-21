@@ -41,6 +41,6 @@
     "access": "public"
   },
   "prisma": {
-    "schema": "../../data/schema.prisma"
+    "schema": "../../backend/schema.prisma"
   }
 }
