@@ -16,7 +16,7 @@
     "dist"
   ],
   "alias": {
-    "@strongly/data": "../data"
+    ".strongly": "../../.strongly"
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
@@ -32,7 +32,7 @@
     "react-table": "^7.7.0",
     "react-timeago": "^6.2.1",
     "swr": "^0.5.6",
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "publishConfig": {
     "access": "restricted"

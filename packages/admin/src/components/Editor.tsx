@@ -44,6 +44,7 @@ export const Editor = () => {
     if (itemId) {
       return itemId === selected?.values?.id
     }
+    return null
   }
 
   const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -61,7 +62,7 @@ export const Editor = () => {
     }
   }, [selected, editorOpen])
 
-  const onUpdate = (updates) => {
+  const onUpdate = (updates: any) => {
     void mutate(
       data?.map((item) => (selector(item) ? { ...item, ...updates } : item)),
     )
@@ -179,6 +180,7 @@ export const Editor = () => {
                   </Card>
                 )
               }
+              return null
             })}
       </Pane>
     </SideSheet>

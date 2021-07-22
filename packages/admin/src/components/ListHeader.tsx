@@ -20,6 +20,7 @@ import {
 } from 'evergreen-ui'
 import { ListHeaderProps, ToggleColumnsProps } from '../types/list'
 import { ListContext } from './ListContext'
+import { HeaderGroup } from 'react-table'
 
 const ToggleColumns = ({ hideAllProps, allColumns }: ToggleColumnsProps) => (
   <Pane
@@ -54,6 +55,8 @@ export const ListHeader = ({
     state: { setEditorOpen, showFilters, setShowFilters },
   } = React.useContext(ListContext)
 
+  const idColumn = config?.idColumn ?? 'id'
+
   return (
     <Pane display="flex" paddingBottom={majorScale(1)}>
       <Pane flex={1} alignItems="center" display="flex">
@@ -69,7 +72,8 @@ export const ListHeader = ({
               onClick={() =>
                 actions?.remove(
                   selectedFlatRows?.map(
-                    ({ original }) => original[config?.idColumn ?? 'id'],
+                    ({ original }: { original: Record<string, any> }) =>
+                      original[idColumn],
                   ),
                 )
               }
@@ -121,7 +125,10 @@ export const ListHeader = ({
   )
 }
 
-export const renderHeader = (showFilters, column) => {
+export const renderHeader: any = (
+  showFilters: boolean,
+  column: HeaderGroup<{}>,
+) => {
   if (showFilters && column.canFilter) {
     return column.render('Filter')
   }

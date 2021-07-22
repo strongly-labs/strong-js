@@ -5,6 +5,7 @@ import { Checkbox, IconButton, EditIcon } from 'evergreen-ui'
 import { ListContext } from './ListContext'
 import { getFilters } from './ListFilters'
 import { Table } from './Table'
+import { Column } from 'react-table'
 
 export const List = () => {
   const {
@@ -27,7 +28,7 @@ export const List = () => {
       ...(field && getFilters(field)),
     }))
 
-  const selectionColumn = {
+  const selectionColumn: Column = {
     id: '_selection',
     Header: ({ getToggleAllPageRowsSelectedProps }) => (
       <Checkbox
@@ -45,7 +46,7 @@ export const List = () => {
   const systemColumns: any[] = [selectionColumn]
 
   if (config?.editable) {
-    const editColumn = {
+    const editColumn: Column = {
       id: '_edit',
       Header: 'Edit',
 

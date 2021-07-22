@@ -26,17 +26,17 @@
   "dependencies": {
     "@prisma/client": "^2.26.0",
     "prisma": "^2.26.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.3.0",
     "type-graphql": "^1.1.1",
     "typegraphql-prisma": "^0.14.6"
   },
   "devDependencies": {
+    "@strongly/generate": "file:../generate",
     "@types/graphql-fields": "^1.3.4",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
     "graphql-fields": "^2.0.3",
-    "graphql-scalars": "^1.10.0",
-    "@strongly/generate": "file:../generate"
+    "graphql-scalars": "^1.10.0"
   },
   "publishConfig": {
     "access": "restricted"

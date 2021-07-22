@@ -19,7 +19,7 @@ import {
 } from 'evergreen-ui'
 import { FormField } from '../types/form'
 import { fetcher } from '../lib/utils'
-import { capitalize } from '@stly/lib'
+import { capitalize } from '../lib/utils'
 
 interface FormProps {
   action: SubmitHandler<any> | null
@@ -35,89 +35,89 @@ interface FieldProps {
   data: any
 }
 
-const mapField =
-  ({ control, setValue, data }: FieldProps) =>
-  (formField: FormField) => {
-    if (formField.hidden) {
+const mapField = ({ control, setValue, data }: FieldProps) => (
+  formField: FormField,
+) => {
+  if (formField.hidden) {
+    return null
+  }
+  switch (formField.type) {
+    case 'Text': {
+      return (
+        <Controller
+          key={formField.name}
+          name={formField.name}
+          control={control}
+          defaultValue={data?.[formField.name] ?? ''}
+          rules={{ required: formField.required }}
+          render={({ field }) => (
+            <TextInputField
+              id={field.name}
+              label={capitalize(field.name)}
+              required={!formField.disabled && formField.required}
+              {...(formField.disabled && { disabled: true })}
+              {...field}
+            />
+          )}
+        />
+      )
+    }
+    case 'DateTime': {
+      return (
+        <Controller
+          key={formField.name}
+          name={formField.name}
+          control={control}
+          defaultValue={data?.[formField.name] ?? ''}
+          rules={{ required: formField.required }}
+          render={({ field }) => (
+            <TextInputField
+              id={field.name}
+              label={capitalize(field.name)}
+              required={!formField.disabled && formField.required}
+              {...(formField.disabled && { disabled: true })}
+              {...field}
+            />
+          )}
+        />
+      )
+    }
+    case 'Select': {
+      const options = formField?.options?.map((label) => ({
+        label,
+        value: label,
+      }))
+      return (
+        <Controller
+          key={formField.name}
+          name={formField.name}
+          control={control}
+          defaultValue={data?.[formField.name] ?? ''}
+          render={({ field }) => (
+            <Pane marginBottom={majorScale(3)}>
+              <Pane marginBottom={majorScale(1)}>
+                <Strong>{capitalize(field.name)}</Strong>
+              </Pane>
+              <SelectMenu
+                title={`Select ${field.name}`}
+                options={options}
+                selected={field.value}
+                onSelect={(item) => setValue(field.name, item.value)}
+              >
+                <Button type="button">
+                  {field.value || `Select ${capitalize(field.name)}`}
+                </Button>
+              </SelectMenu>
+            </Pane>
+          )}
+        />
+      )
+    }
+    default: {
       return null
     }
-    switch (formField.type) {
-      case 'Text': {
-        return (
-          <Controller
-            key={formField.name}
-            name={formField.name}
-            control={control}
-            defaultValue={data?.[formField.name] ?? ''}
-            rules={{ required: formField.required }}
-            render={({ field }) => (
-              <TextInputField
-                id={field.name}
-                label={capitalize(field.name)}
-                required={!formField.disabled && formField.required}
-                {...(formField.disabled && { disabled: true })}
-                {...field}
-              />
-            )}
-          />
-        )
-      }
-      case 'DateTime': {
-        return (
-          <Controller
-            key={formField.name}
-            name={formField.name}
-            control={control}
-            defaultValue={data?.[formField.name] ?? ''}
-            rules={{ required: formField.required }}
-            render={({ field }) => (
-              <TextInputField
-                id={field.name}
-                label={capitalize(field.name)}
-                required={!formField.disabled && formField.required}
-                {...(formField.disabled && { disabled: true })}
-                {...field}
-              />
-            )}
-          />
-        )
-      }
-      case 'Select': {
-        const options = formField?.options?.map((label) => ({
-          label,
-          value: label,
-        }))
-        return (
-          <Controller
-            key={formField.name}
-            name={formField.name}
-            control={control}
-            defaultValue={data?.[formField.name] ?? ''}
-            render={({ field }) => (
-              <Pane marginBottom={majorScale(3)}>
-                <Pane marginBottom={majorScale(1)}>
-                  <Strong>{capitalize(field.name)}</Strong>
-                </Pane>
-                <SelectMenu
-                  title={`Select ${field.name}`}
-                  options={options}
-                  selected={field.value}
-                  onSelect={(item) => setValue(field.name, item.value)}
-                >
-                  <Button type="button">
-                    {field.value || `Select ${capitalize(field.name)}`}
-                  </Button>
-                </SelectMenu>
-              </Pane>
-            )}
-          />
-        )
-      }
-      default: {
-        return null
-      }
-    }
   }
+}
 
 export const Form = ({
   fields,
@@ -131,7 +131,7 @@ export const Form = ({
 
     const formFields = fields
       .filter(Boolean)
-      .map(mapField({ control, setValue, data }))
+      .map((_) => mapField({ control, setValue, data }))
 
     const onSubmit = async (input: any) => {
       try {

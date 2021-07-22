@@ -2,7 +2,14 @@
 
 import * as React from 'react'
 import { matchSorter } from 'match-sorter'
-import { useAsyncDebounce } from 'react-table'
+import {
+  useAsyncDebounce,
+  UseFiltersColumnProps,
+  UseGlobalFiltersInstanceProps,
+  UseGlobalFiltersOptions,
+  ColumnGroup,
+  Row,
+} from 'react-table'
 import { SearchInput, Button, SelectField, minorScale } from 'evergreen-ui'
 import { FormField } from '../types/form'
 
@@ -10,9 +17,9 @@ export const GlobalFilter = ({
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
-}) => {
+}: UseGlobalFiltersOptions<{}> & UseGlobalFiltersInstanceProps<{}>) => {
   const count = preGlobalFilteredRows.length
-  const [value, setValue] = React.useState(globalFilter)
+  const [value, setValue] = React.useState<any>(globalFilter)
   const onChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined)
   }, 200)
@@ -21,7 +28,7 @@ export const GlobalFilter = ({
     <SearchInput
       value={value || ''}
       placeholder={`${count} records`}
-      onChange={(e) => {
+      onChange={(e: any) => {
         setValue(e.target.value)
         onChange(e.target.value)
       }}
@@ -29,12 +36,16 @@ export const GlobalFilter = ({
   )
 }
 
-export const DefaultColumnFilter = ({ column }) => {
+export const DefaultColumnFilter = ({
+  column,
+}: {
+  column: ColumnGroup & UseFiltersColumnProps<{}>
+}) => {
   const { filterValue, setFilter, Header } = column
   return (
     <SearchInput
       value={filterValue || ''}
-      onChange={(e) => {
+      onChange={(e: any) => {
         setFilter(e.target.value || undefined)
       }}
       placeholder={`${Header}`}
@@ -46,11 +57,13 @@ export const DefaultColumnFilter = ({ column }) => {
 
 export const SelectColumnFilter = ({
   column: { filterValue, setFilter, preFilteredRows, id },
+}: {
+  column: ColumnGroup & UseFiltersColumnProps<{}>
 }) => {
   const options = React.useMemo(() => {
     const options = new Set()
     preFilteredRows.forEach((row) => {
-      options.add(row.values[id])
+      options.add(row.values[id!])
     })
     return [...options.values()]
   }, [id, preFilteredRows])
@@ -58,7 +71,7 @@ export const SelectColumnFilter = ({
   return (
     <SelectField
       value={filterValue}
-      onChange={(e) => {
+      onChange={(e: any) => {
         setFilter(e.target.value || undefined)
       }}
       marginBottom={0}
@@ -67,26 +80,26 @@ export const SelectColumnFilter = ({
       <option key="select_all" value="">
         All
       </option>
-      {options.map(
-        (option: string | number | readonly string[] | undefined, i) => (
-          <option key={i} value={option}>
-            {option}
-          </option>
-        ),
-      )}
+      {options.map((option: any, i) => (
+        <option key={i} value={option}>
+          {option}
+        </option>
+      ))}
     </SelectField>
   )
 }
 
 export const SliderColumnFilter = ({
   column: { filterValue, setFilter, preFilteredRows, id },
+}: {
+  column: ColumnGroup & UseFiltersColumnProps<{}>
 }) => {
   const [min, max] = React.useMemo(() => {
-    let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
-    let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
+    let min = preFilteredRows.length ? preFilteredRows[0].values[id!] : 0
+    let max = preFilteredRows.length ? preFilteredRows[0].values[id!] : 0
     preFilteredRows.forEach((row) => {
-      min = Math.min(row.values[id], min)
-      max = Math.max(row.values[id], max)
+      min = Math.min(row.values[id!], min)
+      max = Math.max(row.values[id!], max)
     })
     return [min, max]
   }, [id, preFilteredRows])
@@ -109,13 +122,15 @@ export const SliderColumnFilter = ({
 
 export const NumberRangeColumnFilter = ({
   column: { filterValue = [], preFilteredRows, setFilter, id },
+}: {
+  column: ColumnGroup & UseFiltersColumnProps<{}>
 }) => {
   const [min, max] = React.useMemo(() => {
-    let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
-    let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
+    let min = preFilteredRows.length ? preFilteredRows[0].values[id!] : 0
+    let max = preFilteredRows.length ? preFilteredRows[0].values[id!] : 0
     preFilteredRows.forEach((row) => {
-      min = Math.min(row.values[id], min)
-      max = Math.max(row.values[id], max)
+      min = Math.min(row.values[id!], min)
+      max = Math.max(row.values[id!], max)
     })
     return [min, max]
   }, [id, preFilteredRows])
@@ -157,16 +172,24 @@ export const NumberRangeColumnFilter = ({
   )
 }
 
-export const fuzzyTextFilterFn = (rows, id, filterValue) => {
+export const fuzzyTextFilterFn = (
+  rows: Row[],
+  id: string,
+  filterValue: string,
+) => {
   return matchSorter(rows, filterValue, {
     keys: [(row: any) => row?.values?.[id]],
   })
 }
 
-fuzzyTextFilterFn.autoRemove = (val) => !val
+fuzzyTextFilterFn.autoRemove = (val: any) => !val
 
 // Define a custom filter filter function!
-export const filterGreaterThan = (rows, id, filterValue) => {
+export const filterGreaterThan = (
+  rows: Row[],
+  id: string,
+  filterValue: string,
+) => {
   return rows.filter((row) => {
     const rowValue = row.values[id]
     return rowValue >= filterValue
@@ -177,7 +200,7 @@ export const filterGreaterThan = (rows, id, filterValue) => {
 // when given the new filter value and returns true, the filter
 // will be automatically removed. Normally this is just an undefined
 // check, but here, we want to remove the filter if it's not a number
-filterGreaterThan.autoRemove = (val) => typeof val !== 'number'
+filterGreaterThan.autoRemove = (val: any) => typeof val !== 'number'
 
 export const getFilters = (field: FormField) => {
   switch (field.type) {
