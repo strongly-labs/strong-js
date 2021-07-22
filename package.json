@@ -13,9 +13,19 @@
     "typescript": "^4.3.5",
     "typesync": "^0.8.0"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "apps": [
+      "apps/*"
+    ],
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/react-native-*"
+    ]
+  },
   "scripts": {
     "lerna": "lerna",
     "start": "lerna run start --stream --parallel",
