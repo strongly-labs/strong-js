@@ -1,7 +1,7 @@
 /* eslint-disable  @typescript-eslint/restrict-template-expressions */
 
 import { FormField } from '../types/form'
-import { FieldTypes } from '@strongly/generate/src/lib'
+import { FieldTypes } from '@strongly/generate/src/schema/lib'
 
 export const fetcher = (url: string, options?: Partial<RequestInit>) =>
   fetch(url, {
@@ -45,6 +45,7 @@ export const mapForeignKeysWithData = (
                 })) ?? null
               )
             }
+            return null
           })
         )?.filter(Boolean) ?? null,
     )

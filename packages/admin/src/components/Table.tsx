@@ -11,6 +11,7 @@ import {
   useSortBy,
   useFilters,
   useGlobalFilter,
+  Row,
 } from 'react-table'
 
 import {
@@ -86,7 +87,7 @@ export const Table = ({ columns, data }: TableProps) => {
       fuzzyText: fuzzyTextFilterFn,
       // Or, override the default text filter to use
       // "startWith"
-      text: (rows, id, filterValue) => {
+      text: (rows: Row[], id: string, filterValue: string) => {
         return rows.filter((row) => {
           const rowValue = row.values[id]
           return rowValue !== undefined
