@@ -36,7 +36,6 @@
     "@types/react-dom": "^16.8.4",
     "graphql-fields": "^2.0.3",
     "graphql-scalars": "^1.10.0",
-    "typescript": "^3.4.5",
     "@strongly/generate": "file:../generate"
   },
   "publishConfig": {

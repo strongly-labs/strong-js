@@ -4,7 +4,7 @@
   "description": "Strongly Prisma Generators",
   "author": "Strongly Pty Ltd",
   "bin": {
-    "prisma-strongly-generator": "dist/index.js"
+    "prisma-strongly-generator": "./bin/cli.js"
   },
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
