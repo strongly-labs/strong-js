@@ -11,3 +11,4 @@ yarn.lock
 .yalc
 yalc.lock
 **/generated
+.strongly

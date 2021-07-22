@@ -13,18 +13,13 @@ generator client {
 
 generator typegraphql {
   provider           = "typegraphql-prisma"
-  output             = "../packages/data/generated/graphql"
+  output             = "../.strongly/graphql"
   emitTranspiledCode = true
 }
 
-generator api {
-  provider = "prisma-nextcrud-api-generator"
-  output   = "../packages/data/generated/admin/api"
-}
-
-generator admin {
-  provider = "prisma-admin-schema-generator"
-  output   = "../packages/data/generated/admin"
+generator strongly {
+  provider = "prisma-strongly-generator"
+  output   = "../.strongly"
 }
 
 // Features

@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es5",
     "baseUrl": "src",
     "outDir": "dist",
     "module": "esnext",
@@ -18,5 +18,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src", "types", "../../types"]
+  "include": ["src/schema", "src/admin", "types", "../../types"]
 }
