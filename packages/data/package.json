@@ -20,6 +20,9 @@
     "README.md",
     "dist"
   ],
+  "alias": {
+    ".strongly": "../../.strongly"
+  },
   "dependencies": {
     "@prisma/client": "^2.26.0",
     "prisma": "^2.26.0",

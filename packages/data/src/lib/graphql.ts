@@ -5,7 +5,7 @@ import {
   ResolverActionsConfig,
   applyResolversEnhanceMap,
   Role,
-} from '../../generated/graphql'
+} from '.strongly/graphql'
 import { Authorized, Extensions } from 'type-graphql'
 
 // define the decorators config using generic ResolverActionsConfig<TModelName> type
