@@ -36,9 +36,9 @@ interface FieldProps {
 }
 
 const mapField = ({ control, setValue, data }: FieldProps) => (
-  formField: FormField,
+  formField: FormField | null,
 ) => {
-  if (formField.hidden) {
+  if (!formField || formField.hidden) {
     return null
   }
   switch (formField.type) {
@@ -131,7 +131,7 @@ export const Form = ({
 
     const formFields = fields
       .filter(Boolean)
-      .map((_) => mapField({ control, setValue, data }))
+      .map(mapField({ control, setValue, data }))
 
     const onSubmit = async (input: any) => {
       try {
