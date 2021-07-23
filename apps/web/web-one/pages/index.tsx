@@ -2,7 +2,26 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import { signOut, signIn, getSession } from '@strongly/auth/src/server'
+
+import { User } from '@prisma/client'
+import { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req })
+
+  return {
+    props: {
+      user: session?.user || null,
+    },
+  }
+}
+
+interface PageProps {
+  user: Partial<User>
+}
+
+export default function Home(props: PageProps) {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,11 +35,19 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
+        {props?.user?.email ? (
+          <div>
+            Signed in as{' '}
+            <code className={styles.code}>{props?.user?.email}</code>
+            <a href="#" onClick={() => signOut()}>
+              Sign out
+            </a>
+          </div>
+        ) : (
+          <a href="#" onClick={() => signIn()}>
+            Sign in
+          </a>
+        )}
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>

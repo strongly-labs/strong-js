@@ -12,7 +12,7 @@ import {
 } from '@prisma/client'
 import { prisma } from '@strongly/data'
 import { getSession } from 'next-auth/client'
-import { nextAuthOptions } from '../web/handler'
+import { nextAuthOptions } from '../web/options'
 import { GetRouteType, getRouteType } from '@premieroctet/next-crud/dist/utils'
 import { AuthChecker } from 'type-graphql'
 
