@@ -1,12 +1,4 @@
-import { plural } from 'pluralize'
 
-export const getResourceName = (model: string) => plural(model.toLowerCase())
-
-export const nextCrudApiTemplate = (
-  resourceName: string,
-  prismaClientKey: string,
-) => {
-  return `
 import NextCrud, {
   PrismaAdapter,
   HttpError,
@@ -15,7 +7,7 @@ import NextCrud, {
 import { authorize } from '@strongly/auth'
 import { Role } from '@prisma/client'
 
-const resourceName = '${resourceName}'
+const resourceName = 'payments'
 
 const acl = {
   [RouteType.CREATE]: [Role.ADMIN, Role.USER],
@@ -27,47 +19,47 @@ const acl = {
 
 /**
  * @swagger
- * /api/${resourceName}:
+ * /api/payments:
  *   get:
- *     description: Returns ${resourceName}
+ *     description: Returns payments
  *     parameters:
  *     responses:
  *       200:
- *         description: Returns all ${resourceName}
+ *         description: Returns all payments
  *
  *   post:
- *     description: create ${resourceName}
+ *     description: create payments
  *     parameters:
  *     responses:
  *       200:
- *         description: Creates and returns ${resourceName}
+ *         description: Creates and returns payments
  *
- * /api/${resourceName}/[id]:
+ * /api/payments/[id]:
  *   get:
- *     description: Get ${prismaClientKey} by id 
+ *     description: Get payment by id 
  *     parameters:
  *     responses:
  *       200:
- *         description: Returns single ${prismaClientKey} by id
+ *         description: Returns single payment by id
  *
  *   patch:
- *     description: update ${prismaClientKey}
+ *     description: update payment
  *     parameters:
  *     responses:
  *       200:
- *         description: Updated ${prismaClientKey}
+ *         description: Updated payment
  *
  *   delete:
- *     description: delete ${prismaClientKey}
+ *     description: delete payment
  *     parameters:
  *     responses:
  *       200:
- *         description: Updated ${prismaClientKey}
+ *         description: Updated payment
  */
 const handler = NextCrud({
   resourceName,
   adapter: new PrismaAdapter({
-    modelName: '${prismaClientKey}',
+    modelName: 'payment',
   }),
   onRequest: async (req) => {
     const authorized = await authorize(req, resourceName, acl)
@@ -77,5 +69,3 @@ const handler = NextCrud({
   },
 })
 export default handler
-`
-}

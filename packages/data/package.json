@@ -16,7 +16,6 @@
     "push": "npx prisma db push",
     "migrate": "npx prisma migrate dev"
   },
-  "module": "dist/generate.esm.js",
   "files": [
     "README.md",
     "dist"

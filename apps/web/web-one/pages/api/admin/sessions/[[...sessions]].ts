@@ -1,12 +1,4 @@
-import { plural } from 'pluralize'
 
-export const getResourceName = (model: string) => plural(model.toLowerCase())
-
-export const nextCrudApiTemplate = (
-  resourceName: string,
-  prismaClientKey: string,
-) => {
-  return `
 import NextCrud, {
   PrismaAdapter,
   HttpError,
@@ -15,7 +7,7 @@ import NextCrud, {
 import { authorize } from '@strongly/auth'
 import { Role } from '@prisma/client'
 
-const resourceName = '${resourceName}'
+const resourceName = 'sessions'
 
 const acl = {
   [RouteType.CREATE]: [Role.ADMIN, Role.USER],
@@ -27,47 +19,47 @@ const acl = {
 
 /**
  * @swagger
- * /api/${resourceName}:
+ * /api/sessions:
  *   get:
- *     description: Returns ${resourceName}
+ *     description: Returns sessions
  *     parameters:
  *     responses:
  *       200:
- *         description: Returns all ${resourceName}
+ *         description: Returns all sessions
  *
  *   post:
- *     description: create ${resourceName}
+ *     description: create sessions
  *     parameters:
  *     responses:
  *       200:
- *         description: Creates and returns ${resourceName}
+ *         description: Creates and returns sessions
  *
- * /api/${resourceName}/[id]:
+ * /api/sessions/[id]:
  *   get:
- *     description: Get ${prismaClientKey} by id 
+ *     description: Get session by id 
  *     parameters:
  *     responses:
  *       200:
- *         description: Returns single ${prismaClientKey} by id
+ *         description: Returns single session by id
  *
  *   patch:
- *     description: update ${prismaClientKey}
+ *     description: update session
  *     parameters:
  *     responses:
  *       200:
- *         description: Updated ${prismaClientKey}
+ *         description: Updated session
  *
  *   delete:
- *     description: delete ${prismaClientKey}
+ *     description: delete session
  *     parameters:
  *     responses:
  *       200:
- *         description: Updated ${prismaClientKey}
+ *         description: Updated session
  */
 const handler = NextCrud({
   resourceName,
   adapter: new PrismaAdapter({
-    modelName: '${prismaClientKey}',
+    modelName: 'session',
   }),
   onRequest: async (req) => {
     const authorized = await authorize(req, resourceName, acl)
@@ -77,5 +69,3 @@ const handler = NextCrud({
   },
 })
 export default handler
-`
-}

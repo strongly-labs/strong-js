@@ -14,7 +14,6 @@
     "lint": "tsdx lint",
     "prepublish": "npm run build"
   },
-  "module": "dist/generate.esm.js",
   "files": [
     "README.md",
     "dist"

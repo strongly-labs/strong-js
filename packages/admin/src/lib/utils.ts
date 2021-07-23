@@ -1,8 +1,14 @@
 /* eslint-disable  @typescript-eslint/restrict-template-expressions */
 
 import { FormField } from '../types/form'
-import { FieldTypes } from '@strongly/generate/src/schema/lib'
-
+export const FieldTypes: Record<string, string> = {
+  String: 'Text',
+  DateTime: 'DateTime',
+  Enum: 'Select',
+  Related: 'Related',
+  Reference: 'Reference',
+  Model: 'Model',
+}
 export const fetcher = (url: string, options?: Partial<RequestInit>) =>
   fetch(url, {
     ...options,
