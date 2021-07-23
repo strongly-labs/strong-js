@@ -13,3 +13,4 @@ yalc.lock
 **/generated
 .strongly
 .next
+.env*.local

@@ -1,8 +1,0 @@
-public/
-**/node_modules/*
-**/.next/*
-*.config.js
-cypress/*
-cypress.env.json
-cypress.json
-**/api/admin/**

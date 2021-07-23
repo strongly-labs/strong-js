@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Strongly Data",
   "author": "Strongly Pty Ltd",
+  "main": "dist/index.js",
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
     "build": "tsdx build --tsconfig tsconfig.build.json",
@@ -20,9 +21,6 @@
     "README.md",
     "dist"
   ],
-  "alias": {
-    ".strongly": "../../.strongly"
-  },
   "dependencies": {
     "@prisma/client": "^2.26.0",
     "prisma": "^2.26.0",

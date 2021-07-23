@@ -15,8 +15,9 @@
   },
   "workspaces": {
     "packages": [
-      "apps/*",
-      "packages/*"
+      "packages/*",
+      "apps/mobile/*",
+      "apps/web/*"
     ],
     "nohoist": [
       "**/react-native",
@@ -35,5 +36,8 @@
     "release": "changeset publish",
     "version:canary": "changeset version --snapshot canary",
     "release:canary": "changeset publish --tag canary"
+  },
+  "dependencies": {
+    "@types/node": "^16.4.1"
   }
 }

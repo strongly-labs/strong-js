@@ -1,15 +1,9 @@
-import { config } from 'dotenv'
-import findConfig from 'find-config'
 import { NextApiHandler } from 'next'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import Providers from 'next-auth/providers'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import prisma from '@strongly/data/src/lib/prisma'
+import { prisma } from '@strongly/data'
 import { getFullUserByEmail } from '../lib'
-
-config({
-  path: findConfig('.env.local') || findConfig('.env.test') || undefined,
-})
 
 export const nextAuthOptions: NextAuthOptions = {
   providers: [

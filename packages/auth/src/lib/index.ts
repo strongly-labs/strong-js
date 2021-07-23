@@ -11,7 +11,7 @@ import {
   Asset,
   PrismaClient,
 } from '@prisma/client'
-import prisma from '@strongly/data/src/lib/prisma'
+import { prisma } from '@strongly/data'
 import { getSession } from 'next-auth/client'
 import { nextAuthOptions } from '../web/handler'
 import { GetRouteType, getRouteType } from '@premieroctet/next-crud/dist/utils'
