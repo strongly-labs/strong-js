@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { sharedContent } from '@stly/lib'
-import Button from '@stly/ui-web/src/atoms/Button'
+import Button from 'evergreen-ui'
 
-import { signOut, signIn, getSession } from '@stly/auth/web/client'
+import { signOut, signIn, getSession } from '@strongly/auth'
 
 import { User } from '@prisma/client'
 import { GetServerSideProps } from 'next'
@@ -37,7 +36,7 @@ export default function Home(props: PageProps) {
         <h1 className={styles.title}>
           Welcome to{' '}
           <a href="https://nextjs.org" data-test-id="home-shared-content">
-            {sharedContent.name}
+            Shared Content
           </a>
         </h1>
 

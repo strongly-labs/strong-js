@@ -1,0 +1,38 @@
+{
+  "name": "@strongly/auth",
+  "version": "0.0.1",
+  "description": "Strongly Auth",
+  "author": "Strongly Pty Ltd",
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepublish": "npm run build"
+  },
+  "module": "dist/generate.esm.js",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "alias": {
+    ".strongly": "../../.strongly"
+  },
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@types/find-config": "^1.0.1",
+    "@types/pluralize": "^0.0.29",
+    "next": "^11.0.0"
+  },
+  "dependencies": {
+    "@next-auth/prisma-adapter": "^0.5.2",
+    "@premieroctet/next-crud": "^1.1.0",
+    "@strongly/data": "*",
+    "find-config": "^1.0.0",
+    "next-auth": "^3.27.0",
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

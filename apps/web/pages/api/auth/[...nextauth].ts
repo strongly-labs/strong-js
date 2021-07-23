@@ -1,1 +1,3 @@
-export { default } from '@stly/auth/web/nextauth'
+import { web } from '@strongly/auth'
+
+export default web.authHandler

@@ -14,10 +14,8 @@
     "typesync": "^0.8.0"
   },
   "workspaces": {
-    "apps": [
-      "apps/*"
-    ],
     "packages": [
+      "apps/*",
       "packages/*"
     ],
     "nohoist": [
@@ -27,12 +25,12 @@
     ]
   },
   "scripts": {
-    "lerna": "lerna",
-    "start": "lerna run start --stream --parallel",
-    "test": "lerna run test --",
-    "lint": "lerna run lint -- --fix",
-    "build": "lerna run build",
-    "prepublish": "lerna run prepublish",
+    "lerna": "lerna --ignore=@strongly/app-*",
+    "start": "yarn lerna run start --stream --parallel",
+    "test": "yarn lerna run test --",
+    "lint": "yarn lerna run lint -- --fix",
+    "build": "yarn lerna run build",
+    "prepublish": "yarn lerna run prepublish",
     "changeset": "changeset",
     "release": "changeset publish",
     "version:canary": "changeset version --snapshot canary",
