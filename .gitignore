@@ -13,6 +13,7 @@ yalc.lock
 **/generated
 .strongly
 .next
+.env
 .env*.local
 **/cypress/screenshots
 **/cypress/videos

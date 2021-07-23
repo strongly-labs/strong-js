@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access,  @typescript-eslint/explicit-function-return-type, react-native/no-color-literals, no-console  */
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   SafeAreaView,
   ScrollView,
@@ -27,18 +27,21 @@ import {
   refresh,
   RefreshResult,
 } from 'react-native-app-auth'
-import {getUser} from '@stly/auth/mobile/client'
+import { mobile } from '@strongly/auth'
 
-import {sharedContent} from '@stly/lib'
-import {User} from '@prisma/client'
-import {getAuthConfiguration} from './src/utils'
-import {useStorage} from './src/storage'
+import { User } from '@prisma/client'
+import { getAuthConfiguration } from './src/utils'
+import { useStorage } from './src/storage'
+
+const sharedContent = {
+  name: 'Shared Content',
+}
 
 const host = ENV.API_HOST
 
 const Section: React.FC<{
   title: string
-}> = ({children, title}) => {
+}> = ({ children, title }) => {
   const isDarkMode = useColorScheme() === 'dark'
   return (
     <View style={styles.sectionContainer}>
@@ -48,7 +51,8 @@ const Section: React.FC<{
           {
             color: isDarkMode ? Colors.white : Colors.black,
           },
-        ]}>
+        ]}
+      >
         {title}
       </Text>
       <Text
@@ -57,7 +61,8 @@ const Section: React.FC<{
           {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
-        ]}>
+        ]}
+      >
         {children}
       </Text>
     </View>
@@ -84,10 +89,10 @@ const App = (): React.ReactElement => {
   useEffect(() => {
     if (auth?.accessTokenExpirationDate) {
       const exp = new Date(auth.accessTokenExpirationDate)?.getTime()
-      const {refreshToken} = auth
+      const { refreshToken } = auth
       if (exp < Date.now() && refreshToken) {
         console.log('refreshing')
-        void refresh(config, {refreshToken}).then(refreshResult => {
+        void refresh(config, { refreshToken }).then((refreshResult) => {
           console.log('refreshResult', refreshResult)
           setAuth(refreshResult)
         })
@@ -97,7 +102,7 @@ const App = (): React.ReactElement => {
 
   useEffect(() => {
     if (auth) {
-      void getUser(auth, {host}).then(userData => {
+      void mobile.getUser(auth, { host }).then((userData) => {
         setUser(userData)
       })
     }
@@ -112,12 +117,14 @@ const App = (): React.ReactElement => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+        style={backgroundStyle}
+      >
         <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+          }}
+        >
           <Section title="Shared Content">{sharedContent.name}</Section>
           <View style={styles.signIn}>
             {user?.email ? (
