@@ -1,6 +1,5 @@
 import { IncomingMessage } from 'http'
 import { Profile } from 'next-auth'
-import { NextApiRequest } from 'next'
 import { AppOptions } from 'next-auth/internals'
 import { AdapterInstance } from 'next-auth/adapters'
 import {
@@ -15,6 +14,7 @@ import { prisma } from '@strongly/data'
 import { getSession } from 'next-auth/client'
 import { nextAuthOptions } from '../web/handler'
 import { GetRouteType, getRouteType } from '@premieroctet/next-crud/dist/utils'
+import { AuthChecker } from 'type-graphql'
 
 export type DecodedToken = {
   email: string
@@ -194,7 +194,7 @@ export const getUserFromTokens = async (req: IncomingMessage) => {
 }
 
 export const authorize = async (
-  req: NextApiRequest,
+  req: any,
   resourceName: string,
   acl: { [k: string]: Role[] },
 ) => {
@@ -226,5 +226,35 @@ export const authorize = async (
       console.error(error)
     }
   }
+  return false
+}
+
+interface Context {
+  req: any
+  prisma: PrismaClient
+}
+
+export const authChecker: AuthChecker<Context> = async (
+  { args, context },
+  roles,
+) => {
+  const { req } = context
+  const { provider, accessToken } = await getAuthContext(req)
+  const email = await getEmailFromToken(provider, accessToken)
+  if (email) {
+    const user = await getFullUserByEmail(email, context?.prisma)
+    if (user && typeof user?.role === 'string') {
+      const resourceId = String(args?.where?.id) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+      const isOwner = resourceId
+        ? user.id === resourceId ||
+          Boolean(
+            user.assets.find((item: any) => item.resourceId === resourceId),
+          )
+        : false
+
+      return roles.includes(user?.role) || isOwner
+    }
+  }
+
   return false
 }

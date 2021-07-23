@@ -1,4 +1,3 @@
-import { NextApiHandler } from 'next'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import Providers from 'next-auth/providers'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
@@ -40,6 +39,6 @@ export const nextAuthOptions: NextAuthOptions = {
   },
 }
 
-export const authHandler: NextApiHandler = (req, res) =>
+export const authHandler = (req: any, res: any) =>
   NextAuth(req, res, nextAuthOptions)
 export default authHandler

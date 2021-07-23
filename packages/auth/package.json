@@ -19,14 +19,12 @@
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@types/find-config": "^1.0.1",
-    "@types/pluralize": "^0.0.29",
-    "next": "^11.0.0"
+    "@types/pluralize": "^0.0.29"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^0.5.2",
     "@premieroctet/next-crud": "^1.1.0",
     "@strongly/data": "*",
-    "find-config": "^1.0.0",
     "next-auth": "^3.27.0",
     "tslib": "^2.3.0"
   },
