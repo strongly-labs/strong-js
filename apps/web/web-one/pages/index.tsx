@@ -6,6 +6,7 @@ import { signOut, signIn, getSession } from 'next-auth/client'
 
 import { User } from '@prisma/client'
 import { GetServerSideProps } from 'next'
+import { Thing } from '@strongly/admin'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req })
@@ -37,6 +38,7 @@ export default function Home(props: PageProps) {
 
         {props?.user?.email ? (
           <div>
+            <Thing />
             Signed in as{' '}
             <code className={styles.code}>{props?.user?.email}</code>
             <a href="#" onClick={() => signOut()}>
