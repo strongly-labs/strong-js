@@ -10,15 +10,17 @@
     "link-strongly": "ln -s ../../../../../.strongly/api pages/api/s"
   },
   "dependencies": {
-    "@strongly/admin": "*",
     "@strongly/auth": "*",
+    "@strongly/admin": "*",
     "next": "11.0.1",
     "next-auth": "^3.27.3",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/eslint": "7.28.0",
     "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.2",
     "eslint": "7.31.0",
     "eslint-config-next": "11.0.1",
     "typescript": "4.3.5"

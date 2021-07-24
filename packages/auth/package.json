@@ -17,7 +17,6 @@
   ],
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
-    "@types/find-config": "^1.0.1",
     "@types/pluralize": "^0.0.29"
   },
   "dependencies": {
