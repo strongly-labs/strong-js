@@ -72,6 +72,7 @@
     "tslib": "^2.3.0"
   },
   "dependencies": {
+    ".strongly": "link:../../.strongly",
     "evergreen-ui": "^6.2.0",
     "match-sorter": "^6.3.0",
     "react-hook-form": "^7.11.1",
