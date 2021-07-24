@@ -3,7 +3,7 @@ import getActions from './lib/getActions';
 import * as React from 'react';
 import useSwr from 'swr';
 import { plural, singular } from 'pluralize';
-import AdminSchema from '../example/admin.json';
+import AdminSchema from '../../../.strongly/admin.json';
 
 import { capitalize, fetcher, getIncludes } from './lib/utils';
 
