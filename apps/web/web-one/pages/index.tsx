@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-import { signOut, signIn, getSession } from '@strongly/auth/src/server'
+import { signOut, signIn, getSession } from 'next-auth/client'
 
 import { User } from '@prisma/client'
 import { GetServerSideProps } from 'next'

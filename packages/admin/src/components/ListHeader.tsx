@@ -18,7 +18,6 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
 } from 'evergreen-ui'
-import { ListHeaderProps, ToggleColumnsProps } from '../types/list'
 import { ListContext } from './ListContext'
 import { HeaderGroup } from 'react-table'
 

@@ -11,7 +11,6 @@ import {
   Row,
 } from 'react-table'
 import { SearchInput, Button, SelectField, minorScale } from 'evergreen-ui'
-import { FormField } from '../types/form'
 
 export const GlobalFilter = ({
   preGlobalFilteredRows,

@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import getActions, { CrudActions } from '../lib/getActions'
+import getActions from '../lib/getActions'
 import * as React from 'react'
 import useSwr from 'swr'
 import { plural, singular } from 'pluralize'
 import AdminSchema from '../../../../.strongly/admin.json'
-import { ColumnConfig, Context, ListProviderProps } from '../types/list'
-import { FormField } from '../types/form'
+
 import { capitalize, fetcher, getIncludes } from '../lib/utils'
 
 const defaultColumnConfig: ColumnConfig = {

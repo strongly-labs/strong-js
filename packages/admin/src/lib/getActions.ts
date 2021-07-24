@@ -1,26 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { SubmitHandler } from 'react-hook-form'
-import { FormField } from '../types/form'
 import { getQueryString, mapForeignKeysWithData } from './utils'
-export interface getActionsProps {
-  route?: string | null
-  include?: (string | undefined)[]
-  where?: FormField['foreignKeys']
-  parent?: any
-}
-
-export interface CrudActions {
-  getAll: () => string | undefined | null
-  getOne: (_: string) => string | null
-  remove: (_: string[]) => void
-  upsert: SubmitHandler<any>
-}
-
-interface QueryParams {
-  include?: string
-  where?: string
-}
 
 const getActions = ({
   route,

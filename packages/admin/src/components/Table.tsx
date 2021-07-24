@@ -25,12 +25,9 @@ import {
   Pill,
 } from 'evergreen-ui'
 
-import { CellProps, TableProps } from '../types/list'
 import { DefaultColumnFilter, fuzzyTextFilterFn } from './ListFilters'
 
 import { ListContext } from './ListContext'
-
-import { FormField } from '../types/form'
 
 import { ListHeader, renderHeader } from './ListHeader'
 

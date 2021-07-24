@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { FullUser } from '../lib'
+import type { FullUser } from '../src/lib'
 
 declare module 'next-auth' {
   interface Session {

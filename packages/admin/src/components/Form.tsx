@@ -17,7 +17,6 @@ import {
   Strong,
   majorScale,
 } from 'evergreen-ui'
-import { FormField } from '../types/form'
 import { fetcher } from '../lib/utils'
 import { capitalize } from '../lib/utils'
 

@@ -1,6 +1,5 @@
 /* eslint-disable  @typescript-eslint/restrict-template-expressions */
 
-import { FormField } from '../types/form'
 export const FieldTypes: Record<string, string> = {
   String: 'Text',
   DateTime: 'DateTime',

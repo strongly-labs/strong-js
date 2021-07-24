@@ -24,8 +24,10 @@
     "@next-auth/prisma-adapter": "^0.5.2",
     "@premieroctet/next-crud": "^1.1.0",
     "@strongly/data": "*",
-    "next-auth": "^3.27.0",
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "next-auth": "^3.27.0"
   },
   "publishConfig": {
     "access": "restricted"

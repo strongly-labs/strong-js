@@ -5,7 +5,6 @@
     "allowJs": false,
     "baseUrl": ".",
     "paths": {
-      ".strongly": ["./.strongly"],
       "@strongly/admin": ["packages/admin/src"],
       "@strongly/auth": ["packages/auth/src"],
       "@strongly/data": ["packages/data/src"],

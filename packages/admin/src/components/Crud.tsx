@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { List } from './List'
 import { Editor } from './Editor'
-import { ColumnConfig } from '../types/list'
 import { ListProvider } from './ListContext'
 
 interface CrudProps {

@@ -10,11 +10,12 @@
     "link-strongly": "ln -s ../../../../../.strongly/api pages/api/s"
   },
   "dependencies": {
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "@strongly/admin": "*",
     "@strongly/auth": "*",
-    "@strongly/admin": "*"
+    "next": "11.0.1",
+    "next-auth": "^3.27.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/react": "17.0.14",
