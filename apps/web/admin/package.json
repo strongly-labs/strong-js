@@ -2,12 +2,15 @@
   "name": "@strongly/app-admin",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "link-strongly": "ln -s ../../../../../.strongly/api pages/api/s"
+    "strongly-link": "node strongly-link.js"
   },
   "dependencies": {
     "@strongly/auth": "*",

@@ -11,6 +11,7 @@
     "lint": "tsdx lint",
     "prepublish": "npm run build",
     "gen": "npx prisma generate",
+    "kill": "sudo kill -9 $(sudo lsof -t -i:5432)",
     "up": "docker-compose up",
     "down": "docker-compose down",
     "push": "npx prisma db push",
