@@ -36,7 +36,10 @@
     "release": "changeset publish",
     "version:canary": "changeset version --snapshot canary",
     "release:canary": "changeset publish --tag canary",
-    "dev": "lerna run --scope=@strongly/app-* dev --stream --parallel"
+    "data:up": "yarn workspace @strongly/data up --detach",
+    "data:push": "yarn workspace @strongly/data push",
+    "up": "yarn data:up && yarn data:push",
+    "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
