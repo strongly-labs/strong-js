@@ -39,7 +39,8 @@
     "data:up": "yarn workspace @strongly/data up --detach",
     "data:push": "yarn workspace @strongly/data push",
     "up": "yarn data:up && yarn data:push",
-    "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel"
+    "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel",
+    "studio": "npx prisma studio --schema backend/schema.prisma"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
