@@ -37,6 +37,9 @@ export default function Home(props: PageProps) {
           <div>
             Signed in as{' '}
             <code className={styles.code}>{props?.user?.email}</code>
+            <a href="/admin/s/users" style={{ marginRight: 16 }}>
+              Admin
+            </a>
             <a href="#" onClick={() => signOut()}>
               Sign out
             </a>

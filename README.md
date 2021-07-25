@@ -1,6 +1,6 @@
-# Strongly Framework
+# Strongly Platform
 
-## Usage
+## Cross Platform Rapid Development Framework
 
 This monorepo is setup for a dummy `@strongly/` NPM organization. There are 2 packages by default:
 
