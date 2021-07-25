@@ -5,6 +5,7 @@
   "license": "Proprietary",
   "private": true,
   "scripts": {
+    "dev": "echo \"run dev\" ",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
