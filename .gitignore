@@ -22,6 +22,7 @@ apps/**/.env
 # strongly
 **/generated
 .strongly
+**/.strongly
 
 # next.js
 **/.next/

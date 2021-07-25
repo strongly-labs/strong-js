@@ -3,7 +3,6 @@ import getActions from './lib/getActions';
 import * as React from 'react';
 import useSwr from 'swr';
 import { plural, singular } from 'pluralize';
-import AdminSchema from '../../../.strongly/admin.json';
 
 import { capitalize, fetcher, getIncludes } from './lib/utils';
 
@@ -40,6 +39,7 @@ ListContext.displayName = 'ListContext';
 
 export const ListProvider = ({
   resource,
+  rootSchema,
   schema: prefetchedSchema,
   data: prefetchedData,
   parent,
@@ -63,9 +63,10 @@ export const ListProvider = ({
   React.useEffect(() => {
     try {
       if (!prefetchedSchema) {
-        const { json } = AdminSchema;
         const modelName = capitalize(singular(resource));
-        const modelSchema = json.find(({ name }) => name === modelName);
+        const modelSchema = rootSchema?.json.find(
+          ({ name }) => name === modelName
+        );
         setSchema(modelSchema);
       }
     } catch (error) {

@@ -4,12 +4,17 @@ import { Editor } from './Editor';
 import { ListProvider } from './ListContext';
 
 interface CrudProps {
+  rootSchema: Context['rootSchema'];
   resourceName: string;
   config: Partial<ColumnConfig>;
 }
 
 const Crud = (props: CrudProps) => (
-  <ListProvider resource={props.resourceName} config={props.config}>
+  <ListProvider
+    rootSchema={props.rootSchema}
+    resource={props.resourceName}
+    config={props.config}
+  >
     <List />
     <Editor />
   </ListProvider>

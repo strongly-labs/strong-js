@@ -83,6 +83,7 @@ declare global {
     shouldRevalidate?: boolean | undefined,
   ) => Promise<any>
   export interface Context {
+    rootSchema?: { json: any[] }
     schema: FormField | null
     state: ListState
     actions: CrudActions | null

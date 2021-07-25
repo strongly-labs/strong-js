@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/client'
 import { FullUser } from '@strongly/auth'
 import Crud from '@strongly/admin'
+import AdminSchema from '../../.strongly/admin.json'
 
 import styles from '../../styles/Admin.module.css'
 
@@ -51,7 +52,14 @@ const Admin = ({ user }: PageProps) => {
 
       <main className={styles.main}>
         {user && typeof resourceName === 'string' ? (
-          <Crud resourceName={resourceName} config={config} />
+          <>
+            <h1>Manage {resourceName}</h1>
+            <Crud
+              rootSchema={AdminSchema}
+              resourceName={resourceName}
+              config={config}
+            />
+          </>
         ) : (
           <a href="#" onClick={() => signIn()}>
             Sign in
