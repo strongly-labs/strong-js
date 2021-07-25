@@ -1,12 +1,12 @@
 {
-  "name": "@strongly/app-admin",
+  "name": "@strongly/app-main",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "dev": "next dev -p 4000",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@strongly/auth": "*",
-    "@strongly/admin": "*",
     "next": "11.0.1",
     "next-auth": "^3.27.3"
   },

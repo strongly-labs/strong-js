@@ -1,5 +1,4 @@
 *.log
-.DS_Store
 node_modules
 dist
 
@@ -10,10 +9,35 @@ yarn.lock
 
 .yalc
 yalc.lock
-**/generated
-.strongly
-.next
-.env
+
+# env
+apps/**/.env
 .env*.local
+
+# cypress
+
 **/cypress/screenshots
 **/cypress/videos
+
+# strongly
+**/generated
+.strongly
+
+# next.js
+**/.next/
+**/out/
+
+# production
+**/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vercel
+**/.vercel
