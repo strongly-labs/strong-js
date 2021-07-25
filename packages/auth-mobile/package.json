@@ -1,0 +1,24 @@
+{
+  "name": "@strongly/auth-mobile",
+  "version": "0.0.1",
+  "description": "Strongly Auth Mobile SDK",
+  "author": "Strongly Pty Ltd",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

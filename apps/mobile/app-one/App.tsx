@@ -27,7 +27,7 @@ import {
   refresh,
   RefreshResult,
 } from 'react-native-app-auth'
-import { mobile } from '@strongly/auth'
+import { getUser } from '@strongly/auth-mobile'
 
 import { User } from '@prisma/client'
 import { getAuthConfiguration } from './src/utils'
@@ -102,7 +102,7 @@ const App = (): React.ReactElement => {
 
   useEffect(() => {
     if (auth) {
-      void mobile.getUser(auth, { host }).then((userData) => {
+      void getUser(auth, { host }).then((userData) => {
         setUser(userData)
       })
     }
