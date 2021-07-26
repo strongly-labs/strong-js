@@ -1,4 +1,7 @@
 {
+  "name": "@strongly/admin",
+  "author": "Zuhair Naqvi",
+  "module": "dist/admin.esm.js",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -31,23 +34,14 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "name": "@strongly/admin",
-  "author": "Zuhair Naqvi",
-  "module": "dist/admin.esm.js",
   "size-limit": [
     {
       "path": "dist/admin.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "100 KB"
     },
     {
       "path": "dist/admin.esm.js",
-      "limit": "10 KB"
+      "limit": "100 KB"
     }
   ],
   "devDependencies": {
