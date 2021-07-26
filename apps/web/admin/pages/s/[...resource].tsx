@@ -22,10 +22,6 @@ const config: Partial<ColumnConfig> = {
       USER: 'neutral',
     },
   },
-  pills: {
-    accounts: 'neutral',
-    assets: 'neutral',
-  },
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

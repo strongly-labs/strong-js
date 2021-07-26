@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
-import * as React from 'react'
+import * as React from 'react';
 
-import { Checkbox, IconButton, EditIcon } from 'evergreen-ui'
-import { ListContext } from './ListContext'
-import { getFilters } from './ListFilters'
-import { Table } from './Table'
-import { Column } from 'react-table'
+import { Checkbox, IconButton, EditIcon } from 'evergreen-ui';
+import { ListContext } from './ListContext';
+import { getFilters } from './ListFilters';
+import { Table } from './Table';
+import { Column } from 'react-table';
+import { FieldTypes } from './lib/utils';
 
 export const List = () => {
   const {
@@ -13,20 +14,25 @@ export const List = () => {
     data,
     config,
     state: { setSelected, setEditorOpen },
-  } = React.useContext(ListContext)
+  } = React.useContext(ListContext);
 
-  const tableData = data ?? []
+  const tableData = data ?? [];
 
-  const fields = schema?.items ?? []
+  const fields = schema?.items ?? [];
 
   const fieldColumns = fields
-    ?.filter((field) => field && !config?.exclude?.includes(field.name))
-    ?.map((field) => ({
+    ?.filter(
+      field =>
+        field &&
+        field.type !== FieldTypes.Related &&
+        !config?.exclude?.includes(field.name)
+    )
+    ?.map(field => ({
       Header: field?.name,
       accessor: field?.name,
       type: field?.type,
       ...(field && getFilters(field)),
-    }))
+    }));
 
   const selectionColumn: Column = {
     id: '_selection',
@@ -42,8 +48,8 @@ export const List = () => {
     Cell: ({ row }) => (
       <Checkbox indeterminate {...row.getToggleRowSelectedProps()} />
     ),
-  }
-  const systemColumns: any[] = [selectionColumn]
+  };
+  const systemColumns: any[] = [selectionColumn];
 
   if (config?.editable) {
     const editColumn: Column = {
@@ -54,34 +60,41 @@ export const List = () => {
         <IconButton
           icon={EditIcon}
           onClick={() => {
-            toggleAllRowsSelected(false)
-            setSelected(row)
-            setEditorOpen(true)
+            toggleAllRowsSelected(false);
+            setSelected(row);
+            setEditorOpen(true);
           }}
         />
       ),
-    }
-    systemColumns.push(editColumn)
+    };
+    systemColumns.push(editColumn);
   }
 
   const columns = React.useMemo(
     () => [...systemColumns, ...(fieldColumns ?? [])],
-    [fields],
-  )
+    [fields]
+  );
+
+  const getCellContent = (val: any) => {
+    const canRender = typeof val === 'string' || React.isValidElement(val);
+    if (canRender) {
+      return val;
+    }
+    return null;
+  };
 
   const rows = React.useMemo(
     () =>
       tableData?.map((record: any) =>
-        Object.entries(record).reduce(
-          (acc, [key, val]) => ({
+        Object.entries(record).reduce((acc, [key, val]) => {
+          return {
             ...acc,
-            [key]: Array.isArray(val) ? val.length : val,
-          }),
-          {},
-        ),
+            [key]: getCellContent(val),
+          };
+        }, {})
       ),
-    [tableData],
-  )
+    [tableData]
+  );
 
-  return <Table columns={columns} data={rows} />
-}
+  return <Table columns={columns} data={rows} />;
+};
