@@ -10,12 +10,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "strongly-link": "node strongly-link.js",
-    "postinstall": "yarn strongly-link"
+    "postinstall": "st link admin"
   },
   "dependencies": {
     "@strongly/auth": "*",
     "@strongly/admin": "*",
+    "@strongly/cli": "*",
     "next": "11.0.1",
     "next-auth": "^3.27.3"
   },

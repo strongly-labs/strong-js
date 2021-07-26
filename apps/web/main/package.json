@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "strongly-link": "node strongly-link.js"
+    "postinstall": "st link"
   },
   "dependencies": {
     "@strongly/auth": "*",
