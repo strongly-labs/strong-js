@@ -1,5 +1,5 @@
 {
-  "name": "@strongly/admin",
+  "name": "@strongly/crud",
   "author": "Zuhair Naqvi",
   "module": "dist/admin.esm.js",
   "version": "0.1.0",

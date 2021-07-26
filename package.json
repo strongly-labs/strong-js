@@ -27,7 +27,7 @@
   },
   "scripts": {
     "lerna": "lerna --ignore=@strongly/app-*",
-    "start": "yarn lerna run start --stream --parallel",
+    "watch": "yarn lerna run start --stream --parallel",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",
     "build": "yarn lerna run build",
@@ -38,6 +38,8 @@
     "release:canary": "changeset publish --tag canary",
     "data:up": "yarn workspace @strongly/data up --detach",
     "data:push": "yarn workspace @strongly/data push",
+    "data:gen": "yarn workspace @strongly/data gen",
+    "admin:link": "yarn workspace @strongly/app-admin st link admin",
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel",
     "studio": "npx prisma studio --schema backend/schema.prisma"

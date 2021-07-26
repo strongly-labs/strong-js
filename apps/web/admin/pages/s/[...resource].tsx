@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/client'
 import { FullUser } from '@strongly/auth'
-import Crud from '@strongly/admin'
+import Crud from '@strongly/crud'
 import AdminSchema from '../../.strongly/admin.json'
 
 import styles from '../../styles/Admin.module.css'
