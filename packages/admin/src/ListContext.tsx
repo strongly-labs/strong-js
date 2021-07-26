@@ -32,7 +32,7 @@ const value = {
   config: defaultColumnConfig,
 };
 
-const API_PREFIX = '/api/s';
+const API_PREFIX = '/admin/api/s';
 
 export const ListContext = React.createContext<Context>(value);
 ListContext.displayName = 'ListContext';

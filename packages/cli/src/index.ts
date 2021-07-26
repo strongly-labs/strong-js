@@ -2,6 +2,7 @@
 
 import yargs from 'yargs'
 import { promises as fs, constants } from 'fs'
+import { copy } from 'fs-extra'
 
 const { access, realpath, symlink } = fs
 
@@ -13,6 +14,7 @@ async function linkStrongly(stronglyPath: string) {
   } catch (handledError) {
     try {
       await symlink(stronglyPath, './.strongly', 'junction')
+
       console.log('linked .strongly dir')
     } catch (unhandledError) {
       throw unhandledError
@@ -20,23 +22,34 @@ async function linkStrongly(stronglyPath: string) {
   }
 }
 
-async function linkAdmin(stronglyPath: string) {
-  console.log(
-    'Attempting to create symlink from <ROOT_DIR>/.strongly/api to pages/api/s',
-  )
+async function copyAdmin(stronglyPath: string) {
+  console.log('Attempting to copy <ROOT_DIR>/.strongly/api to pages/api/s')
   const apiPath = './pages/api/s'
   try {
-    await access(apiPath, constants.F_OK)
-    console.log('strongly api alrealdy linked')
-  } catch (handledError) {
-    try {
-      await symlink(stronglyPath + '/api', apiPath, 'junction')
-      console.log('linked strongly api')
-    } catch (unhandledError) {
-      throw unhandledError
-    }
+    await copy(stronglyPath + '/api', apiPath)
+    console.log('copied strongly admin api')
+  } catch (unhandledError) {
+    throw unhandledError
   }
 }
+
+// async function linkAdmin(stronglyPath: string) {
+//   console.log(
+//     'Attempting to create symlink from <ROOT_DIR>/.strongly/api to pages/api/s',
+//   )
+//   const apiPath = './pages/api/s'
+//   try {
+//     await access(apiPath, constants.F_OK)
+//     console.log('strongly api alrealdy linked')
+//   } catch (handledError) {
+//     try {
+//       await symlink(stronglyPath + '/api', apiPath, 'junction')
+//       console.log('linked strongly admin api')
+//     } catch (unhandledError) {
+//       throw unhandledError
+//     }
+//   }
+// }
 
 async function createLinks(modules: string[]) {
   try {
@@ -45,7 +58,7 @@ async function createLinks(modules: string[]) {
     await linkStrongly(stronglyPath)
 
     if (modules.includes('admin')) {
-      await linkAdmin(stronglyPath)
+      await copyAdmin(stronglyPath)
     }
   } catch (error) {
     throw error

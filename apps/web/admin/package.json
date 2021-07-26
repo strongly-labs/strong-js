@@ -6,6 +6,7 @@
     "node": ">=14"
   },
   "scripts": {
+    "kill": "sudo kill -9 $(sudo lsof -t -i:4000)",
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
