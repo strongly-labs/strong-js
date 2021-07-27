@@ -1,5 +1,5 @@
 {
-  "name": "@strongly/auth",
+  "name": "@strong-js/auth",
   "version": "0.0.2",
   "description": "Strongly Auth",
   "author": "Strongly Labs",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@next-auth/prisma-adapter": "^0.5.2",
     "@premieroctet/next-crud": "^1.1.0",
-    "@strongly/data": "*",
+    "@strong-js/data": "*",
     "tslib": "^2.3.0",
     "next-auth": "^3.27.0"
   },

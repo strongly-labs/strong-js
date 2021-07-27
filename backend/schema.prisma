@@ -13,13 +13,13 @@ generator client {
 
 generator typegraphql {
   provider           = "typegraphql-prisma"
-  output             = "../.strongly/graphql"
+  output             = "../.strong/graphql"
   emitTranspiledCode = true
 }
 
 generator strongly {
   provider = "prisma-strongly-generator"
-  output   = "../.strongly"
+  output   = "../.strong"
 }
 
 // Features

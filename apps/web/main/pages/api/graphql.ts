@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server-micro'
 import { PrismaClient } from '@prisma/client'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { buildSchema } from 'type-graphql'
-import { authChecker } from '@strongly/auth'
+import { authChecker } from '@strong-js/auth'
 import resolvers from './resolvers'
 
 export const config = {

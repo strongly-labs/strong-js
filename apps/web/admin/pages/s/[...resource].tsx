@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/client'
-import { FullUser } from '@strongly/auth'
-import Crud from '@strongly/crud'
-import AdminSchema from '../../.strongly/admin.json'
+import { FullUser } from '@strong-js/auth'
+import Crud from '@strong-js/crud'
+import AdminSchema from '../../.strong/admin.json'
 
 import styles from '../../styles/Admin.module.css'
 

@@ -1,3 +1,3 @@
-import { web } from '@strongly/auth'
+import { web } from '@strong-js/auth'
 
 export default web.authHandler

@@ -5,15 +5,15 @@ import { copy } from 'fs-extra'
 const { access, realpath, symlink } = fs
 
 async function linkStrongly(stronglyPath: string) {
-  console.log('Attempting to create symlink to <ROOT_DIR>/.strongly')
+  console.log('Attempting to create symlink to <ROOT_DIR>/.strong')
   try {
-    await access('./.strongly', constants.R_OK)
-    console.log('.strongly dir alrealdy linked')
+    await access('./.strong', constants.R_OK)
+    console.log('.strong dir alrealdy linked')
   } catch (handledError) {
     try {
-      await symlink(stronglyPath, './.strongly', 'junction')
+      await symlink(stronglyPath, './.strong', 'junction')
 
-      console.log('linked .strongly dir')
+      console.log('linked .strong dir')
     } catch (unhandledError) {
       throw unhandledError
     }
@@ -21,7 +21,7 @@ async function linkStrongly(stronglyPath: string) {
 }
 
 async function copyAdmin(stronglyPath: string) {
-  console.log('Attempting to copy <ROOT_DIR>/.strongly/api to pages/api/s')
+  console.log('Attempting to copy <ROOT_DIR>/.strong/api to pages/api/s')
   const apiPath = './pages/api/s'
   try {
     await copy(stronglyPath + '/api', apiPath)
@@ -33,7 +33,7 @@ async function copyAdmin(stronglyPath: string) {
 
 // async function linkAdmin(stronglyPath: string) {
 //   console.log(
-//     'Attempting to create symlink from <ROOT_DIR>/.strongly/api to pages/api/s',
+//     'Attempting to create symlink from <ROOT_DIR>/.strong/api to pages/api/s',
 //   )
 //   const apiPath = './pages/api/s'
 //   try {
@@ -51,7 +51,7 @@ async function copyAdmin(stronglyPath: string) {
 
 async function createLinks(modules: string[]) {
   try {
-    const stronglyPath = await realpath('../../../.strongly')
+    const stronglyPath = await realpath('../../../.strong')
 
     await linkStrongly(stronglyPath)
 

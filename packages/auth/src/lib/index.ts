@@ -10,7 +10,7 @@ import {
   Asset,
   PrismaClient,
 } from '@prisma/client'
-import { prisma } from '@strongly/data'
+import { prisma } from '@strong-js/data'
 import { getSession } from 'next-auth/client'
 import { nextAuthOptions } from '../web/options'
 import { GetRouteType, getRouteType } from '@premieroctet/next-crud/dist/utils'

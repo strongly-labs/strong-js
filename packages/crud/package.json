@@ -1,5 +1,5 @@
 {
-  "name": "@strongly/crud",
+  "name": "@strong-js/crud",
   "author": "Strongly Labs",
   "description": "Strongly crud UI",
   "module": "dist/crud.esm.js",

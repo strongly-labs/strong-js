@@ -27,7 +27,7 @@ import {
   refresh,
   RefreshResult,
 } from 'react-native-app-auth'
-import { getUser } from '@strongly/auth-mobile'
+import { getUser } from '@strong-js/auth-mobile'
 
 import { User } from '@prisma/client'
 import { getAuthConfiguration } from './src/utils'

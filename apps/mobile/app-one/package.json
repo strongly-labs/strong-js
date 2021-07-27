@@ -1,5 +1,5 @@
 {
-  "name": "@strongly/app-mobile",
+  "name": "@strong-js/app-mobile",
   "version": "1.0.1",
   "author": "Strongly <contact@strongly.com.au>",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "fix": "yarn fix:eslint && yarn fix:prettier"
   },
   "dependencies": {
-    "@strongly/auth-mobile": "*",
+    "@strong-js/auth-mobile": "*",
     "isomorphic-unfetch": "^3.1.0",
     "react-native": "0.64.2",
     "react-native-app-auth": "^6.4.0",

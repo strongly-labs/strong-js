@@ -5,10 +5,10 @@
     "allowJs": false,
     "baseUrl": ".",
     "paths": {
-      "@strongly/auth": ["packages/auth/src"],
-      "@strongly/crud": ["packages/crud/src"],
-      "@strongly/data": ["packages/data/src"],
-      "@strongly/generate": ["packages/generate/src"],
+      "@strong-js/auth": ["packages/auth/src"],
+      "@strong-js/crud": ["packages/crud/src"],
+      "@strong-js/data": ["packages/data/src"],
+      "@strong-js/generate": ["packages/generate/src"],
       "$test/*": ["test/*"]
     }
   }

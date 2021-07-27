@@ -7,7 +7,7 @@ import generateSchema from './schema'
 generatorHandler({
   onManifest() {
     return {
-      defaultOutput: '.strongly',
+      defaultOutput: '.strong',
       prettyName: 'Prisma Strongly Generator',
     }
   },

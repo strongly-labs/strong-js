@@ -1,4 +1,4 @@
-# @strongly/generate
+# @strong-js/generate
 
 ## 0.0.2
 

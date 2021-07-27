@@ -1,5 +1,5 @@
-describe('@strongly/generate', () => {
+describe('@strong-js/generate', () => {
   it('works', () => {
-    expect(true).toBe(true);
-  });
-});
+    expect(true).toBe(true)
+  })
+})

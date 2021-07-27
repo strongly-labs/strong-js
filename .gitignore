@@ -21,8 +21,8 @@ yalc.lock
 
 # strongly
 **/generated
-.strongly
-**/.strongly
+.strong
+**/.strong
 apps/web/**/api/s
 
 # next.js
