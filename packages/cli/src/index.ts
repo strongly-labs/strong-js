@@ -1,10 +1,22 @@
+/**
+ *  
+   _____ _______ _____   ____  _   _  _____ 
+  / ____|__   __|  __ \ / __ \| \ | |/ ____|
+ | (___    | |  | |__) | |  | |  \| | |  __ 
+  \___ \   | |  |  _  /| |  | | . ` | | |_ |
+  ____) |  | |  | | \ \| |__| | |\  | |__| |
+ |_____/   |_|  |_|  \_\\____/|_| \_|\_____|
+                                                                                        
+ * 
+ */
+
 import yargs from 'yargs'
 import { promises as fs, constants } from 'fs'
 import { copy } from 'fs-extra'
 
 const { access, realpath, symlink } = fs
 
-async function linkStrong-js(stronglyPath: string) {
+async function linkStrong(stronglyPath: string) {
   console.log('Attempting to create symlink to <ROOT_DIR>/.strong')
   try {
     await access('./.strong', constants.R_OK)
@@ -53,7 +65,7 @@ async function createLinks(modules: string[]) {
   try {
     const stronglyPath = await realpath('../../../.strong')
 
-    await linkStrong-js(stronglyPath)
+    await linkStrong(stronglyPath)
 
     if (modules.includes('admin')) {
       await copyAdmin(stronglyPath)
@@ -62,16 +74,6 @@ async function createLinks(modules: string[]) {
     throw error
   }
 }
-
-console.log(`
-
-_____ _____ _____ _____ _____ _____ __    __ __
-|   __|_   _| __  |     |   | |   __|  |  |  |  |
-|__   | | | |    -|  |  | | | |  |  |  |__|_   _|
-|_____| |_| |__|__|_____|_|___|_____|_____| |_|  
-
-
-`)
 
 yargs
   .scriptName('st')
