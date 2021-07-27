@@ -11,9 +11,9 @@ import NextCrud, {
   PrismaAdapter,
   HttpError,
   RouteType,
-} from '@stly/admin/lib/apiHandler'
+} from '@strongly/crud/src/lib/apiHandler'
+import { authorize } from '@strongly/auth'
 import { Role } from '@prisma/client'
-import { authorize } from '@stly/auth/lib'
 
 const resourceName = '${resourceName}'
 

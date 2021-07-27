@@ -3,41 +3,37 @@
   "version": "0.0.1",
   "description": "Strongly Data",
   "author": "Strongly Pty Ltd",
+  "main": "dist/index.js",
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
     "build": "tsdx build --tsconfig tsconfig.build.json",
     "test": "tsdx test",
-    "lint": "tsdx lint",
     "prepublish": "npm run build",
     "gen": "npx prisma generate",
+    "kill": "sudo kill -9 $(sudo lsof -t -i:5432)",
     "up": "docker-compose up",
     "down": "docker-compose down",
     "push": "npx prisma db push",
     "migrate": "npx prisma migrate dev"
   },
-  "module": "dist/generate.esm.js",
   "files": [
     "README.md",
     "dist"
   ],
-  "alias": {
-    ".strongly": "../../.strongly"
-  },
   "dependencies": {
     "@prisma/client": "^2.26.0",
     "prisma": "^2.26.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.3.0",
     "type-graphql": "^1.1.1",
     "typegraphql-prisma": "^0.14.6"
   },
   "devDependencies": {
+    "@strongly/generate": "*",
     "@types/graphql-fields": "^1.3.4",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
     "graphql-fields": "^2.0.3",
-    "graphql-scalars": "^1.10.0",
-    "typescript": "^3.4.5",
-    "@strongly/generate": "file:../generate"
+    "graphql-scalars": "^1.10.0"
   },
   "publishConfig": {
     "access": "restricted"

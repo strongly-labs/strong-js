@@ -1,31 +1,62 @@
 {
-  "name": "mono",
+  "name": "strongly",
+  "license": "MIT",
   "private": true,
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.9.8",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2",
     "lerna": "^4.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "prettier-plugin-prisma": "^0.12.1",
+    "prettier-plugin-sh": "^0.7.1",
     "tsdx": "^0.14.1",
     "typescript": "^4.3.5",
     "typesync": "^0.8.0"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "apps/mobile/*",
+      "apps/web/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/react-native-*"
+    ]
+  },
   "scripts": {
-    "lerna": "lerna",
-    "start": "lerna run start --stream --parallel",
-    "test": "lerna run test --",
-    "lint": "lerna run lint -- --fix",
-    "build": "lerna run build",
-    "prepublish": "lerna run prepublish",
+    "lerna": "lerna --ignore=@strongly/app-*",
+    "watch": "yarn lerna run start --stream --parallel",
+    "test": "yarn lerna run test --",
+    "lint": "yarn lerna run lint -- --fix",
+    "build": "yarn lerna run build",
+    "prepublish": "yarn lerna run prepublish",
     "changeset": "changeset",
     "release": "changeset publish",
     "version:canary": "changeset version --snapshot canary",
-    "release:canary": "changeset publish --tag canary"
+    "release:canary": "changeset publish --tag canary",
+    "data:up": "yarn workspace @strongly/data up --detach",
+    "data:push": "yarn workspace @strongly/data push",
+    "data:gen": "yarn workspace @strongly/data gen",
+    "web:link": "yarn workspace @strongly/app-main st link",
+    "admin:link": "yarn workspace @strongly/app-admin st link admin",
+    "up": "yarn data:up && yarn data:push",
+    "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel",
+    "studio": "npx prisma studio --schema backend/schema.prisma",
+    "postinstall": "yarn build --scope=@strongly/generate && yarn build --scope=@strongly/cli && yarn data:gen && yarn web:link && yarn admin:link"
+  },
+  "dependencies": {
+    "@types/node": "^16.4.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.28.5",
+    "**/@typescript-eslint/parser": "^4.28.5",
+    "**/jest": "^26.6.3",
+    "**/ts-jest": "^26.4.4",
+    "**/typescript": "^4.3.5"
   }
 }

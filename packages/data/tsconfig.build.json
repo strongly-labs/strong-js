@@ -5,5 +5,5 @@
     "emitDecoratorMetadata": true,
     "lib": ["dom", "dom.iterable", "esnext", "es2018", "esnext.asynciterable"]
   },
-  "include": ["src", "types", "../../types"]
+  "include": ["src", "types"]
 }

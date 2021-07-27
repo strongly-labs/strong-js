@@ -1,42 +1,65 @@
-# Strongly Framework
+# Strongly Meta Framework
 
-## Usage
+Strongly brings powerful tools and frameworks together with minimal glue to enable rapid cross platform application development.
 
-This monorepo is setup for a dummy `@strongly/` NPM organization. There are 2 packages by default:
+## Data Driven
 
-- `@strongly/react` - A placholder React component
-- `@strongly/utils` - A utils packages
+The Strongly pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL Endpoint, Swagger API Docs and more.
+The idea is to allow developers to focus on what makes their product unique rather than spend time on tedius and repetative tasks which add little business value.
 
-Unlike other TSDX templates, the developer experience for this template is currently a bit more manual.
+## More lego, less spaghetti
 
-Your first order of business will be to search and replace `@strongly` for the npm organization of your own.
+Strongly enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
 
-After that you can install all the dependencies in the root directory. Since the monorepo uses Lerna and Yarn Workspaces, npm CLI is not supported (only yarn).
+This is as simple as:
 
-```sh
-yarn install
-```
+1. Run `st watch`
+2. Then run `st create package <package-name>`
+3. Add your brand new package as a dependency in your app's `package.json`
+4. Start developing inside `packages/<package-name>/src`.
 
-This will install all dependencies in each project, build them, and symlink them via Lerna
+Your package will be built and updates made available to apps on save, in real time. And can manage releases for your packages using the [changesets](https://github.com/atlassian/changesets)
 
-## Development workflow
+## Monorepo
 
-In one terminal, run tsdx watch in parallel:
+Since the apps leverage schema driven automation and feature isolation, it would make life a lot simpler if any changes to the schema or packages could be tested, built and deployed universally with a single `test` or `deploy` command.
 
-```sh
-yarn start
-```
+Strongly features a monorepo with web and mobile apps under a single `apps` workspace and feature packages in the `packages`.
 
-This builds each package to `<packages>/<package>/dist` and runs the project in watch mode so any edits you save inside `<packages>/<package>/src` cause a rebuild to `<packages>/<package>/dist`. The results will stream to to the terminal.
+With the following features out of the box.
 
-### Using the example/playground
+- React Native
 
-You can play with local packages in the Parcel-powered example/playground.
+  - With Hermes (Android and iOS)
+  - With MMKV (JSI Based Secure Local Storage)
+  - React Native App Auth
+    - With Token Refresh
 
-```sh
-yarn start:app
-```
+- NextJS
+  - Multizone setup (Compose multiple NextJS projects into one)
+  - With API Routes (Serverless)
+  - Signgle Sign on with NextAuth
+  - Role based acces control
+    - GraphQL field authorization
+    - REST Resource authorization
+  - Apollo Server over Next API Routes
+  - Auto generated TypeGraphql
+  - Auto generated RESTful APIs for Prisma Models
+  - Auto generated Admin UI
+  - Auto generated API documentation with swagger-docs
 
-This will start the example/playground on `localhost:1234`. If you have lerna running watch in parallel mode in one terminal, and then you run parcel, your playground will hot reload when you make changes to any imported module whose source is inside of `packages/*/src/*`. Note that to accomplish this, each package's `start` command passes TDSX the `--noClean` flag. This prevents Parcel from exploding between rebuilds because of File Not Found errors.
+## Testing
 
-Important Safety Tip: When adding/altering packages in the playground, use `alias` object in package.json. This will tell Parcel to resolve them to the filesystem instead of trying to install the package from NPM. It also fixes duplicate React errors you may run into.
+Strongly encourages a strong focus on testing and comes with the following tools out of the box.
+
+- End to End web tests with `Cypress`
+- End to End mobile tests with `Detox`
+- Containerised Integration Testing with `Test Containers`
+
+## Github workflows
+
+Strongly projects come with pre-configured workflows for testing and deployment automation that can:
+
+1. Run both web and mobile End to End tests as github actions.
+2. Deploy the mobile app to Android and iOS stores using fastlane.
+3. Deploy the web app to `vercel`
