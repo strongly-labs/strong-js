@@ -2,16 +2,18 @@
 
 Strongly brings powerful tools and frameworks together with minimal glue to enable rapid cross platform application development.
 
-## Philosophy
-
-### Data Driven
+## Data Driven
 
 The Strongly pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL schema etc.
 The idea is to allow developers to focus on what makes their product unique rather than spend time on tedius and repetative tasks which add little business value.
 
-### Monorepo
+## Monorepo
 
-The `apps` folder contains example `web` and `mobile` apps the following features:
+Since the apps leverage schema driven automation and feature isolation, it would make life a lot simpler if any changes to the schema or packages could be tested, built and deployed universally with a single `test` or `deploy` command - You can.
+
+Strongly projects are monorepos with web and mobile apps under a single `apps` workspace and feature packages in the `packages`.
+
+With the following features out of the box.
 
 - React Native
 
@@ -30,10 +32,11 @@ The `apps` folder contains example `web` and `mobile` apps the following feature
   - Auto generated TypeGraphql
   - Auto generated RESTful APIs for Prisma Models
   - Auto generated Admin UI
+  - Auto generated API documentation with swagger-docs
 
-### More lego, less spegatti
+## More lego, less spegatti
 
-Strongly enables developing features as independent packages without the overhead of managing multiple repositories and seperate workflows.
+Strongly enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
 
 This is as simple as:
 
@@ -44,43 +47,18 @@ This is as simple as:
 
 Your package will be built and updates made available to apps on save, in real time.
 
-## Building blocks
+## Testing
 
-- TSDX Monorepo
-- TypeScript
-  - Root tsconfig extened by child workspaces
-  - TS-Node
-  - TS-Jest
-  - TypeSync
-- React Native
-  - With Hermes (Android and iOS)
-  - With MMKV (JSI Based Secure Local Storage)
-- NextJS
-  - With API Routes (Serverless)
-- Prisma 2
-  - Apollo Server over Next API Routes
-  - Auto generated TypeGraphql
-  - Auto generated RESTful APIs for Prisma Models
-  - Auto generated Admin UI
-- Cross Platform Authentication and Authorization (OAuth 2.0)
-  - Web with NextAuth
-  - Mobile with React Native App Auth
-    - With Token Refresh
-  - Role based acces control
-    - GraphQL field authorization
-    - REST Resource authorization
-- Tests
-  - TS-Jest
-  - e2e web tests with Cypress
-  - e2e mobile tests with Detox
-  - Containerised integration with Test Containers
-- Linting
-  - Workspace level linting for different rules per app / package (Eg. Web vs Mobile)
-  - Eslint, TypeScript, Prettier
-  - Githooks via Husky
-- Devops
-  - Github Actions
-    - Lint all workspaces
-    - Unit test all workspaces
-    - Cypress web e2e with video recording
-    - Detox mobile e2e
+Strongly encourages a strong focus on testing and comes with the following tools out of the box.
+
+- End to End web tests with `Cypress`
+- End to End mobile tests with `Detox`
+- Containerised Integration Testing with `Test Containers`
+
+## Github workflows
+
+Strongly projects come with pre-configured workflows for testing and deployment automation that can:
+
+1. Run both web and mobile End to End tests as github actions.
+2. Deploy the mobile app to Android and iOS stores using fastlane.
+3. Deploy the web app to `vercel`
