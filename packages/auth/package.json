@@ -29,6 +29,6 @@
     "next-auth": "^3.27.0"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   }
 }

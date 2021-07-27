@@ -36,7 +36,7 @@
     "graphql-scalars": "^1.10.0"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "prisma": {
     "schema": "../../backend/schema.prisma"
