@@ -45,7 +45,7 @@
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel",
     "studio": "npx prisma studio --schema backend/schema.prisma",
-    "postinstall": "yarn workspace @strongly/data gen && yarn web:link && yarn admin:link"
+    "postinstall": "yarn build && yarn data:gen && yarn web:link && yarn admin:link"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
