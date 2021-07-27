@@ -1,8 +1,8 @@
 {
   "name": "@strongly/crud",
-  "author": "Zuhair Naqvi",
+  "author": "Strongly Pty Ltd",
   "module": "dist/admin.esm.js",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",

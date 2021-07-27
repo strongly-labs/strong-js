@@ -1,7 +1,7 @@
 {
   "name": "@strongly/generate",
   "version": "0.0.1",
-  "description": "Strongly Prisma Generators",
+  "description": "Strongly Codegen",
   "author": "Strongly Pty Ltd",
   "main": "dist/index.js",
   "bin": {
