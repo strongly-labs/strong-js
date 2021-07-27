@@ -7,11 +7,24 @@ Strongly brings powerful tools and frameworks together with minimal glue to enab
 The Strongly pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL Endpoint, Swagger API Docs and more.
 The idea is to allow developers to focus on what makes their product unique rather than spend time on tedius and repetative tasks which add little business value.
 
+## More lego, less spaghetti
+
+Strongly enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
+
+This is as simple as:
+
+1. Run `st watch`
+2. Then run `st create package <package-name>`
+3. Add your brand new package as a dependency in your app's `package.json`
+4. Start developing inside `packages/<package-name>/src`.
+
+Your package will be built and updates made available to apps on save, in real time. And can manage releases for your packages using the [changesets](https://github.com/atlassian/changesets)
+
 ## Monorepo
 
-Since the apps leverage schema driven automation and feature isolation, it would make life a lot simpler if any changes to the schema or packages could be tested, built and deployed universally with a single `test` or `deploy` command - You can.
+Since the apps leverage schema driven automation and feature isolation, it would make life a lot simpler if any changes to the schema or packages could be tested, built and deployed universally with a single `test` or `deploy` command.
 
-Strongly projects are monorepos with web and mobile apps under a single `apps` workspace and feature packages in the `packages`.
+Strongly features a monorepo with web and mobile apps under a single `apps` workspace and feature packages in the `packages`.
 
 With the following features out of the box.
 
@@ -34,19 +47,6 @@ With the following features out of the box.
   - Auto generated RESTful APIs for Prisma Models
   - Auto generated Admin UI
   - Auto generated API documentation with swagger-docs
-
-## More lego, less spegatti
-
-Strongly enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
-
-This is as simple as:
-
-1. Run `st watch`
-2. Then run `st create package <package-name>`
-3. Add your brand new package as a dependency in your app's `package.json`
-4. Start developing inside `packages/<package-name>/src`.
-
-Your package will be built and updates made available to apps on save, in real time. And can manage releases for your packages using the [changesets](https://github.com/atlassian/changesets)
 
 ## Testing
 
