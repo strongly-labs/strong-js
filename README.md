@@ -46,7 +46,7 @@ This is as simple as:
 3. Add your brand new package as a dependency in your app's `package.json`
 4. Start developing inside `packages/<package-name>/src`.
 
-Your package will be built and updates made available to apps on save, in real time.
+Your package will be built and updates made available to apps on save, in real time. And can manage releases for your packages using the [changesets](https://github.com/atlassian/changesets)
 
 ## Testing
 

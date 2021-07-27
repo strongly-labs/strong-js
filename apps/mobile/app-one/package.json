@@ -2,7 +2,7 @@
   "name": "@strongly/app-mobile",
   "version": "1.0.0",
   "author": "Strongly <contact@strongly.com.au>",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "echo \"DEV\" ",
