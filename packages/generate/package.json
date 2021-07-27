@@ -2,7 +2,7 @@
   "name": "@strongly/generate",
   "version": "0.0.1",
   "description": "Strongly Codegen",
-  "author": "Strongly Pty Ltd",
+  "author": "Strongly Labs",
   "main": "dist/index.js",
   "bin": {
     "prisma-strongly-generator": "./bin/cli.js"

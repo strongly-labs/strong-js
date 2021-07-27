@@ -1,6 +1,7 @@
 {
   "name": "@strongly/app-main",
   "version": "0.1.0",
+  "author": "Strongly <contact@strongly.com.au>",
   "private": true,
   "engines": {
     "node": ">=14"

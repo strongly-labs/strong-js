@@ -1,6 +1,7 @@
 {
   "name": "strongly",
   "license": "MIT",
+  "author": "Strongly Labs",
   "private": true,
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",

@@ -1,6 +1,6 @@
 {
   "name": "@strongly/crud",
-  "author": "Strongly Pty Ltd",
+  "author": "Strongly Labs",
   "description": "Strongly crud UI",
   "module": "dist/crud.esm.js",
   "version": "0.0.1",

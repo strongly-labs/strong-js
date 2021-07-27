@@ -2,7 +2,7 @@
   "name": "@strongly/auth",
   "version": "0.0.1",
   "description": "Strongly Auth",
-  "author": "Strongly Pty Ltd",
+  "author": "Strongly Labs",
   "main": "dist/index.js",
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
