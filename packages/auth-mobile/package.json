@@ -1,8 +1,8 @@
 {
   "name": "@strong-js/auth-mobile",
   "version": "0.0.2",
-  "description": "Strongly Auth Mobile SDK",
-  "author": "Strongly Labs",
+  "description": "Strong-js Auth Mobile SDK",
+  "author": "Strong-js Labs",
   "main": "dist/index.js",
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",

@@ -1,7 +1,7 @@
 {
   "name": "strong-js",
   "license": "MIT",
-  "author": "Strongly Labs",
+  "author": "Strong-js Labs",
   "private": true,
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",

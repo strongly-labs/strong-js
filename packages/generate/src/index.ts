@@ -8,7 +8,7 @@ generatorHandler({
   onManifest() {
     return {
       defaultOutput: '.strong',
-      prettyName: 'Prisma Strongly Generator',
+      prettyName: 'Prisma Strong-js Generator',
     }
   },
   async onGenerate(options) {

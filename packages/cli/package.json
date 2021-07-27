@@ -1,8 +1,8 @@
 {
   "name": "@strong-js/cli",
   "version": "0.0.2",
-  "description": "Strongly CLI",
-  "author": "Strongly Labs",
+  "description": "Strong-js CLI",
+  "author": "Strong-js Labs",
   "main": "dist/index.js",
   "bin": {
     "st": "./bin/cli.js"

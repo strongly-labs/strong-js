@@ -4,7 +4,7 @@ import { copy } from 'fs-extra'
 
 const { access, realpath, symlink } = fs
 
-async function linkStrongly(stronglyPath: string) {
+async function linkStrong-js(stronglyPath: string) {
   console.log('Attempting to create symlink to <ROOT_DIR>/.strong')
   try {
     await access('./.strong', constants.R_OK)
@@ -53,7 +53,7 @@ async function createLinks(modules: string[]) {
   try {
     const stronglyPath = await realpath('../../../.strong')
 
-    await linkStrongly(stronglyPath)
+    await linkStrong-js(stronglyPath)
 
     if (modules.includes('admin')) {
       await copyAdmin(stronglyPath)

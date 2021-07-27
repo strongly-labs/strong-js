@@ -1,15 +1,15 @@
-# Strongly Meta Framework
+# Strong-js Meta Framework
 
-Strongly brings powerful tools and frameworks together with minimal glue to enable rapid cross platform application development.
+Strong-js brings powerful tools and frameworks together with minimal glue to enable rapid cross platform application development.
 
 ## Data Driven
 
-The Strongly pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL Endpoint, Swagger API Docs and more.
+The Strong-js pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL Endpoint, Swagger API Docs and more.
 The idea is to allow developers to focus on what makes their product unique rather than spend time on tedius and repetative tasks which add little business value.
 
 ## More lego, less spaghetti
 
-Strongly enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
+Strong-js enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
 
 This is as simple as:
 
@@ -24,7 +24,7 @@ Your package will be built and updates made available to apps on save, in real t
 
 Since the apps leverage schema driven automation and feature isolation, it would make life a lot simpler if any changes to the schema or packages could be tested, built and deployed universally with a single `test` or `deploy` command.
 
-Strongly features a monorepo with web and mobile apps under a single `apps` workspace and feature packages in the `packages`.
+Strong-js features a monorepo with web and mobile apps under a single `apps` workspace and feature packages in the `packages`.
 
 With the following features out of the box.
 
@@ -50,7 +50,7 @@ With the following features out of the box.
 
 ## Testing
 
-Strongly encourages a strong focus on testing and comes with the following tools out of the box.
+Strong-js encourages a strong focus on testing and comes with the following tools out of the box.
 
 - End to End web tests with `Cypress`
 - End to End mobile tests with `Detox`
@@ -58,7 +58,7 @@ Strongly encourages a strong focus on testing and comes with the following tools
 
 ## Github workflows
 
-Strongly projects come with pre-configured workflows for testing and deployment automation that can:
+Strong-js projects come with pre-configured workflows for testing and deployment automation that can:
 
 1. Run both web and mobile End to End tests as github actions.
 2. Deploy the mobile app to Android and iOS stores using fastlane.

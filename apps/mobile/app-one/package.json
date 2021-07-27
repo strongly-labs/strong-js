@@ -1,7 +1,7 @@
 {
   "name": "@strong-js/app-mobile",
   "version": "1.0.1",
-  "author": "Strongly <contact@strongly.com.au>",
+  "author": "Strong-js <contact@strongly.com.au>",
   "license": "MIT",
   "private": true,
   "scripts": {

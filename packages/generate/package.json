@@ -1,8 +1,8 @@
 {
   "name": "@strong-js/generate",
   "version": "0.0.2",
-  "description": "Strongly Codegen",
-  "author": "Strongly Labs",
+  "description": "Strong-js Codegen",
+  "author": "Strong-js Labs",
   "main": "dist/index.js",
   "bin": {
     "prisma-strongly-generator": "./bin/cli.js"
