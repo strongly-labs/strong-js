@@ -1,7 +1,7 @@
 {
   "name": "@strongly/crud",
   "author": "Strongly Pty Ltd",
-  "module": "dist/admin.esm.js",
+  "module": "dist/crud.esm.js",
   "version": "0.0.1",
   "license": "MIT",
   "main": "dist/index.js",
@@ -35,12 +35,12 @@
   },
   "size-limit": [
     {
-      "path": "dist/admin.cjs.production.min.js",
-      "limit": "100 KB"
+      "path": "dist/crud.cjs.production.min.js",
+      "limit": "300 KB"
     },
     {
-      "path": "dist/admin.esm.js",
-      "limit": "100 KB"
+      "path": "dist/crud.esm.js",
+      "limit": "150 KB"
     }
   ],
   "devDependencies": {
