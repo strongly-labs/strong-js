@@ -25,4 +25,4 @@ jobs:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
       - name: Test
-        run: yarn test -- --ci --coverage --maxWorkers=2
+        run: yarn test
