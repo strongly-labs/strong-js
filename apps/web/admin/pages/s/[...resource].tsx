@@ -71,7 +71,12 @@ const Admin = ({ user }: PageProps) => {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <Image
+              src="/admin/vercel.svg"
+              alt="Vercel Logo"
+              width={72}
+              height={16}
+            />
           </span>
         </a>
       </footer>

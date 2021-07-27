@@ -4,7 +4,7 @@ Strongly brings powerful tools and frameworks together with minimal glue to enab
 
 ## Data Driven
 
-The Strongly pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL schema etc.
+The Strongly pattern is to use the Prisma schema to generate and automate application infratructure, eg. REST endpoints, Admin UI, GraphQL Endpoint, Swagger API Docs and more.
 The idea is to allow developers to focus on what makes their product unique rather than spend time on tedius and repetative tasks which add little business value.
 
 ## Monorepo
@@ -23,6 +23,7 @@ With the following features out of the box.
     - With Token Refresh
 
 - NextJS
+  - Multizone setup (Compose multiple NextJS projects into one)
   - With API Routes (Serverless)
   - Signgle Sign on with NextAuth
   - Role based acces control
