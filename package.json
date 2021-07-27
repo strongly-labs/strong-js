@@ -1,5 +1,6 @@
 {
   "name": "strongly",
+  "license": "MIT",
   "private": true,
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",
@@ -39,10 +40,12 @@
     "data:up": "yarn workspace @strongly/data up --detach",
     "data:push": "yarn workspace @strongly/data push",
     "data:gen": "yarn workspace @strongly/data gen",
+    "web:link": "yarn workspace @strongly/app-main st link",
     "admin:link": "yarn workspace @strongly/app-admin st link admin",
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "lerna run --scope=@strongly/app-* dev --stream --parallel",
-    "studio": "npx prisma studio --schema backend/schema.prisma"
+    "studio": "npx prisma studio --schema backend/schema.prisma",
+    "postinstall": "yarn workspace @strongly/data gen && yarn web:link && yarn admin:link"
   },
   "dependencies": {
     "@types/node": "^16.4.1",

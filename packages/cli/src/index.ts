@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import yargs from 'yargs'
 import { promises as fs, constants } from 'fs'
 import { copy } from 'fs-extra'
@@ -64,6 +62,16 @@ async function createLinks(modules: string[]) {
     throw error
   }
 }
+
+console.log(`
+
+_____ _____ _____ _____ _____ _____ __    __ __
+|   __|_   _| __  |     |   | |   __|  |  |  |  |
+|__   | | | |    -|  |  | | | |  |  |  |__|_   _|
+|_____| |_| |__|__|_____|_|___|_____|_____| |_|  
+
+
+`)
 
 yargs
   .scriptName('st')
