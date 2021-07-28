@@ -3,7 +3,7 @@
     {
       "module": "core",
       "operation": "link",
-      "to": "/.strong"
+      "to": ".strong"
     }
   ]
 }
