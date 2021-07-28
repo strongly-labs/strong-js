@@ -1,98 +1,106 @@
-/** 
-   _____ ______ ____   ____   _   __ ______
-  / ___//_  __// __ \ / __ \ / | / // ____/
-  \__ \  / /  / /_/ // / / //  |/ // / __  
- ___/ / / /  / _, _// /_/ // /|  // /_/ /  
-/____/ /_/  /_/ |_| \____//_/ |_/ \____/   
-                                           
- */
+import sade from 'sade'
+import chalk from 'chalk'
+import ora from 'ora'
+import { copy, forApps, safeLink } from './lib'
+import { resolveRoot } from './utils'
 
-import yargs from 'yargs'
-import { promises as fs, constants } from 'fs'
-import { copy } from 'fs-extra'
+const logo = `
 
-const { access, realpath, symlink } = fs
+███████╗████████╗██████╗  ██████╗ ███╗   ██╗ ██████╗ 
+██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝ 
+███████╗   ██║   ██████╔╝██║   ██║██╔██╗ ██║██║  ███╗
+╚════██║   ██║   ██╔══██╗██║   ██║██║╚██╗██║██║   ██║
+███████║   ██║   ██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝
+╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ 
 
-async function linkStrong(stronglyPath: string) {
-  console.log('Attempting to create symlink to <ROOT_DIR>/.strong')
-  try {
-    await access('./.strong', constants.R_OK)
-    console.log('.strong dir alrealdy linked')
-  } catch (handledError) {
-    try {
-      await symlink(stronglyPath, './.strong', 'junction')
+`
 
-      console.log('linked .strong dir')
-    } catch (unhandledError) {
-      throw unhandledError
-    }
-  }
-}
+const pkg = require('../package.json')
 
-async function copyAdmin(stronglyPath: string) {
-  console.log('Attempting to copy <ROOT_DIR>/.strong/api to pages/api/s')
-  const apiPath = './pages/api/s'
-  try {
-    await copy(stronglyPath + '/api', apiPath)
-    console.log('copied strongly admin api')
-  } catch (unhandledError) {
-    throw unhandledError
-  }
-}
+const prog = sade('strong')
 
-// async function linkAdmin(stronglyPath: string) {
-//   console.log(
-//     'Attempting to create symlink from <ROOT_DIR>/.strong/api to pages/api/s',
-//   )
-//   const apiPath = './pages/api/s'
-//   try {
-//     await access(apiPath, constants.F_OK)
-//     console.log('strongly api alrealdy linked')
-//   } catch (handledError) {
-//     try {
-//       await symlink(stronglyPath + '/api', apiPath, 'junction')
-//       console.log('linked strongly admin api')
-//     } catch (unhandledError) {
-//       throw unhandledError
-//     }
-//   }
-// }
+prog
+  .version(pkg.version)
+  .command('create <pkg>')
+  .describe('Create a new strong-js package')
+  .example('create mypackage')
+  .example('create --template react mypackage')
+  .action(async (pkg: string) => {
+    console.log(chalk.blue(logo))
+    const bootSpinner = ora(`Creating ${chalk.bold.blue(pkg)}...`)
+    bootSpinner.start()
+  })
 
-async function createLinks(modules: string[]) {
-  try {
-    const stronglyPath = await realpath('../../../.strong')
+prog
+  .version(pkg.version)
+  .command('generate <out_dir>')
+  .describe('Run generators and write to the output_dir')
+  .example('generate ../.strong')
+  .action(async (out_dir: string) => {
+    console.log(chalk.blue(logo))
+    const bootSpinner = ora(`Generating into ${chalk.bold.blue(out_dir)}...`)
+    bootSpinner.start()
+  })
 
-    await linkStrong(stronglyPath)
+prog
+  .version(pkg.version)
+  .command('link')
+  .describe('Liks .strong/* with apps/* based on the config file strong.json')
+  .action(async () => {
+    console.log(chalk.blue(logo))
+    const spinner = ora(`Linking apps...`)
+    spinner.start()
+    const fromPath = resolveRoot('.strong')
+    forApps((app, error) => {
+      if (app?.config?.links) {
+        try {
+          app.config.links.forEach((link) => {
+            
+            const from = link.from ? fromPath + '/' + link.from : fromPath
+            const to = link.to ? app.path + '/' + link.to : app.path
 
-    if (modules.includes('admin')) {
-      await copyAdmin(stronglyPath)
-    }
-  } catch (error) {
-    throw error
-  }
-}
+            switch (link.operation) {
+              case 'link': {
+                spinner.text = `${app.name}: Linking with module: "${link.module}"`
 
-yargs
-  .scriptName('st')
-  .usage('$0 <cmd> [args]')
-  .command(
-    'link [modules]',
-    'link strongly with apps',
-    (yargs: {
-      positional: (
-        arg0: string,
-        arg1: { type: string; default: string; describe: string },
-      ) => void
-    }) => {
-      yargs.positional('modules', {
-        type: 'string',
-        default: '',
-        describe: 'the name to say hello to',
-      })
-    },
-    function(argv: { modules: any }) {
-      const modules = argv.modules.split(',')
-      createLinks(modules)
-    },
-  )
-  .help().argv
+
+                const linked = safeLink(from, to)
+
+                if (linked) {
+                  spinner.succeed(
+                    `${app.name}: Successfully linked with "${link.module}"`,
+                  )
+                } else {
+                  spinner.info(
+                    `${app.name}: Aleady linked with "${link.module}"`,
+                  )
+                }
+
+                break
+              }
+              case 'copy': {
+                
+                copy(from, to)
+
+                spinner.succeed(
+                  `${app.name}: Successfully copied "${link.module}"`,
+                )
+                break
+              }
+              default: {
+                spinner.fail(
+                  `${app.name}: Link definition does not have a valid operation type - supported operation types: [SYMLINK, COPY]`,
+                )
+              }
+            }
+          })
+        } catch (error) {
+          spinner.fail(`${app.name}: Linking failed - ${error.message}`)
+        }
+      } else if (error) {
+        spinner.info(`${app.name}: no strong.json found, skipping`)
+      }
+    })
+  })
+
+prog.parse(process.argv)
