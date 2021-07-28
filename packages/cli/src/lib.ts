@@ -62,7 +62,7 @@ export const safeLink = (from: string, to: string): boolean => {
     return false
   } catch (handledError) {
     try {
-      fs.symlinkSync(from, to, 'junction')
+      fs.symlinkSync(to, from, 'junction')
       return true
     } catch (unhandledError) {
       throw unhandledError

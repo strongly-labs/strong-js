@@ -60,7 +60,7 @@ prog
                 spinner.text = `${app.name}: Linking with module: "${link.module}"`
 
                 const linked = safeLink(
-                  fromPath + link?.from ?? '',
+                  fromPath + link?.from || '',
                   app.path + link.to,
                 )
 
