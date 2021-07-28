@@ -1,0 +1,15 @@
+{
+  "links": [
+    {
+      "module": "core",
+      "operation": "link",
+      "to": "/.strong"
+    },
+    {
+      "module": "crud",
+      "operation": "copy",
+      "from": "/api",
+      "to": "/pages/api/s"
+    }
+  ]
+}
