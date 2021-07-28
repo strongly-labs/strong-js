@@ -1,43 +1,6 @@
 import fs from 'fs'
 import { resolveRelative, resolveRoot } from './utils'
-import { copySync, readJSONSync } from 'fs-extra'
-
-// const { access, realpath, symlink } = fs
-
-// async function linkStrongDir(stronglyPath: string) {
-//   try {
-//     await access('./.strong', constants.R_OK)
-//   } catch (handledError) {
-//     try {
-//       await symlink(stronglyPath, './.strong', 'junction')
-//     } catch (unhandledError) {
-//       throw unhandledError
-//     }
-//   }
-// }
-
-// async function copyAdmin(stronglyPath: string) {
-//   const apiPath = './pages/api/s'
-//   try {
-//     await copy(stronglyPath + '/api', apiPath)
-//   } catch (unhandledError) {
-//     throw unhandledError
-//   }
-// }
-
-// export async function createLinks(modules: string[]) {
-//   try {
-//     const stronglyPath = await realpath('../../../.strong')
-
-//     await linkStrongDir(stronglyPath)
-
-//     if (modules.includes('admin')) {
-//       await copyAdmin(stronglyPath)
-//     }
-//   } catch (error) {
-//     throw error
-//   }
-// }
+import { copySync, readJSONSync, pathExistsSync } from 'fs-extra'
 
 interface StrongLink {
   module: string
@@ -57,20 +20,32 @@ interface AppManifest {
 }
 
 export const safeLink = (from: string, to: string): boolean => {
-  try {
-    fs.accessSync(to, fs.constants.R_OK)
+  const fromExists = pathExistsSync(from)
+  const toExists = pathExistsSync(to)
+
+  if (toExists) {
     return false
-  } catch (handledError) {
-    try {
-      fs.symlinkSync(from, to, 'junction')
-      return true
-    } catch (unhandledError) {
-      throw unhandledError
-    }
+  }
+
+  if (!fromExists) {
+    throw Error(`Source path ${from} does not exist`)
+  }
+
+  try {
+    fs.symlinkSync(from, to, 'junction')
+    return true
+  } catch (error) {
+    throw error
   }
 }
 
 export const copy = (from: string, to: string) => {
+  const fromExists = pathExistsSync(from)
+
+  if (!fromExists) {
+    throw Error(`Source path ${from} does not exist`)
+  }
+
   try {
     copySync(from, to)
   } catch (error) {

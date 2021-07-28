@@ -55,14 +55,12 @@ prog
       if (app?.config?.links) {
         try {
           app.config.links.forEach((link) => {
-            
             const from = link.from ? fromPath + '/' + link.from : fromPath
             const to = link.to ? app.path + '/' + link.to : app.path
 
             switch (link.operation) {
               case 'link': {
                 spinner.text = `${app.name}: Linking with module: "${link.module}"`
-
 
                 const linked = safeLink(from, to)
 
@@ -79,7 +77,6 @@ prog
                 break
               }
               case 'copy': {
-                
                 copy(from, to)
 
                 spinner.succeed(
