@@ -45,7 +45,8 @@
     "admin:link": "yarn workspace @strong-js/app-admin st link admin",
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "lerna run --scope=@strong-js/app-* dev --stream --parallel",
-    "studio": "npx prisma studio --schema backend/schema.prisma"
+    "studio": "npx prisma studio --schema backend/schema.prisma",
+    "postinstall": "yarn build --scope=@strong-js/generate && yarn build --scope=@strong-js/cli && yarn data:gen && npx strong link"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
