@@ -59,11 +59,20 @@ prog
               case 'link': {
                 spinner.text = `${app.name}: Linking with module: "${link.module}"`
 
-                safeLink(fromPath + (link.from || ''), app.path + link.to)
-
-                spinner.succeed(
-                  `${app.name}: Successfully linked with "${link.module}"`,
+                const linked = safeLink(
+                  fromPath + (link.from || ''),
+                  app.path + link.to,
                 )
+
+                if (linked) {
+                  spinner.succeed(
+                    `${app.name}: Successfully linked with "${link.module}"`,
+                  )
+                } else {
+                  spinner.info(
+                    `${app.name}: Aleady linked with "${link.module}"`,
+                  )
+                }
 
                 break
               }
