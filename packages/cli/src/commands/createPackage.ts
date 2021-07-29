@@ -21,7 +21,36 @@ const customConfig: Config = {
 
 const { Input, Select } = require('enquirer')
 
-const createPackage = (root: PackageJson | null) => {
+const getPackageInfo = (path: string) => {
+  let hint, type
+  if (path.includes('apps/web')) {
+    hint = 'Creates a NextJS'
+    type = 'app-web'
+  }
+  if (path.includes('apps/mobile')) {
+    hint = 'Creates a React Native app'
+    type = 'app-mobile'
+  } else {
+    hint = 'Creates a generic package'
+    type = 'package'
+  }
+  return {
+    hint,
+    type,
+  }
+}
+
+const getPathChoice = (path: string) => {
+  const { hint } = getPackageInfo(path)
+  return {
+    name: path,
+    message: path,
+    value: path,
+    hint,
+  }
+}
+
+const createPackage = async (root: PackageJson | null) => {
   const spinner = ora(`Create Package`)
   spinner.start()
 
@@ -47,21 +76,21 @@ const createPackage = (root: PackageJson | null) => {
   const pathPrompt = new Select({
     name: 'path',
     message: 'Choose path',
-    choices: paths,
+    choices: paths.map(getPathChoice),
   })
 
-  namePrompt
-    .run()
-    .then((packageName: string) => {
-      pathPrompt.run().then((path: string) => {
-        console.log(
-          `Creating ${chalk.blue.bold(
-            `@${root.name}/${packageName}`,
-          )} in ${path}`,
-        )
-      })
-    })
-    .catch(console.log)
+  try {
+    const name = await namePrompt.run()
+    const path = await pathPrompt.run()
+    console.log(
+      `Creating ${getPackageInfo(path).type} ${chalk.blue.bold(
+        `@${root.name}/${name}`,
+      )} in ${path}`,
+    )
+  } catch (error) {
+    spinner.fail(`Failed to create package`)
+    throw error
+  }
 }
 
 export default createPackage
