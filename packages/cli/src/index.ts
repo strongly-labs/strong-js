@@ -4,7 +4,7 @@ import ora from 'ora'
 
 import { copy, forApps, safeLink } from './lib'
 import { getRootPackageJson, resolveRoot } from './utils'
-import createPackage from './commands/createPackage'
+import create from './commands/create'
 
 const logo = `
 
@@ -23,22 +23,22 @@ const prog = sade('strong')
 
 prog
   .version(pkg.version)
-  .command('package')
-  .describe('Create a new strong-js package')
+  .command('create')
+  .describe('Create a new strong-js package or app')
   .action(() => {
     console.log(chalk.blue(logo))
     const root = getRootPackageJson()
-    createPackage(root)
+    create(root)
   })
 
 prog
   .version(pkg.version)
   .command('link')
-  .describe('Liks .strong/* with apps/* based on the config file strong.json')
+  .describe('Links .strong/* with apps/* based on the config file strong.json')
   .action(async () => {
     console.log(chalk.blue(logo))
-    const spinner = ora(`Linking apps...`)
-    spinner.start()
+    const spinner = ora(`Link apps`)
+
     const fromPath = resolveRoot('.strong')
     forApps((app, error) => {
       if (app?.config?.links) {

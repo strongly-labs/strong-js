@@ -50,7 +50,7 @@ const getPathChoice = (path: string) => {
   }
 }
 
-const createPackage = async (root: PackageJson | null) => {
+const create = async (root: PackageJson | null) => {
   const spinner = ora(`Create Package`)
   spinner.start()
 
@@ -93,4 +93,4 @@ const createPackage = async (root: PackageJson | null) => {
   }
 }
 
-export default createPackage
+export default create
