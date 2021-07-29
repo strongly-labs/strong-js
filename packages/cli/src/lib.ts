@@ -86,5 +86,7 @@ export const forApps = (callback: (app: AppManifest, error?: any) => void) => {
 }
 
 export const createPackage = async (manifest: PackageManifest) => {
-  return Promise.resolve(manifest)
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(manifest), 3000)
+  })
 }
