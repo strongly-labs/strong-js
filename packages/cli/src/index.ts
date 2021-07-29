@@ -1,19 +1,11 @@
 import sade from 'sade'
 import chalk from 'chalk'
 import ora from 'ora'
+
 import { copy, forApps, safeLink } from './lib'
-import { resolveRoot } from './utils'
-
-const logo = `
-
-███████╗████████╗██████╗  ██████╗ ███╗   ██╗ ██████╗ 
-██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝ 
-███████╗   ██║   ██████╔╝██║   ██║██╔██╗ ██║██║  ███╗
-╚════██║   ██║   ██╔══██╗██║   ██║██║╚██╗██║██║   ██║
-███████║   ██║   ██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝
-╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ 
-
-`
+import { getRootPackageJson, resolveRoot } from './utils'
+import create from './commands/create'
+import logo from './logo'
 
 const pkg = require('../package.json')
 
@@ -21,48 +13,33 @@ const prog = sade('strong')
 
 prog
   .version(pkg.version)
-  .command('create <pkg>')
-  .describe('Create a new strong-js package')
-  .example('create mypackage')
-  .example('create --template react mypackage')
-  .action(async (pkg: string) => {
+  .command('create')
+  .describe('Create a new strong-js package or app')
+  .action(() => {
     console.log(chalk.blue(logo))
-    const bootSpinner = ora(`Creating ${chalk.bold.blue(pkg)}...`)
-    bootSpinner.start()
-  })
-
-prog
-  .version(pkg.version)
-  .command('generate <out_dir>')
-  .describe('Run generators and write to the output_dir')
-  .example('generate ../.strong')
-  .action(async (out_dir: string) => {
-    console.log(chalk.blue(logo))
-    const bootSpinner = ora(`Generating into ${chalk.bold.blue(out_dir)}...`)
-    bootSpinner.start()
+    const root = getRootPackageJson()
+    create(root)
   })
 
 prog
   .version(pkg.version)
   .command('link')
-  .describe('Liks .strong/* with apps/* based on the config file strong.json')
+  .describe('Links .strong/* with apps/* based on the config file strong.json')
   .action(async () => {
     console.log(chalk.blue(logo))
-    const spinner = ora(`Linking apps...`)
-    spinner.start()
+    const spinner = ora(`Link apps`)
+
     const fromPath = resolveRoot('.strong')
     forApps((app, error) => {
       if (app?.config?.links) {
         try {
           app.config.links.forEach((link) => {
-            
             const from = link.from ? fromPath + '/' + link.from : fromPath
             const to = link.to ? app.path + '/' + link.to : app.path
 
             switch (link.operation) {
               case 'link': {
                 spinner.text = `${app.name}: Linking with module: "${link.module}"`
-
 
                 const linked = safeLink(from, to)
 
@@ -79,7 +56,6 @@ prog
                 break
               }
               case 'copy': {
-                
                 copy(from, to)
 
                 spinner.succeed(

@@ -1,5 +1,13 @@
 # @strong-js/cli
 
+## 0.0.4
+
+### Patch Changes
+
+- [`e09f36a`](https://github.com/strongly-labs/strong-js/commit/e09f36a640bf3722c6ac971a004adddb3f86fd4c) - Added create package command
+
+* web app gen
+
 ## 0.0.3
 
 ### Patch Changes

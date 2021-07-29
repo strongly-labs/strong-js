@@ -1,22 +1,19 @@
 {
-  "name": "@strong-js/app-admin",
-  "version": "0.1.2",
-  "author": "Strong-js <contact@strongly.com.au>",
+  "name": "@strong-user-org/strong-new-package",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "kill": "sudo kill -9 $(sudo lsof -t -i:4000)",
-    "dev": "next dev -p 4000",
+    "kill": "sudo kill -9 $(sudo lsof -t -i:strong-port)",
+    "dev": "next dev -p strong-port",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@strong-js/auth": "*",
-    "@strong-js/crud": "*",
-    "@strong-js/cli": "*",
     "next": "11.0.1",
     "next-auth": "^3.27.3"
   },
