@@ -1,6 +1,8 @@
 // import chalk from 'chalk'
-// import ora from 'ora'
+import ora from 'ora'
+import { PackageJson } from 'type-fest'
 // import { pathExistsSync, realpath } from 'fs-extra'
+
 import {
   uniqueNamesGenerator,
   Config,
@@ -17,14 +19,21 @@ const customConfig: Config = {
 
 const { Input } = require('enquirer')
 
-const createPackage = () => {
-  // const spinner = ora(`Create Package`)
-  // spinner.start()
-  const suggestion: string = uniqueNamesGenerator(customConfig)
+const createPackage = (root: PackageJson | null) => {
+  const spinner = ora(`Create Package`)
+  spinner.start()
 
+  if (!root) {
+    spinner.fail('You can only run this command inside a strong-js project')
+    return
+  }
+
+  spinner.succeed(`Creating a new package under @${root.name}/`)
+
+  const suggestion: string = uniqueNamesGenerator(customConfig)
   const prompt = new Input({
-    message: 'What would you like your package to be named',
-    initial: suggestion,
+    message: `Choose a package name`,
+    initial: `@${root.name}/${suggestion}`,
   })
 
   prompt

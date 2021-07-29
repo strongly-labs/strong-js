@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import ora from 'ora'
 
 import { copy, forApps, safeLink } from './lib'
-import { resolveRoot } from './utils'
+import { getRootPackageJson, resolveRoot } from './utils'
 import createPackage from './commands/createPackage'
 
 const logo = `
@@ -27,7 +27,9 @@ prog
   .describe('Create a new strong-js package')
   .action(() => {
     console.log(chalk.blue(logo))
-    createPackage()
+    const root = getRootPackageJson()
+
+    createPackage(root)
   })
 
 prog
