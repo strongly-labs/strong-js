@@ -84,10 +84,10 @@ const create = async (root: PackageJson | null) => {
 
     const confirmPrompt = new Confirm({
       name: 'confirm-create',
-      message: `About to create
-${chalk.gray.italic(`[${getPackageInfo(path).template}]`)}
-${chalk.blue.bold(`@${root.name}/${name}`)} in
-${chalk.green.bold(path)}
+      message: `About to create:
+${chalk.blue.bold('Package')}: @${root.name}/${name}
+${chalk.blue.bold('Template')}: ${getPackageInfo(path).template}
+${chalk.blue.bold('Path')}: ${path}
 - Proceed?`,
     })
 
