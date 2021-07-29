@@ -99,15 +99,15 @@ ${chalk.blue.bold('workspace')}: ${workspace}
 
     if (confirm) {
       try {
-        spinner.start(`Creating @${root.name}/${name} `)
+        spinner.start(`Creating ${chalk.blue.bold(`@${root.name}/${name}`)} `)
         const newPackage = await createPackage({
           org: root.name,
           name,
           workspace,
           template,
         })
-        console.log(newPackage)
         spinner.succeed(`Package created successfully`)
+        console.log(newPackage)
       } catch (error) {
         spinner.fail('Failed to create package')
         throw error
