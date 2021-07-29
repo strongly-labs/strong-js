@@ -1,6 +1,6 @@
-# @strong-user-org/new-strong-package
+# @strong-user-org/strong-new-package
 
-[![Stable release](https://img.shields.io/npm/v/@strong-user-org/new-strong-package.svg)](https://npm.im/@strong-user-org/new-strong-package)
+[![Stable release](https://img.shields.io/npm/v/@strong-user-org/strong-new-package.svg)](https://npm.im/@strong-user-org/strong-new-package)
 
 Shared utilities for various `@strong-user-org` packages.
 
