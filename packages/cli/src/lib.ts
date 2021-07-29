@@ -19,6 +19,13 @@ interface AppManifest {
   config?: StrongConfig
 }
 
+interface PackageManifest {
+  org: string
+  name: string
+  workspace: string
+  template: string
+}
+
 export const safeLink = (from: string, to: string): boolean => {
   const fromExists = pathExistsSync(from)
   const toExists = pathExistsSync(to)
@@ -76,4 +83,8 @@ export const forApps = (callback: (app: AppManifest, error?: any) => void) => {
       )
     }
   })
+}
+
+export const createPackage = async (manifest: PackageManifest) => {
+  return Promise.resolve(manifest)
 }

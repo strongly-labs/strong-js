@@ -10,6 +10,7 @@ import {
   adjectives,
   animals,
 } from 'unique-names-generator'
+import { createPackage } from '../lib'
 import { getWorkspaceGlobs } from '../utils'
 
 const customConfig: Config = {
@@ -39,7 +40,7 @@ const getPackageInfo = (path: string) => {
   }
 }
 
-const getPathChoice = (path: string) => {
+const getworkspaceChoice = (path: string) => {
   const { hint } = getPackageInfo(path)
   return {
     name: path,
@@ -53,13 +54,13 @@ const create = async (root: PackageJson | null) => {
   const spinner = ora(`Create Package`)
   spinner.start()
 
-  if (!root) {
+  if (!root || !root.name) {
     spinner.fail('You can only run this command inside a strong-js project')
     return
   }
 
-  const paths = getWorkspaceGlobs(root)
-  if (!paths) {
+  const workspaces = getWorkspaceGlobs(root)
+  if (!workspaces) {
     spinner.fail('No workspaces found')
     return
   }
@@ -72,32 +73,48 @@ const create = async (root: PackageJson | null) => {
     initial: `${suggestion}`,
   })
 
-  const pathPrompt = new Select({
-    name: 'path',
-    message: 'Choose path',
-    choices: paths.map(getPathChoice),
+  const workspacePrompt = new Select({
+    name: 'workspace',
+    message: 'Choose workspace',
+    choices: workspaces.map(getworkspaceChoice),
   })
 
   try {
     const name = await namePrompt.run()
-    const path = await pathPrompt.run()
+    const workspace = await workspacePrompt.run()
+    const { template } = getPackageInfo(workspace)
 
     const confirmPrompt = new Confirm({
       name: 'confirm-create',
       message: `About to create:
 
 ${chalk.blue.bold('Package')}: @${root.name}/${name}
-${chalk.blue.bold('Template')}: ${getPackageInfo(path).template}
-${chalk.blue.bold('Path')}: ${path}
+${chalk.blue.bold('Template')}: ${template}
+${chalk.blue.bold('workspace')}: ${workspace}
 
 - Proceed?`,
     })
 
     const confirm = await confirmPrompt.run()
 
-    console.log(confirm)
+    if (confirm) {
+      try {
+        spinner.start(`Creating @${root.name}/${name} `)
+        const newPackage = await createPackage({
+          org: root.name,
+          name,
+          workspace,
+          template,
+        })
+        console.log(newPackage)
+        spinner.succeed(`Package created successfully`)
+      } catch (error) {
+        spinner.fail('Failed to create package')
+        throw error
+      }
+    }
   } catch (error) {
-    spinner.fail(`Failed to create package`)
+    spinner.fail('Failed to create package')
     throw error
   }
 }
