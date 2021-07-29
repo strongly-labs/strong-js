@@ -1,5 +1,5 @@
 {
-  "name": "@strong-user-org/new-package",
+  "name": "@strong-user-org/new-strong-package",
   "version": "0.0.0",
   "description": "New strong-js package",
   "main": "dist/index.js",
