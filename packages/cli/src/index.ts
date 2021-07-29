@@ -1,8 +1,10 @@
 import sade from 'sade'
 import chalk from 'chalk'
 import ora from 'ora'
+
 import { copy, forApps, safeLink } from './lib'
 import { resolveRoot } from './utils'
+import createPackage from './commands/createPackage'
 
 const logo = `
 
@@ -21,25 +23,11 @@ const prog = sade('strong')
 
 prog
   .version(pkg.version)
-  .command('create <pkg>')
+  .command('package')
   .describe('Create a new strong-js package')
-  .example('create mypackage')
-  .example('create --template react mypackage')
-  .action(async (pkg: string) => {
+  .action(() => {
     console.log(chalk.blue(logo))
-    const bootSpinner = ora(`Creating ${chalk.bold.blue(pkg)}...`)
-    bootSpinner.start()
-  })
-
-prog
-  .version(pkg.version)
-  .command('generate <out_dir>')
-  .describe('Run generators and write to the output_dir')
-  .example('generate ../.strong')
-  .action(async (out_dir: string) => {
-    console.log(chalk.blue(logo))
-    const bootSpinner = ora(`Generating into ${chalk.bold.blue(out_dir)}...`)
-    bootSpinner.start()
+    createPackage()
   })
 
 prog

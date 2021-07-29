@@ -26,7 +26,8 @@
     "ora": "^5.4.1",
     "sade": "^1.7.4",
     "tslib": "^2.3.0",
-    "type-fest": "^1.2.2"
+    "type-fest": "^1.2.2",
+    "unique-names-generator": "^4.6.0"
   },
   "publishConfig": {
     "access": "public"
