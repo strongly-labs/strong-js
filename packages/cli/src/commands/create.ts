@@ -100,14 +100,14 @@ ${chalk.blue.bold('workspace')}: ${workspace}
     if (confirm) {
       try {
         spinner.start(`Creating ${chalk.blue.bold(`@${root.name}/${name}`)} `)
-        const newPackage = await createPackage({
+        const manifest = await createPackage({
           org: root.name,
           name,
           workspace,
           template,
         })
         spinner.succeed(`Package created successfully`)
-        console.log(newPackage)
+        console.log('Manifest', manifest)
       } catch (error) {
         spinner.fail('Failed to create package')
         throw error

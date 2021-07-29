@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { resolveRelative, resolveRoot } from './utils'
 import { copySync, readJSONSync, pathExistsSync } from 'fs-extra'
-
+const replaceInFiles = require('replace-in-files')
 interface StrongLink {
   module: string
   operation: string
@@ -86,7 +86,17 @@ export const forApps = (callback: (app: AppManifest, error?: any) => void) => {
 }
 
 export const createPackage = async (manifest: PackageManifest) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(manifest), 3000)
-  })
+  try {
+    const from = `${resolveRoot('packages/cli')}/templates/${manifest.template}`
+    const to = manifest.workspace.replace('*', manifest.name)
+    copy(from, to)
+    await replaceInFiles({
+      files: [`${to}/*`, `${to}/**/*`],
+      from: /strong-user-org/gm,
+      to: manifest.org,
+    }).pipe({ from: /new-strong-package/gm, to: manifest.name })
+    return manifest
+  } catch (error) {
+    throw error
+  }
 }
