@@ -5,17 +5,7 @@ import ora from 'ora'
 import { copy, forApps, safeLink } from './lib'
 import { getRootPackageJson, resolveRoot } from './utils'
 import create from './commands/create'
-
-const logo = `
-
-███████╗████████╗██████╗  ██████╗ ███╗   ██╗ ██████╗ 
-██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝ 
-███████╗   ██║   ██████╔╝██║   ██║██╔██╗ ██║██║  ███╗
-╚════██║   ██║   ██╔══██╗██║   ██║██║╚██╗██║██║   ██║
-███████║   ██║   ██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝
-╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ 
-
-`
+import logo from './logo'
 
 const pkg = require('../package.json')
 

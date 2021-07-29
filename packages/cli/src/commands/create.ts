@@ -19,24 +19,23 @@ const customConfig: Config = {
   length: 2,
 }
 
-const { Input, Select } = require('enquirer')
+const { Input, Select, Confirm } = require('enquirer')
 
 const getPackageInfo = (path: string) => {
-  let hint, type
-  if (path.includes('apps/web')) {
+  let hint, template
+  if (path.startsWith('apps/web')) {
     hint = 'Creates a NextJS'
-    type = 'app-web'
-  }
-  if (path.includes('apps/mobile')) {
+    template = 'nextjs-zone'
+  } else if (path.startsWith('apps/mobile')) {
     hint = 'Creates a React Native app'
-    type = 'app-mobile'
+    template = 'react-native-app'
   } else {
     hint = 'Creates a generic package'
-    type = 'package'
+    template = 'strong-package'
   }
   return {
     hint,
-    type,
+    template,
   }
 }
 
@@ -82,11 +81,19 @@ const create = async (root: PackageJson | null) => {
   try {
     const name = await namePrompt.run()
     const path = await pathPrompt.run()
-    console.log(
-      `Creating ${getPackageInfo(path).type} ${chalk.blue.bold(
-        `@${root.name}/${name}`,
-      )} in ${path}`,
-    )
+
+    const confirmPrompt = new Confirm({
+      name: 'confirm-create',
+      message: `About to create
+${chalk.gray.italic(`[${getPackageInfo(path).template}]`)}
+${chalk.blue.bold(`@${root.name}/${name}`)} in
+${chalk.green.bold(path)}
+- Proceed?`,
+    })
+
+    const confirm = await confirmPrompt.run()
+
+    console.log(confirm)
   } catch (error) {
     spinner.fail(`Failed to create package`)
     throw error
