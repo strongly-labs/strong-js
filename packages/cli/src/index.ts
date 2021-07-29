@@ -28,7 +28,6 @@ prog
   .action(() => {
     console.log(chalk.blue(logo))
     const root = getRootPackageJson()
-
     createPackage(root)
   })
 

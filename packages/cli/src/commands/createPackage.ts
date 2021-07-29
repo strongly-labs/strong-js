@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 // import chalk from 'chalk'
 import ora from 'ora'
 import { PackageJson } from 'type-fest'
@@ -28,12 +29,12 @@ const createPackage = (root: PackageJson | null) => {
     return
   }
 
-  spinner.succeed(`Creating a new package under @${root.name}/`)
+  spinner.succeed(`Workspace root ${chalk.green.bold(`@${root.name}`)}`)
 
   const suggestion: string = uniqueNamesGenerator(customConfig)
   const prompt = new Input({
-    message: `Choose a package name`,
-    initial: `@${root.name}/${suggestion}`,
+    message: `Choose a package name ${chalk.blue.bold(`@${root.name}/`)}`,
+    initial: `${suggestion}`,
   })
 
   prompt
