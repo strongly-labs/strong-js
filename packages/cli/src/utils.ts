@@ -18,3 +18,12 @@ export const getRootPackageJson = (): PackageJson | null => {
   }
   return null
 }
+
+export const getWorkspaceGlobs = (root: PackageJson): string[] | null => {
+  if (Array.isArray(root.workspaces)) {
+    return root.workspaces
+  } else if (root.workspaces?.packages) {
+    return root.workspaces?.packages
+  }
+  return null
+}

@@ -10,6 +10,7 @@ import {
   adjectives,
   animals,
 } from 'unique-names-generator'
+import { getWorkspaceGlobs } from '../utils'
 
 const customConfig: Config = {
   dictionaries: [adjectives, animals],
@@ -18,7 +19,7 @@ const customConfig: Config = {
   length: 2,
 }
 
-const { Input } = require('enquirer')
+const { Input, Select } = require('enquirer')
 
 const createPackage = (root: PackageJson | null) => {
   const spinner = ora(`Create Package`)
@@ -29,17 +30,37 @@ const createPackage = (root: PackageJson | null) => {
     return
   }
 
+  const paths = getWorkspaceGlobs(root)
+  if (!paths) {
+    spinner.fail('No workspaces found')
+    return
+  }
+
   spinner.succeed(`Workspace root ${chalk.green.bold(`@${root.name}`)}`)
 
   const suggestion: string = uniqueNamesGenerator(customConfig)
-  const prompt = new Input({
+  const namePrompt = new Input({
     message: `Choose a package name ${chalk.blue.bold(`@${root.name}/`)}`,
     initial: `${suggestion}`,
   })
 
-  prompt
+  const pathPrompt = new Select({
+    name: 'path',
+    message: 'Choose path',
+    choices: paths,
+  })
+
+  namePrompt
     .run()
-    .then((answer: any) => console.log('Answer:', answer))
+    .then((packageName: string) => {
+      pathPrompt.run().then((path: string) => {
+        console.log(
+          `Creating ${chalk.blue.bold(
+            `@${root.name}/${packageName}`,
+          )} in ${path}`,
+        )
+      })
+    })
     .catch(console.log)
 }
 
