@@ -128,11 +128,13 @@ const postProcessNextConfig = (mainZone: string, packageName: string) => {
   const postConfig = `[
     {
       source: "/${packageName}",
-      destination: \`\${${nextZoneUrlKey(packageName)}\}/${packageName}\`,
+      destination: \`\${process.env.${nextZoneUrlKey(
+        packageName,
+      )}\}/${packageName}\`,
     },
     {
       source: "/${packageName}/:path*",
-      destination: \`\${${nextZoneUrlKey(
+      destination: \`\${process.env.${nextZoneUrlKey(
         packageName,
       )}\}/${packageName}/:path*\`,
     },

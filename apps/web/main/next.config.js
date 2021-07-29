@@ -1,4 +1,3 @@
-const { ZONE_ADMIN_URL } = process.env
 const rewrites = [
   {
     source: '/:path*',
@@ -6,11 +5,11 @@ const rewrites = [
   },
   {
     source: '/admin',
-    destination: `${ZONE_ADMIN_URL}/admin`,
+    destination: `${process.env.ZONE_ADMIN_URL}/admin`,
   },
   {
     source: '/admin/:path*',
-    destination: `${ZONE_ADMIN_URL}/admin/:path*`,
+    destination: `${process.env.ZONE_ADMIN_URL}/admin/:path*`,
   },
 ]
 module.exports = {
