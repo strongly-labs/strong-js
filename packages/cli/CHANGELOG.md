@@ -1,5 +1,11 @@
 # @strong-js/cli
 
+## 0.0.6
+
+### Patch Changes
+
+- [#6](https://github.com/strongly-labs/strong-js/pull/6) [`843eb7f`](https://github.com/strongly-labs/strong-js/commit/843eb7f5861f6be550966e6b05c3258bdd71f8ce) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - fix: init was broken due to wrong path
+
 ## 0.0.5
 
 ### Patch Changes
