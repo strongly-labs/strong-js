@@ -1,7 +1,7 @@
 import fs, { readJSONSync } from 'fs-extra'
 import path from 'path'
 import findWorkspaceRoot from 'find-yarn-workspace-root'
-import { PackageJson } from 'type-fest'
+import { JsonObject, PackageJson } from 'type-fest'
 
 export const rootDir = fs.realpathSync(process.cwd())
 
@@ -15,6 +15,14 @@ export const getRootPackageJson = (): PackageJson | null => {
   const rootPath = findWorkspaceRoot()
   if (rootPath) {
     return readJSONSync(`${rootPath}/package.json`)
+  }
+  return null
+}
+
+export const getRootConfig = (): JsonObject | null => {
+  const rootPath = findWorkspaceRoot()
+  if (rootPath) {
+    return readJSONSync(`${rootPath}/strong.json`)
   }
   return null
 }

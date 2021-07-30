@@ -1,11 +1,13 @@
 import fs from 'fs'
 import Chance from 'chance'
+import { JsonObject } from 'type-fest'
 import { copySync, readJSONSync, pathExistsSync } from 'fs-extra'
 import { resolveRelative, resolveRoot } from './utils'
 
 const AST = require('abstract-syntax-tree')
 const replaceInFiles = require('replace-in-files')
 const { parse, stringify } = require('envfile')
+const chance = new Chance()
 
 interface StrongLink {
   module: string
@@ -29,6 +31,16 @@ interface PackageManifest {
   name: string
   workspace: string
   template: string
+  config?: JsonObject | null
+}
+
+interface PostProcessArgs {
+  mainZone: string
+  packageName: string
+  port: number
+  envFileNames: string[]
+  nextConfigFileName: string
+  zoneHost: string
 }
 
 export const safeLink = (from: string, to: string): boolean => {
@@ -90,53 +102,47 @@ export const forApps = (callback: (app: AppManifest, error?: any) => void) => {
   })
 }
 
-const chance = new Chance()
-const zonesHost = 'http://localhost'
-const mainZoneName = 'main'
-const envFileName = '.env.test'
-const nextConfigFileName = 'next.config.js'
-
 const nextZoneUrlKey = (packageName: string) =>
   `ZONE_${packageName.replace('-', '_').toUpperCase()}_URL`
 
-const postProcessNextEnv = (
-  mainZone: string,
-  packageName: string,
-  port: number,
-) => {
+const postProcessNextEnv = (args: PostProcessArgs) => {
   try {
-    const envFile = fs.readFileSync(`${mainZone}/${envFileName}`, {
-      encoding: 'utf8',
+    args.envFileNames?.forEach((envFileName) => {
+      console.log(`Updating ${envFileName}...\n`)
+      const envFile = fs.readFileSync(`${args.mainZone}/${envFileName}`, {
+        encoding: 'utf8',
+      })
+      const env = stringify({
+        ...parse(envFile),
+        [nextZoneUrlKey(args.packageName)]: `${args.zoneHost}:${args.port ||
+          0}`,
+      })
+      fs.writeFileSync(`${args.mainZone}/${envFileName}`, env, {
+        encoding: 'utf8',
+      })
+      console.log(
+        'nextjs-zone: Updated main zone env file\n',
+        `${args.mainZone}/${envFileName}`,
+      )
     })
-    const env = stringify({
-      ...parse(envFile),
-      [nextZoneUrlKey(packageName)]: `${zonesHost}:${port}`,
-    })
-    fs.writeFileSync(`${mainZone}/${envFileName}`, env, {
-      encoding: 'utf8',
-    })
-    console.log(
-      'nextjs-zone: Updated main zone env file\n',
-      `${mainZone}/${envFileName}`,
-    )
   } catch (error) {
     throw error
   }
 }
 
-const postProcessNextConfig = (mainZone: string, packageName: string) => {
+const postProcessNextConfig = (args: PostProcessArgs) => {
   const postConfig = `[
     {
-      source: "/${packageName}",
-      destination: \`\${process.env.${nextZoneUrlKey(
-        packageName,
-      )}\}/${packageName}\`,
+      source: "/${args.packageName}",
+      destination: \`\${process.env.${nextZoneUrlKey(args.packageName)}\}/${
+    args.packageName
+  }\`,
     },
     {
-      source: "/${packageName}/:path*",
-      destination: \`\${process.env.${nextZoneUrlKey(
-        packageName,
-      )}\}/${packageName}/:path*\`,
+      source: "/${args.packageName}/:path*",
+      destination: \`\${process.env.${nextZoneUrlKey(args.packageName)}\}/${
+    args.packageName
+  }/:path*\`,
     },
   ]`
 
@@ -144,9 +150,12 @@ const postProcessNextConfig = (mainZone: string, packageName: string) => {
     (b: any) => b.expression.elements,
   )
 
-  const source = fs.readFileSync(`${mainZone}/${nextConfigFileName}`, {
-    encoding: 'utf8',
-  })
+  const source = fs.readFileSync(
+    `${args.mainZone}/${args.nextConfigFileName}`,
+    {
+      encoding: 'utf8',
+    },
+  )
 
   const tree = AST.parse(source)
   AST.replace(tree, (node: any) => {
@@ -173,12 +182,12 @@ const postProcessNextConfig = (mainZone: string, packageName: string) => {
   })
   const code = AST.generate(tree)
 
-  fs.writeFileSync(`${mainZone}/${nextConfigFileName}`, code, {
+  fs.writeFileSync(`${args.mainZone}/${args.nextConfigFileName}`, code, {
     encoding: 'utf8',
   })
   console.log(
     'nextjs-zone: Updated main zone next.config.js\n',
-    `${mainZone}/${nextConfigFileName}`,
+    `${args.mainZone}/${args.nextConfigFileName}`,
   )
 }
 
@@ -201,11 +210,25 @@ export const createPackage = async (manifest: PackageManifest) => {
 
     // Post Processing - Web
     if (manifest.template === 'nextjs-zone') {
+      const config = manifest?.config?.web as JsonObject
       const mainZone = resolveRoot(
-        manifest.workspace.replace('*', mainZoneName),
+        manifest.workspace.replace('*', (config?.mainZone as string) || 'main'),
       )
-      postProcessNextEnv(mainZone, manifest.name, port)
-      postProcessNextConfig(mainZone, manifest.name)
+      const envFileNames = (config?.envFileNames as string[]) || ['.env.test']
+      const zoneHost = (config?.zoneHost as string) || 'http://localhost'
+      const nextConfigFileName =
+        (config?.nextConfigFileName as string) || 'next.config.js'
+
+      const postProcessArgs: PostProcessArgs = {
+        mainZone,
+        port,
+        envFileNames,
+        zoneHost,
+        nextConfigFileName,
+        packageName: manifest.name,
+      }
+      postProcessNextEnv(postProcessArgs)
+      postProcessNextConfig(postProcessArgs)
     }
 
     return manifest
