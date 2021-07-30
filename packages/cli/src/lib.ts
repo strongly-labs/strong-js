@@ -190,7 +190,7 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
 export const createProject = async (name: string) => {
   try {
     fs.mkdirSync(name)
-    const from = `${resolveRoot('packages/cli')}/templates/init`
+    const from = resolveRelative(__dirname, '../templates/init')
     const to = fs.realpathSync(name)
     copy(from, to)
 
