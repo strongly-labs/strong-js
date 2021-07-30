@@ -45,7 +45,7 @@
     "web:link": "yarn workspace @strong-js/app-main st link",
     "admin:link": "yarn workspace @strong-js/app-admin st link admin",
     "up": "yarn data:up && yarn data:push",
-    "apps:dev": "yarn lerna-apps dev --stream --parallel",
+    "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio --schema backend/schema.prisma",
     "postinstall": "yarn build && yarn data:gen && npx strong link"
   },
