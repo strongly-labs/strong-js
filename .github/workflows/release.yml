@@ -23,6 +23,15 @@ jobs:
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            email=strongly.com.au@gmail.com
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@master
         with:
