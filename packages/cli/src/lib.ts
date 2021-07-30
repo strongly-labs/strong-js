@@ -108,7 +108,7 @@ const nextZoneUrlKey = (packageName: string) =>
 const postProcessNextEnv = (args: PostProcessArgs) => {
   try {
     args.envFileNames?.forEach((envFileName) => {
-      console.log(`Updating ${envFileName}...\n`)
+      console.log(`Updating ${args.mainZone}/${envFileName}...\n`)
       const envFile = fs.readFileSync(`${args.mainZone}/${envFileName}`, {
         encoding: 'utf8',
       })
@@ -120,10 +120,6 @@ const postProcessNextEnv = (args: PostProcessArgs) => {
       fs.writeFileSync(`${args.mainZone}/${envFileName}`, env, {
         encoding: 'utf8',
       })
-      console.log(
-        'nextjs-zone: Updated main zone env file\n',
-        `${args.mainZone}/${envFileName}`,
-      )
     })
   } catch (error) {
     throw error
