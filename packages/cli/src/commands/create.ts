@@ -1,8 +1,6 @@
 import chalk from 'chalk'
-// import chalk from 'chalk'
 import ora from 'ora'
-import { PackageJson } from 'type-fest'
-// import { pathExistsSync, realpath } from 'fs-extra'
+import { JsonObject, PackageJson } from 'type-fest'
 
 import {
   uniqueNamesGenerator,
@@ -50,7 +48,7 @@ const getworkspaceChoice = (path: string) => {
   }
 }
 
-const create = async (root: PackageJson | null) => {
+const create = async (root: PackageJson | null, config: JsonObject | null) => {
   const spinner = ora(`Create Package`)
   spinner.start()
 
@@ -105,6 +103,7 @@ ${chalk.blue.bold('workspace')}: ${workspace}
           name,
           workspace,
           template,
+          config,
         })
         spinner.succeed(`Package created successfully`)
         console.log('Manifest', manifest)

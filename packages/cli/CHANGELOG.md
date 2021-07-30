@@ -1,5 +1,11 @@
 # @strong-js/cli
 
+## 0.0.5
+
+### Patch Changes
+
+- Fixed create package and added project init
+
 ## 0.0.4
 
 ### Patch Changes

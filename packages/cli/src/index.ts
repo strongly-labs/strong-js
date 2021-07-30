@@ -3,9 +3,10 @@ import chalk from 'chalk'
 import ora from 'ora'
 
 import { copy, forApps, safeLink } from './lib'
-import { getRootPackageJson, resolveRoot } from './utils'
+import { getRootConfig, getRootPackageJson, resolveRoot } from './utils'
 import create from './commands/create'
 import logo from './logo'
+import init from './commands/init'
 
 const pkg = require('../package.json')
 
@@ -18,7 +19,17 @@ prog
   .action(() => {
     console.log(chalk.blue(logo))
     const root = getRootPackageJson()
-    create(root)
+    const config = getRootConfig()
+    create(root, config)
+  })
+
+prog
+  .version(pkg.version)
+  .command('init')
+  .describe('Create a new strong-js project')
+  .action(() => {
+    console.log(chalk.blue(logo))
+    init()
   })
 
 prog

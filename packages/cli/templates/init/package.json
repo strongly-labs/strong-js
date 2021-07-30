@@ -1,7 +1,5 @@
 {
-  "name": "strong-js",
-  "license": "MIT",
-  "author": "Strong-js Labs",
+  "name": "strong-user-org",
   "private": true,
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",
@@ -39,17 +37,21 @@
     "release": "changeset publish",
     "version:canary": "changeset version --snapshot canary",
     "release:canary": "changeset publish --tag canary",
-    "data:up": "yarn workspace @strong-js/data up --detach",
-    "data:push": "yarn workspace @strong-js/data push",
-    "data:gen": "yarn workspace @strong-js/data gen",
-    "web:link": "yarn workspace @strong-js/app-main st link",
-    "admin:link": "yarn workspace @strong-js/app-admin st link admin",
+    "data:up": "@strong-js/data up --detach",
+    "data:push": "@strong-js/data push",
+    "data:gen": "@strong-js/data gen",
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio --schema backend/schema.prisma",
     "postinstall": "yarn build && yarn data:gen && npx strong link"
   },
   "dependencies": {
+    "@strong-js/auth": "^0.0.2",
+    "@strong-js/auth-mobile": "^0.0.2",
+    "@strong-js/cli": "^0.0.5",
+    "@strong-js/data": "^0.0.2",
+    "@strong-js/crud": "^0.0.2",
+    "@strong-js/generate": "^0.0.2",
     "@types/node": "^16.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"

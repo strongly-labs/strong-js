@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.json",
+  "include": ["packages", "types", "scripts"],
+  "compilerOptions": {
+    "allowJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@strong-user-org/example": ["packages/example/src"],
+      "$test/*": ["test/*"]
+    }
+  }
+}
