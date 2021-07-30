@@ -1,5 +1,11 @@
 # @strong-js/app-main
 
+## 0.1.2
+
+### Patch Changes
+
+- web app gen
+
 ## 0.1.1
 
 ### Patch Changes
