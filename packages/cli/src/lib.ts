@@ -187,6 +187,25 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
   )
 }
 
+export const createProject = async (name: string) => {
+  try {
+    fs.mkdirSync(name)
+    const from = `${resolveRoot('packages/cli')}/templates/init`
+    const to = fs.realpathSync(name)
+    copy(from, to)
+
+    // Post Processing - General
+    await replaceInFiles({
+      files: [`${to}/*`, `${to}/**/*`],
+      from: /strong-user-org/gm,
+      to: name,
+    }).pipe({ from: /strong-new-package/gm, to: 'example' })
+    return true
+  } catch (error) {
+    throw error
+  }
+}
+
 export const createPackage = async (manifest: PackageManifest) => {
   try {
     const from = `${resolveRoot('packages/cli')}/templates/${manifest.template}`

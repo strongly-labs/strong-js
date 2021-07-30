@@ -1,8 +1,6 @@
 import chalk from 'chalk'
-// import chalk from 'chalk'
 import ora from 'ora'
 import { JsonObject, PackageJson } from 'type-fest'
-// import { pathExistsSync, realpath } from 'fs-extra'
 
 import {
   uniqueNamesGenerator,

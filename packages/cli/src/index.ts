@@ -6,6 +6,7 @@ import { copy, forApps, safeLink } from './lib'
 import { getRootConfig, getRootPackageJson, resolveRoot } from './utils'
 import create from './commands/create'
 import logo from './logo'
+import init from './commands/init'
 
 const pkg = require('../package.json')
 
@@ -20,6 +21,15 @@ prog
     const root = getRootPackageJson()
     const config = getRootConfig()
     create(root, config)
+  })
+
+prog
+  .version(pkg.version)
+  .command('init')
+  .describe('Create a new strong-js project')
+  .action(() => {
+    console.log(chalk.blue(logo))
+    init()
   })
 
 prog
