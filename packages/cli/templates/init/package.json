@@ -48,7 +48,7 @@
   "dependencies": {
     "@strong-js/auth": "^0.0.2",
     "@strong-js/auth-mobile": "^0.0.2",
-    "@strong-js/cli": "^0.0.4",
+    "@strong-js/cli": "^0.0.5",
     "@strong-js/data": "^0.0.2",
     "@strong-js/crud": "^0.0.2",
     "@strong-js/generate": "^0.0.2",
