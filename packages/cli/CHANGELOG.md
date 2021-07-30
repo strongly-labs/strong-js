@@ -1,5 +1,11 @@
 # @strong-js/cli
 
+## 0.0.7
+
+### Patch Changes
+
+- [#8](https://github.com/strongly-labs/strong-js/pull/8) [`cfd92bc`](https://github.com/strongly-labs/strong-js/commit/cfd92bc02ada56812e4892965475cc4a93db3820) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Fix: init project
+
 ## 0.0.6
 
 ### Patch Changes
