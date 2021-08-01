@@ -28,8 +28,8 @@
     ]
   },
   "scripts": {
-    "lerna": "lerna --scope={$(lerna list --all --parseable --toposort --long | grep -E -- /packages/ | sed -E 's/[^:]+:([^:]+).+/\\1/' | paste -d , -s -)}",
-    "lerna-apps": "lerna --scope={$(lerna list --all --parseable --toposort --long | grep -E -- /apps/ | sed -E 's/[^:]+:([^:]+).+/\\1/' | paste -d , -s -)}",
+    "lerna": "lerna --scope=$(./scripts/get-glob.js ./packages)",
+    "lerna-apps": "lerna --scope=$(./scripts/get-glob.js ./apps)",
     "watch": "yarn lerna run start --stream --parallel",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",

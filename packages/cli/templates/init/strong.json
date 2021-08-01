@@ -1,8 +1,0 @@
-{
-  "web": {
-    "zonesHost": "http://localhost",
-    "mainZoneName": "main",
-    "envFileNames": [".env.local", ".env.test"],
-    "nextConfigFileName": "next.config.js"
-  }
-}
