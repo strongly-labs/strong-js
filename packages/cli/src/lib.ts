@@ -225,7 +225,7 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
   }
 
   try {
-    spinner.start(`Installing dependencies...`)
+    spinner.start(`Installing dependencies... This can take a few minutes ⌛️`)
 
     process.chdir(name)
 
@@ -241,9 +241,16 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
   try {
     spinner.start('Running post install scripts...')
 
-    await execa('prisma', ['generate'])
+    await execa('prisma', ['generate', '--schema', './backend/schema.prisma'])
     await execa('yarn', ['build'])
     await execa('npx', ['strong', 'link'])
+    
+    spinner.succeed('Project created successfuly!')
+
+    console.log('Now you can cd into the directory and try:\n\n')
+    
+    console.log(chalk.green.bold('yarn up && yarn apps:dev'))
+
   } catch (error) {
     spinner.fail('Post install scripts failed')
     throw error
