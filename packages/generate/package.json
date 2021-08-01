@@ -5,7 +5,7 @@
   "author": "Strong-js Labs",
   "main": "dist/index.js",
   "bin": {
-    "prisma-strongly-generator": "./bin/cli.js"
+    "prisma-strong-generator": "./bin/cli.js"
   },
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",

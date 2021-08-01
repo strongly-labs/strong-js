@@ -1,8 +1,11 @@
 import fs from 'fs'
 import Chance from 'chance'
 import { JsonObject } from 'type-fest'
+import execa from 'execa'
+import type { Ora } from 'ora'
 import { copySync, readJSONSync, pathExistsSync } from 'fs-extra'
 import { resolveRelative, resolveRoot } from './utils'
+import chalk from 'chalk'
 
 const AST = require('abstract-syntax-tree')
 const replaceInFiles = require('replace-in-files')
@@ -187,23 +190,65 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
   )
 }
 
-export const createProject = async (name: string) => {
+export const createProject = async (name: string, repo: string, spinner: Ora) => {
   try {
-    fs.mkdirSync(name)
-    const from = resolveRelative(__dirname, '../templates/init')
-    const to = fs.realpathSync(name)
-    copy(from, to)
+    spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
+
+    await execa('git', [
+      'clone',
+      'git@github.com:strongly-labs/template-strong-project.git',
+      name,
+    ])
+
+    spinner.succeed('Template cloned successfully')
+
+  } catch (error) {
+    spinner.fail('Failed to clone template repo ' + repo)
+    throw error
+  }
+
+  try {
+    spinner.start(`Post-processing ${chalk.blue.bold(name)}...`)
 
     // Post Processing - General
     await replaceInFiles({
-      files: [`${to}/*`, `${to}/**/*`],
+      files: [`${name}/*`, `${name}/**/*`],
       from: /strong-user-org/gm,
       to: name,
     }).pipe({ from: /strong-new-package/gm, to: 'example' })
-    return true
+
+    spinner.succeed('Post-processed successfully')
+
   } catch (error) {
+    spinner.fail('Post processing failed')
     throw error
   }
+
+  try {
+    spinner.start(`Installing dependencies...`)
+
+    process.chdir(name)
+
+    await execa('yarn', ['install'])
+
+    
+    spinner.succeed('Project created successfuly!')
+  } catch (error) {
+    spinner.fail('Failed installing dependencies')
+    throw error
+  }
+
+  try {
+    spinner.start('Running post install scripts...')
+
+    await execa('yarn', ['build'])
+    await execa('yarn', ['data:gen'])
+    await execa('npx', ['strong', 'link'])
+  } catch (error) {
+    spinner.fail('Post install scripts failed')
+    throw error
+  }
+  process.exit(1);
 }
 
 export const createPackage = async (manifest: PackageManifest) => {

@@ -1,6 +1,5 @@
-import chalk from 'chalk'
+import { createProject } from './../lib'
 import ora from 'ora'
-import execa from 'execa'
 
 import {
   uniqueNamesGenerator,
@@ -29,18 +28,11 @@ const init = async () => {
 
   try {
     const name = await namePrompt.run()
-    spinner.start(`Creating ${chalk.blue.bold(name)} `)
-
-    await execa('git', [
-      'clone',
-      'git@github.com:strongly-labs/template-strong-project.git',
+    await createProject(
       name,
-    ])
-
-    process.chdir(name)
-
-    await execa('yarn', ['install'])
-
+      'git@github.com:strongly-labs/template-strong-project.git',
+      spinner,
+    )
     spinner.succeed(`Package created successfully`)
   } catch (error) {
     spinner.fail('Failed to create package')
