@@ -232,7 +232,7 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
     await execa('yarn', ['install'])
 
     
-    spinner.succeed('Project created successfuly!')
+    spinner.succeed('Dependencies installed successfully')
   } catch (error) {
     spinner.fail('Failed installing dependencies')
     throw error
@@ -241,8 +241,8 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
   try {
     spinner.start('Running post install scripts...')
 
+    await execa('prisma', ['generate'])
     await execa('yarn', ['build'])
-    await execa('yarn', ['data:gen'])
     await execa('npx', ['strong', 'link'])
   } catch (error) {
     spinner.fail('Post install scripts failed')
