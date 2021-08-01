@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/data",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Strong-js Data",
   "author": "Strong-js Labs",
   "main": "dist/index.js",

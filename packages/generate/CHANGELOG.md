@@ -1,5 +1,11 @@
 # @strong-js/generate
 
+## 0.0.4
+
+### Patch Changes
+
+- Fixed project creation
+
 ## 0.0.3
 
 ### Patch Changes

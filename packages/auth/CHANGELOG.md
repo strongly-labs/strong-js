@@ -1,5 +1,12 @@
 # @strong-js/auth
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @strong-js/data@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

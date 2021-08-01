@@ -1,5 +1,13 @@
 # @strong-js/app-admin
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @strong-js/cli@0.0.9
+  - @strong-js/auth@0.0.3
+
 ## 0.1.6
 
 ### Patch Changes

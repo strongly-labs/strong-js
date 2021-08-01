@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/auth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Strong-js Auth",
   "author": "Strong-js Labs",
   "main": "dist/index.js",
