@@ -1,5 +1,13 @@
 # @strong-js/cli
 
+## 0.0.8
+
+### Patch Changes
+
+- [#11](https://github.com/strongly-labs/strong-js/pull/11) [`974afa4`](https://github.com/strongly-labs/strong-js/commit/974afa4784676ccd29ccf0966eee501dedaf2e60) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Fix project creation
+
+* [`fdd5c8b`](https://github.com/strongly-labs/strong-js/commit/fdd5c8bd623123c41ac21b52779f092d8863ce49) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Clone from git template on init and yarn install
+
 ## 0.0.7
 
 ### Patch Changes

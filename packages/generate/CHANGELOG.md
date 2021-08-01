@@ -1,5 +1,11 @@
 # @strong-js/generate
 
+## 0.0.3
+
+### Patch Changes
+
+- [#11](https://github.com/strongly-labs/strong-js/pull/11) [`974afa4`](https://github.com/strongly-labs/strong-js/commit/974afa4784676ccd29ccf0966eee501dedaf2e60) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Fix project creation
+
 ## 0.0.2
 
 ### Patch Changes
