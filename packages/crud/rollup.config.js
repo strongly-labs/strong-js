@@ -70,7 +70,7 @@ const getOutputFormats = (name) => {
 }
 
 export default {
-  input: './src/index.ts',
+  input: './src/index.tsx',
   external: (id) => {
     if (id.startsWith('regenerator-runtime')) {
       return false
@@ -88,7 +88,6 @@ export default {
     }),
     writeEntryFile({
       moduleName: entryName(pkg.name),
-      bin: true,
     }),
   ],
   output: getOutputFormats(entryName(pkg.name)),

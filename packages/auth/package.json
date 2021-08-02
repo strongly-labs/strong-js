@@ -5,9 +5,11 @@
   "author": "Strong-js Labs",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
-    "build": "tsdx build --tsconfig tsconfig.build.json",
-    "test": "tsdx test",
+    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
+    "build:js": "rollup -c",
+    "build": "npm run build:types && npm run build:js",
     "prepublish": "npm run build"
   },
   "files": [

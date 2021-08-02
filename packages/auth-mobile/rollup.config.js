@@ -88,7 +88,6 @@ export default {
     }),
     writeEntryFile({
       moduleName: entryName(pkg.name),
-      bin: true,
     }),
   ],
   output: getOutputFormats(entryName(pkg.name)),
