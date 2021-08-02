@@ -4,7 +4,7 @@
 '@strong-js/app-main': minor
 '@strong-js/auth': minor
 '@strong-js/auth-mobile': minor
-'@strong-js/cli': minor
+'@strong-js/cli': patch
 '@strong-js/crud': minor
 '@strong-js/data': minor
 '@strong-js/generate': minor
