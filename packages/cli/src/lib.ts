@@ -117,8 +117,9 @@ const postProcessNextEnv = (args: PostProcessArgs) => {
       })
       const env = stringify({
         ...parse(envFile),
-        [nextZoneUrlKey(args.packageName)]: `${args.zoneHost}:${args.port ||
-          0}`,
+        [nextZoneUrlKey(args.packageName)]: `${args.zoneHost}:${
+          args.port || 0
+        }`,
       })
       fs.writeFileSync(`${args.mainZone}/${envFileName}`, env, {
         encoding: 'utf8',
@@ -190,7 +191,11 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
   )
 }
 
-export const createProject = async (name: string, repo: string, spinner: Ora) => {
+export const createProject = async (
+  name: string,
+  repo: string,
+  spinner: Ora,
+) => {
   try {
     spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
 
@@ -201,7 +206,6 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
     ])
 
     spinner.succeed('Template cloned successfully')
-
   } catch (error) {
     spinner.fail('Failed to clone template repo ' + repo)
     throw error
@@ -218,7 +222,6 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
     }).pipe({ from: /strong-new-package/gm, to: 'example' })
 
     spinner.succeed('Post-processed successfully')
-
   } catch (error) {
     spinner.fail('Post processing failed')
     throw error
@@ -231,7 +234,6 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
 
     await execa('yarn', ['install'])
 
-    
     spinner.succeed('Dependencies installed successfully')
   } catch (error) {
     spinner.fail('Failed installing dependencies')
@@ -244,18 +246,17 @@ export const createProject = async (name: string, repo: string, spinner: Ora) =>
     await execa('prisma', ['generate', '--schema', './backend/schema.prisma'])
     await execa('yarn', ['build'])
     await execa('npx', ['strong', 'link'])
-    
+
     spinner.succeed('Project created successfuly!')
 
     console.log('Now you can cd into the directory and try:\n\n')
-    
-    console.log(chalk.green.bold('yarn up && yarn apps:dev'))
 
+    console.log(chalk.green.bold('yarn up && yarn apps:dev'))
   } catch (error) {
     spinner.fail('Post install scripts failed')
     throw error
   }
-  process.exit(1);
+  process.exit(1)
 }
 
 export const createPackage = async (manifest: PackageManifest) => {
@@ -279,7 +280,10 @@ export const createPackage = async (manifest: PackageManifest) => {
     if (manifest.template === 'nextjs-zone') {
       const config = manifest?.config?.web as JsonObject
       const mainZone = resolveRoot(
-        manifest.workspace.replace('*', (config?.mainZone as string) || 'main'),
+        manifest.workspace.replace(
+          '*',
+          (config?.mainZoneName as string) || 'main',
+        ),
       )
       const envFileNames = (config?.envFileNames as string[]) || ['.env.test']
       const zoneHost = (config?.zoneHost as string) || 'http://localhost'
