@@ -17,7 +17,7 @@
   },
   "scripts": {
     "lerna": "lerna --scope=$(./scripts/get-glob.js ./packages)",
-    "lerna-apps": "lerna --scope=$(./scripts/get-glob.js ./apps)",
+    "lerna-apps": "lerna --scope=$(./scripts/get-glob.js ./apps/web)",
     "watch": "yarn lerna --stream --parallel run build:js -- --watch",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",
