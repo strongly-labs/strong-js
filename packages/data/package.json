@@ -24,6 +24,7 @@
     "dist"
   ],
   "dependencies": {
+    "@strong-js/generate": "*",
     "@prisma/client": "~2.27.0",
     "prisma": "~2.27.0",
     "tslib": "^2.3.0",
@@ -31,7 +32,6 @@
     "typegraphql-prisma": "^0.14.7"
   },
   "devDependencies": {
-    "@strong-js/generate": "*",
     "@types/graphql-fields": "^1.3.4",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
