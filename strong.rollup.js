@@ -4,8 +4,11 @@ import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
 import { terser } from 'rollup-plugin-terser'
 
+const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
+const rimraf = promisify(require('rimraf'))
+
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
 const formats = ['cjs', 'esm']
 
@@ -26,11 +29,29 @@ const defaults = {
   exports: 'named',
 }
 
+export const clearDist = (options = {}) => {
+  const { hook = 'buildStart' } = options
+
+  return {
+    name: 'clear-dist',
+    [hook]: async () => {
+      try {
+        if (fs.existsSync(dist)) {
+          await rimraf(dist)
+          fs.mkdirSync(dist)
+        }
+      } catch (error) {
+        throw error
+      }
+    },
+  }
+}
+
 export const writeEntryFile = (options = {}) => {
   const { moduleName = '', bin = false, hook = 'buildEnd' } = options
 
   const baseLine = `module.exports = require('./${moduleName}`
-  const contents = `${bin && '#!/usr/bin/env node'}
+  const contents = `${bin ? '#!/usr/bin/env node' : ''}
 
 'use strict'
 if (process.env.NODE_ENV === 'production') {
@@ -41,7 +62,16 @@ if (process.env.NODE_ENV === 'production') {
 `
   return {
     name: 'write-entry-file',
-    [hook]: async () => fs.writeFileSync(path.join(dist, 'index.js'), contents),
+    [hook]: async () => {
+      try {
+        fs.writeFileSync(path.join(dist, 'index.js'), contents, {
+          ...(bin && { mode: 0o755 }),
+        })
+        return Promise.resolve()
+      } catch (error) {
+        throw error
+      }
+    },
   }
 }
 
@@ -68,7 +98,7 @@ export const getOutputFormats = (name) => {
   return outputs
 }
 
-export const getRollupConfig = (packageName) => ({
+export const getRollupConfig = (packageName, bin = false) => ({
   external: (id) => {
     if (id.startsWith('regenerator-runtime')) {
       return false
@@ -86,6 +116,7 @@ export const getRollupConfig = (packageName) => ({
     }),
     writeEntryFile({
       moduleName: cleanPackageName(packageName),
+      bin,
     }),
   ],
   output: getOutputFormats(cleanPackageName(packageName)),

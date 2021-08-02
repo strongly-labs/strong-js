@@ -3,5 +3,5 @@ import { getRollupConfig } from '../../strong.rollup'
 
 export default {
   input: './src/index.ts',
-  ...getRollupConfig(pkg.name),
+  ...getRollupConfig(pkg.name, true),
 }

@@ -29,7 +29,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "@types/rimraf": "^3.0.1",
     "rimraf": "^3.0.2"
   }
