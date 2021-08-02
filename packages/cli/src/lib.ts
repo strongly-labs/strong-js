@@ -282,7 +282,7 @@ export const createPackage = async (manifest: PackageManifest) => {
       const mainZone = resolveRoot(
         manifest.workspace.replace(
           '*',
-          (config?.mainZoneName as string) || 'main',
+          (config?.mainZoneName as string) || 'app-main',
         ),
       )
       const envFileNames = (config?.envFileNames as string[]) || ['.env.test']
