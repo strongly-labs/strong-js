@@ -243,11 +243,7 @@ export const createProject = async (
   try {
     spinner.start('Running post install scripts...')
 
-    await execa('./node_modules/.bin/prisma', [
-      'generate',
-      '--schema',
-      './backend/schema.prisma',
-    ])
+    await execa('npx prisma', ['generate'])
     await execa('yarn', ['build'])
     await execa('npx', ['strong-js', 'link'])
 
