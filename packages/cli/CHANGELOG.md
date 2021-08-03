@@ -1,5 +1,11 @@
 # @strong-js/cli
 
+## 0.1.3
+
+### Patch Changes
+
+- [`e5b255f`](https://github.com/strongly-labs/strong-js/commit/e5b255f75756e5fe0e1c94ee4349cf22943628ca) - Update prisma command
+
 ## 0.1.2
 
 ### Patch Changes
