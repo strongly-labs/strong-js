@@ -31,11 +31,10 @@
     "data:up": "yarn workspace @strong-js/data up --detach",
     "data:push": "yarn workspace @strong-js/data push",
     "data:gen": "yarn workspace @strong-js/data gen",
-    "strong:link": "yarn workspace @strong-js/cli x link",
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio --schema backend/schema.prisma",
-    "postinstall": "lerna --scope={@strong-js/generate,@strong-js/cli} run build && lerna link && yarn data:gen && yarn strong:link"
+    "postinstall": "lerna --scope={@strong-js/generate,@strong-js/cli} run build && lerna link && yarn data:gen"
   },
   "dependencies": {
     "@types/node": "^16.4.1",

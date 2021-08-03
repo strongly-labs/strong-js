@@ -17,8 +17,7 @@
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
     "build": "npm run build:types && npm run build:js",
-    "prepublish": "npm run build",
-    "x": "./dist/index.js"
+    "prepublish": "npm run build"
   },
   "files": [
     "README.md",
