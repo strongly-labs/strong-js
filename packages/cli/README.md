@@ -1,6 +1,6 @@
 # @strong-js/cli
 
-[![Stable release](https://img.shields.io/npm/v/@strong-js/generate.svg)](https://npm.im/@strong-js/generate)
+[![Stable release](https://img.shields.io/npm/v/@strong-js/cli.svg)](https://npm.im/@strong-js/cli)
 
 Shared utilities for various `@strong-js` packages.
 

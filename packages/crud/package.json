@@ -9,6 +9,11 @@
     "README.md",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongly-labs/strong-js.git",
+    "directory": "packages/crud"
+  },
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
     "type-check:watch": "npm run type-check -- --watch",

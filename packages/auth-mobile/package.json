@@ -16,6 +16,11 @@
     "README.md",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongly-labs/strong-js.git",
+    "directory": "packages/auth-mobile"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
   },

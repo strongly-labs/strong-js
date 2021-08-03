@@ -1,6 +1,6 @@
 # @strong-js/generate
 
-[![Stable release](https://img.shields.io/npm/v/@strong-js/generate.svg)](https://npm.im/@strong-js/generate)
+[![Stable release](https://img.shields.io/npm/v/@strong-js/auth.svg)](https://npm.im/@strong-js/auth)
 
 Shared utilities for various `@strong-js` packages.
 

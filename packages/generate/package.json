@@ -20,6 +20,11 @@
     "README.md",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongly-labs/strong-js.git",
+    "directory": "packages/generate"
+  },
   "dependencies": {
     "@prisma/generator-helper": "^2.27.0",
     "@prisma/sdk": "^2.27.0",

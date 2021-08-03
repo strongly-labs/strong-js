@@ -22,12 +22,18 @@
     "README.md",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongly-labs/strong-js.git",
+    "directory": "packages/cli"
+  },
   "dependencies": {
     "abstract-syntax-tree": "^2.20.0",
     "chalk": "^4.1.1",
     "chance": "^1.1.7",
     "enquirer": "^2.3.6",
     "envfile": "^6.15.0",
+    "execa": "^5.1.1",
     "find-yarn-workspace-root": "^2.0.0",
     "fs-extra": "^10.0.0",
     "ora": "^5.4.1",

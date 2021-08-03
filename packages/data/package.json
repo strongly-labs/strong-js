@@ -23,8 +23,13 @@
     "README.md",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongly-labs/strong-js.git",
+    "directory": "packages/data"
+  },
   "dependencies": {
-    "@strong-js/generate": "*",
+    "@strong-js/generate": "^0.1.0",
     "@prisma/client": "~2.27.0",
     "prisma": "~2.27.0",
     "tslib": "^2.3.0",
