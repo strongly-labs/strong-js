@@ -10,7 +10,7 @@ import init from './commands/init'
 
 const pkg = require('../package.json')
 
-const prog = sade('strong')
+const prog = sade('strong-js')
 
 prog
   .version(pkg.version)
