@@ -18,6 +18,7 @@ prog
   .describe('Create a new strong-js package or app')
   .action(() => {
     console.log(chalk.blue(logo))
+    console.log(`Version: ${pkg.version}`)
     const root = getRootPackageJson()
     const config = getRootConfig()
     create(root, config)
@@ -29,6 +30,7 @@ prog
   .describe('Create a new strong-js project')
   .action(() => {
     console.log(chalk.blue(logo))
+    console.log(`Version: ${pkg.version}`)
     init()
   })
 
@@ -38,6 +40,8 @@ prog
   .describe('Links .strong/* with apps/* based on the config file strong.json')
   .action(async () => {
     console.log(chalk.blue(logo))
+    console.log(`Version: ${pkg.version}`)
+
     const spinner = ora(`Link apps`)
 
     const fromPath = resolveRoot('.strong')
