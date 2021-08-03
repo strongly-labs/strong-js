@@ -1,5 +1,16 @@
 # @strong-js/auth
 
+## 0.1.0
+
+### Minor Changes
+
+- [#14](https://github.com/strongly-labs/strong-js/pull/14) [`78562e9`](https://github.com/strongly-labs/strong-js/commit/78562e974a895c7dfe0c6f5765414edb34764802) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - retired tsdx, new build pipeline based on roll-up
+
+### Patch Changes
+
+- Updated dependencies [[`78562e9`](https://github.com/strongly-labs/strong-js/commit/78562e974a895c7dfe0c6f5765414edb34764802)]:
+  - @strong-js/data@0.1.0
+
 ## 0.0.3
 
 ### Patch Changes

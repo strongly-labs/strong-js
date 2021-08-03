@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/auth-mobile",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Strong-js Auth Mobile SDK",
   "author": "Strong-js Labs",
   "main": "dist/index.js",

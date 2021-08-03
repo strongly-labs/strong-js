@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/generate",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Strong-js Codegen",
   "author": "Strong-js Labs",
   "main": "dist/index.js",
