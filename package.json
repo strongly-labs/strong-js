@@ -40,7 +40,7 @@
     "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio",
     "manual-link": "ln -srf ./packages/generate/dist/index.js ./node_modules/.bin/prisma-strong-generator",
-    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && manual-link && yarn data:gen"
+    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && yarn manual-link && yarn data:gen"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
