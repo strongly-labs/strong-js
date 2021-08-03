@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { generatorHandler } from '@prisma/generator-helper'
 import generateApi from './api'
 import generateSchema from './schema'

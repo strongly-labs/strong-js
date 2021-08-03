@@ -1,7 +1,7 @@
 {
   "web": {
     "zonesHost": "http://localhost",
-    "mainZoneName": "main",
+    "mainZoneName": "app-main",
     "envFileNames": [".env.local", ".env.test"],
     "nextConfigFileName": "next.config.js"
   }

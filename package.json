@@ -3,18 +3,6 @@
   "license": "MIT",
   "author": "Strong-js Labs",
   "private": true,
-  "devDependencies": {
-    "@changesets/changelog-github": "^0.4.0",
-    "@changesets/cli": "^2.16.0",
-    "@types/react": "17.0.2",
-    "@types/react-dom": "17.0.2",
-    "lerna": "^4.0.0",
-    "prettier-plugin-prisma": "^0.12.1",
-    "prettier-plugin-sh": "^0.7.1",
-    "tsdx": "^0.14.1",
-    "typescript": "^4.3.5",
-    "typesync": "^0.8.0"
-  },
   "workspaces": {
     "packages": [
       "packages/*",
@@ -29,8 +17,9 @@
   },
   "scripts": {
     "lerna": "lerna --scope=$(./scripts/get-glob.js ./packages)",
-    "lerna-apps": "lerna --scope=$(./scripts/get-glob.js ./apps)",
-    "watch": "yarn lerna run start --stream --parallel",
+    "lerna-apps": "lerna --scope=$(./scripts/get-glob.js ./apps/web)",
+    "watch:types": "yarn lerna run type-check:watch --stream --parallel",
+    "watch:builds": "yarn lerna run build:watch --stream --parallel",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",
     "build": "yarn lerna run build",
@@ -42,24 +31,44 @@
     "data:up": "yarn workspace @strong-js/data up --detach",
     "data:push": "yarn workspace @strong-js/data push",
     "data:gen": "yarn workspace @strong-js/data gen",
-    "web:link": "yarn workspace @strong-js/app-main st link",
-    "admin:link": "yarn workspace @strong-js/app-admin st link admin",
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio --schema backend/schema.prisma",
-    "postinstall": "lerna --scope={@strong-js/generate,@strong-js/cli} run build && yarn data:gen && npx strong link"
+    "postinstall": "lerna --scope={@strong-js/generate,@strong-js/cli} run build && lerna link && yarn data:gen"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "@strong-js/data": "*"
+    "react-dom": "17.0.2"
   },
-  "resolutions": {
-    "**/@typescript-eslint/eslint-plugin": "^4.28.5",
-    "**/@typescript-eslint/parser": "^4.28.5",
-    "**/jest": "^26.6.3",
-    "**/ts-jest": "^26.4.4",
-    "**/typescript": "^4.3.5"
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/helper-module-imports": "^7.14.5",
+    "@babel/parser": "^7.14.9",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
+    "@babel/preset-env": "^7.14.9",
+    "@babel/preset-typescript": "^7.14.5",
+    "@babel/traverse": "^7.14.9",
+    "@changesets/changelog-github": "^0.4.0",
+    "@changesets/cli": "^2.16.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2",
+    "babel-plugin-polyfill-regenerator": "^0.2.2",
+    "lerna": "^4.0.0",
+    "prettier-plugin-prisma": "^0.12.1",
+    "prettier-plugin-sh": "^0.7.1",
+    "rollup": "^2.55.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.3.5",
+    "typesync": "^0.8.0",
+    "@types/rimraf": "^3.0.1",
+    "rimraf": "^3.0.2"
   }
 }

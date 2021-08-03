@@ -10,6 +10,9 @@ yarn.lock
 .yalc
 yalc.lock
 
+# typescript
+*.tsbuildinfo
+
 # env
 .env
 .env*.local

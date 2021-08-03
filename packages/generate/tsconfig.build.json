@@ -2,21 +2,12 @@
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
     "target": "es5",
-    "baseUrl": "src",
+    "rootDir": "src",
     "outDir": "dist",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["esnext", "dom"], // dom is added for prismjs :(
-    "strict": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "skipLibCheck": true,
-    "noEmit": true
+    "skipLibCheck": true
   },
   "include": ["src/schema", "src/admin", "types"]
 }

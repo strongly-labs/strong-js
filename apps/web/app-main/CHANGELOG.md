@@ -1,4 +1,4 @@
-# @strong-js/app-main
+# @strong-js/web
 
 ## 0.1.3
 
