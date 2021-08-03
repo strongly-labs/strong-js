@@ -243,8 +243,16 @@ export const createProject = async (
   try {
     spinner.start('Running post install scripts...')
 
+    process.chdir(name)
+
     await execa('npx prisma', ['generate'])
+
+    process.chdir(name)
+
     await execa('yarn', ['build'])
+
+    process.chdir(name)
+
     await execa('npx', ['strong-js', 'link'])
 
     spinner.succeed('Project created successfuly!')
