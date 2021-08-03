@@ -6,8 +6,8 @@
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
-    "dist",
-    "src"
+    "README.md",
+    "dist"
   ],
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
