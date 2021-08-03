@@ -1,5 +1,11 @@
 # @strong-js/crud
 
+## 0.1.1
+
+### Patch Changes
+
+- [`aaee2cc`](https://github.com/strongly-labs/strong-js/commit/aaee2cc6c04f63f1673aabc2f3c72002728ddcaa) - Fix readme, add repo and fix cli bin
+
 ## 0.1.0
 
 ### Minor Changes
