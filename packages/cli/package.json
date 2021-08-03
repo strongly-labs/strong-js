@@ -8,7 +8,7 @@
   "main": "dist/index.js",
   "module": "dist/cli.esm.js",
   "bin": {
-    "strong": "./dist/index.js"
+    "strong-js": "./dist/index.js"
   },
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
