@@ -1,5 +1,11 @@
 # @strong-js/generate
 
+## 0.1.2
+
+### Patch Changes
+
+- [`27ff4f4`](https://github.com/strongly-labs/strong-js/commit/27ff4f47e8393fceacc3ed22ece08e19ae1860a0) - remove backend env from data package, fix prisma command and cli command
+
 ## 0.1.1
 
 ### Patch Changes
