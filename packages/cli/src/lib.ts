@@ -255,7 +255,7 @@ export const createProject = async (
 
     console.log('Now you can cd into the directory and try:\n\n')
 
-    console.log(chalk.green.bold('yarn up && yarn apps:dev'))
+    console.log(chalk.green.bold('yarn up && yarn apps:dev\n\n'))
   } catch (error) {
     spinner.fail('Post install scripts failed')
     throw error
