@@ -2,7 +2,8 @@
   "name": "@strong-js/data",
   "version": "0.1.0",
   "description": "Strong-js Data",
-  "author": "Strong-js Labs",
+  "license": "MIT",
+  "author": "Strongly Labs",
   "main": "dist/index.js",
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",

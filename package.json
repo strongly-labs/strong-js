@@ -1,7 +1,7 @@
 {
   "name": "strong-js",
   "license": "MIT",
-  "author": "Strong-js Labs",
+  "author": "Strongly Labs",
   "private": true,
   "workspaces": {
     "packages": [

@@ -2,7 +2,8 @@
   "name": "@strong-js/generate",
   "version": "0.1.0",
   "description": "Strong-js Codegen",
-  "author": "Strong-js Labs",
+  "author": "Strongly Labs",
+  "license": "MIT",
   "main": "dist/index.js",
   "bin": {
     "prisma-strong-generator": "./dist/index.js"

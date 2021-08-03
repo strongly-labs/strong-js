@@ -2,7 +2,8 @@
   "name": "@strong-js/auth",
   "version": "0.1.0",
   "description": "Strong-js Auth",
-  "author": "Strong-js Labs",
+  "author": "Strongly Labs",
+  "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
