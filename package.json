@@ -39,7 +39,7 @@
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio",
-    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && run build && yarn data:gen"
+    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && yarn data:gen"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
