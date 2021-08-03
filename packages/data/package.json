@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/data",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Strong-js Data",
   "license": "MIT",
   "author": "Strongly Labs",
@@ -30,7 +30,7 @@
     "directory": "packages/data"
   },
   "dependencies": {
-    "@strong-js/generate": "^0.1.0",
+    "@strong-js/generate": "^0.1.1",
     "@prisma/client": "~2.27.0",
     "prisma": "~2.27.0",
     "tslib": "^2.3.0",

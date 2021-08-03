@@ -1,5 +1,14 @@
 # @strong-js/app-admin
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`aaee2cc`](https://github.com/strongly-labs/strong-js/commit/aaee2cc6c04f63f1673aabc2f3c72002728ddcaa)]:
+  - @strong-js/auth@0.1.1
+  - @strong-js/cli@0.1.1
+  - @strong-js/crud@0.1.1
+
 ## 0.2.0
 
 ### Minor Changes
