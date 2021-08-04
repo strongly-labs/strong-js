@@ -1,5 +1,12 @@
 # @strong-js/app-admin
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies [[`e5b255f`](https://github.com/strongly-labs/strong-js/commit/e5b255f75756e5fe0e1c94ee4349cf22943628ca)]:
+  - @strong-js/cli@0.1.3
+
 ## 0.2.2
 
 ### Patch Changes
