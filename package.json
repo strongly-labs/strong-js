@@ -39,9 +39,9 @@
     "up": "yarn data:up && yarn data:push",
     "apps:dev": "yarn lerna-apps run dev --stream --parallel",
     "studio": "npx prisma studio",
-    "manual-link": "ln -srf ./packages/generate/dist/index.js ./node_modules/.bin/prisma-strong-generator",
-    "strong-js": "packages/cli/dist/index.js",
-    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && yarn manual-link && yarn data:gen"
+    "cli": "packages/cli/dist/index.js",
+    "linkLocal": "ln -srf ./packages/generate/dist/index.js ./node_modules/.bin/prisma-strong-generator",
+    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && yarn linkLocal && yarn data:gen"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
