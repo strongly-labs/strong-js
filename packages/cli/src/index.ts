@@ -31,7 +31,11 @@ prog
   .action(() => {
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)
-    const config = getRootConfig()
+    const config = {
+      repos: {
+        projectTemplate: 'https://github.com/strongly-labs/strong-js.git',
+      },
+    }
     init(config)
   })
 
