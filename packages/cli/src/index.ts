@@ -31,13 +31,14 @@ prog
   .action(() => {
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)
-    init()
+    const config = getRootConfig()
+    init(config)
   })
 
 prog
   .version(pkg.version)
   .command('link')
-  .describe('Links .strong/* with apps/* based on the config file strong.json')
+  .describe('Links root/* with apps/* based on the config file strong.json')
   .action(async () => {
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)
@@ -45,7 +46,7 @@ prog
     const spinner = ora(`Link apps`)
 
     const fromPath = resolveRoot('.strong')
-    forApps((app, error) => {
+    forApps('apps/web')((app, error) => {
       if (app?.config?.links) {
         try {
           app.config.links.forEach((link) => {

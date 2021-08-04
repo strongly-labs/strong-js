@@ -7,6 +7,7 @@ import {
   adjectives,
   animals,
 } from 'unique-names-generator'
+import { JsonObject } from 'type-fest'
 
 const customConfig: Config = {
   dictionaries: [adjectives, animals],
@@ -17,7 +18,7 @@ const customConfig: Config = {
 
 const { Input } = require('enquirer')
 
-const init = async () => {
+const init = async (config: JsonObject | null) => {
   const spinner = ora(`Create Strong Project`)
 
   const suggestion: string = uniqueNamesGenerator(customConfig)
@@ -28,11 +29,7 @@ const init = async () => {
 
   try {
     const name = await namePrompt.run()
-    await createProject(
-      name,
-      'git@github.com:strongly-labs/template-strong-project.git',
-      spinner,
-    )
+    await createProject(name, config, spinner)
     spinner.succeed(`Package created successfully`)
   } catch (error) {
     spinner.fail('Failed to create package')

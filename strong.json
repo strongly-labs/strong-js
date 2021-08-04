@@ -4,5 +4,8 @@
     "mainZoneName": "app-main",
     "envFileNames": [".env.local", ".env.test"],
     "nextConfigFileName": "next.config.js"
+  },
+  "repos": {
+    "projectTemplate": "https://github.com/strongly-labs/strong-template-project.git"
   }
 }

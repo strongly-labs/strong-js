@@ -4,10 +4,9 @@ import { JsonObject } from 'type-fest'
 import execa from 'execa'
 import type { Ora } from 'ora'
 import { copySync, readJSONSync, pathExistsSync } from 'fs-extra'
-import { resolveRelative, resolveRoot } from './utils'
+import { astArrayPush, resolveRelative, resolveRoot } from './utils'
 import chalk from 'chalk'
 
-const AST = require('abstract-syntax-tree')
 const replaceInFiles = require('replace-in-files')
 const { parse, stringify } = require('envfile')
 const chance = new Chance()
@@ -80,8 +79,10 @@ export const copy = (from: string, to: string) => {
   }
 }
 
-export const forApps = (callback: (app: AppManifest, error?: any) => void) => {
-  const appsPath = resolveRoot('apps/web')
+export const forApps = (path: string) => (
+  callback: (app: AppManifest, error?: any) => void,
+) => {
+  const appsPath = resolveRoot(path)
   fs.readdirSync(appsPath).forEach((name) => {
     const appDir = resolveRelative(appsPath, name)
     const path = fs.realpathSync(appDir)
@@ -146,10 +147,6 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
     },
   ]`
 
-  const postConfigAstElements = AST.parse(postConfig).body.flatMap(
-    (b: any) => b.expression.elements,
-  )
-
   const source = fs.readFileSync(
     `${args.mainZone}/${args.nextConfigFileName}`,
     {
@@ -157,30 +154,7 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
     },
   )
 
-  const tree = AST.parse(source)
-  AST.replace(tree, (node: any) => {
-    if (
-      node.type === 'VariableDeclaration' &&
-      node.declarations.find(
-        (d: any) => d.id.hasOwnProperty('name') && d.id.name === 'rewrites',
-      )
-    ) {
-      node.declarations = node.declarations.flatMap((declaration: any) => {
-        if (
-          declaration.id.hasOwnProperty('name') &&
-          declaration.id.name === 'rewrites'
-        ) {
-          declaration.init.elements = [
-            ...declaration.init.elements,
-            ...postConfigAstElements,
-          ]
-          return declaration
-        }
-      })
-    }
-    return node
-  })
-  const code = AST.generate(tree)
+  const code = astArrayPush('rewrites', source, postConfig)
 
   fs.writeFileSync(`${args.mainZone}/${args.nextConfigFileName}`, code, {
     encoding: 'utf8',
@@ -193,71 +167,79 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
 
 export const createProject = async (
   name: string,
-  repo: string,
+  config: JsonObject | null,
   spinner: Ora,
 ) => {
-  try {
-    spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
+  const repos = config?.repos as JsonObject
 
-    await execa('git', [
-      'clone',
-      'git@github.com:strongly-labs/template-strong-project.git',
-      name,
-    ])
+  if (repos.projectTemplate) {
+    const repo = repos.projectTemplate as string
+    try {
+      spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
 
-    spinner.succeed('Template cloned successfully')
-  } catch (error) {
-    spinner.fail('Failed to clone template repo ' + repo)
-    throw error
+      await execa('git', ['clone', repo, name])
+
+      spinner.succeed('Template cloned successfully')
+    } catch (error) {
+      spinner.fail('Failed to clone template repo ' + repo)
+      throw error
+    }
+
+    try {
+      spinner.start(`Post-processing ${chalk.blue.bold(name)}...`)
+
+      // Post Processing - General
+      await replaceInFiles({
+        files: [`${name}/*`, `${name}/**/*`],
+        from: /strong-user-org/gm,
+        to: name,
+      }).pipe({ from: /strong-new-package/gm, to: 'example' })
+
+      fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
+
+      spinner.succeed('Post-processed successfully')
+    } catch (error) {
+      spinner.fail('Post processing failed')
+      throw error
+    }
+
+    try {
+      spinner.start(
+        `Installing dependencies... This can take a few minutes ⌛️`,
+      )
+
+      process.chdir(name)
+
+      await execa('yarn', ['install'])
+
+      spinner.succeed('Dependencies installed successfully')
+    } catch (error) {
+      spinner.fail('Failed installing dependencies')
+      throw error
+    }
+
+    try {
+      spinner.start('Running post install scripts...')
+
+      await execa('yarn', ['data:gen'])
+      await execa('yarn', ['build'])
+      await execa('npx', ['strong-js', 'link'])
+
+      spinner.succeed('Project created successfuly!')
+
+      console.log('Now you can cd into the directory and try:\n\n')
+
+      console.log(chalk.green.bold('yarn up && yarn apps:dev\n\n'))
+    } catch (error) {
+      spinner.fail('Post install scripts failed')
+      throw error
+    }
+  } else {
+    spinner.fail(
+      `Git repo for projectTemplate not found. Please add it to "repos" section of your root/strong.json`,
+    )
   }
 
-  try {
-    spinner.start(`Post-processing ${chalk.blue.bold(name)}...`)
-
-    // Post Processing - General
-    await replaceInFiles({
-      files: [`${name}/*`, `${name}/**/*`],
-      from: /strong-user-org/gm,
-      to: name,
-    }).pipe({ from: /strong-new-package/gm, to: 'example' })
-
-    fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
-
-    spinner.succeed('Post-processed successfully')
-  } catch (error) {
-    spinner.fail('Post processing failed')
-    throw error
-  }
-
-  try {
-    spinner.start(`Installing dependencies... This can take a few minutes ⌛️`)
-
-    process.chdir(name)
-
-    await execa('yarn', ['install'])
-
-    spinner.succeed('Dependencies installed successfully')
-  } catch (error) {
-    spinner.fail('Failed installing dependencies')
-    throw error
-  }
-
-  try {
-    spinner.start('Running post install scripts...')
-
-    await execa('yarn', ['data:gen'])
-    await execa('yarn', ['build'])
-    await execa('npx', ['strong-js', 'link'])
-
-    spinner.succeed('Project created successfuly!')
-
-    console.log('Now you can cd into the directory and try:\n\n')
-
-    console.log(chalk.green.bold('yarn up && yarn apps:dev\n\n'))
-  } catch (error) {
-    spinner.fail('Post install scripts failed')
-    throw error
-  }
   process.exit(1)
 }
 

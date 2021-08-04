@@ -3,6 +3,8 @@ import path from 'path'
 import findWorkspaceRoot from 'find-yarn-workspace-root'
 import { JsonObject, PackageJson } from 'type-fest'
 
+const AST = require('abstract-syntax-tree')
+
 export const rootDir = fs.realpathSync(process.cwd())
 
 export const resolveRoot = (relativePath: string) =>
@@ -34,4 +36,39 @@ export const getWorkspaceGlobs = (root: PackageJson): string[] | null => {
     return root.workspaces?.packages
   }
   return null
+}
+
+export const astArrayPush = (
+  variableName: string,
+  source: string,
+  addition: string,
+): string => {
+  const postConfigAstElements = AST.parse(addition).body.flatMap(
+    (b: any) => b.expression.elements,
+  )
+
+  const tree = AST.parse(source)
+  AST.replace(tree, (node: any) => {
+    if (
+      node.type === 'VariableDeclaration' &&
+      node.declarations.find(
+        (d: any) => d.id.hasOwnProperty('name') && d.id.name === variableName,
+      )
+    ) {
+      node.declarations = node.declarations.flatMap((declaration: any) => {
+        if (
+          declaration.id.hasOwnProperty('name') &&
+          declaration.id.name === variableName
+        ) {
+          declaration.init.elements = [
+            ...declaration.init.elements,
+            ...postConfigAstElements,
+          ]
+          return declaration
+        }
+      })
+    }
+    return node
+  })
+  return AST.generate(tree)
 }
