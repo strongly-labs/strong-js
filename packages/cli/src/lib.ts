@@ -168,11 +168,19 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
   )
 }
 
-export const cleanProject = async (path: string) => {
+export const cannibalise = async (name: string) => {
   try {
-    const packages = fs.readdirSync(`${path}/packages`)
-    await rimraf(`${path}/packages/*`)
-    const pkg = readJsonSync(`${path}/package.json`)
+    const packages = fs.readdirSync(`${name}/packages`)
+
+    await replaceInFiles({
+      files: [`${name}/apps/**/package.json`],
+      from: /(?:"name": ")(@strong-js)(?:\/)/gm,
+      to: `"name": "@${name}/`,
+    })
+
+    await rimraf(`${name}/packages/*`)
+
+    const pkg = readJsonSync(`${name}/package.json`)
     const { cli, linkLocal, postinstall, ...scripts } = pkg.scripts
     const dependencies = packages.reduce(
       (acc, curr) => ({ ...acc, [`@strong-js/${curr}`]: '*' }),
@@ -180,10 +188,12 @@ export const cleanProject = async (path: string) => {
     )
     const postPkg = {
       ...pkg,
+      name,
       scripts,
       dependencies,
     }
-    writeJsonSync(`${path}/package.json`, postPkg)
+
+    writeJsonSync(`${name}/package.json`, postPkg)
   } catch (error) {
     throw error
   }
@@ -218,19 +228,11 @@ export const createProject = async (
 
     try {
       spinner.start(`Post-processing ${chalk.blue.bold(name)}...`)
-
-      // Post Processing - General
-      await replaceInFiles({
-        files: [`${name}/*`, `${name}/**/*`],
-        from: /strong-js/gm,
-        to: name,
-      })
-
-      await cleanProject(name)
+      await cannibalise(name)
 
       // fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
 
-      spinner.succeed('Post-processed successfully')
+      spinner.succeed('Cannibalised successfully')
     } catch (error) {
       spinner.fail('Post processing failed')
       throw error
