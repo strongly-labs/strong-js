@@ -3,7 +3,13 @@ import Chance from 'chance'
 import { JsonObject } from 'type-fest'
 import execa from 'execa'
 import type { Ora } from 'ora'
-import { copySync, pathExistsSync, readJsonSync, writeJsonSync } from 'fs-extra'
+import {
+  copySync,
+  pathExistsSync,
+  readJsonSync,
+  writeJson,
+  readJson,
+} from 'fs-extra'
 import { astArrayPush, resolveRelative, resolveRoot } from './utils'
 import chalk from 'chalk'
 
@@ -178,7 +184,7 @@ export const cannibalise = async (name: string) => {
       to: `"name": "@${name}/`,
     })
 
-    const pkg = readJsonSync(`${name}/package.json`)
+    const pkg = await readJson(`${name}/package.json`)
     const { cli, linkLocal, postinstall, ...scripts } = pkg.scripts
     const dependencies = packages.reduce(
       (acc, curr) => ({ ...acc, [`@strong-js/${curr}`]: 'latest' }),
@@ -191,7 +197,7 @@ export const cannibalise = async (name: string) => {
       dependencies,
     }
 
-    writeJsonSync(`${name}/package.json`, postPkg)
+    return await writeJson(`${name}/package.json`, postPkg)
   } catch (error) {
     throw error
   }
@@ -249,7 +255,7 @@ export const createProject = async (
         workspace: 'tmp/*',
       })
 
-      await rimraf(`${name}/packages/*`)
+      await rimraf(`packages/*`)
 
       copy('tmp/example', 'packages/example')
 
