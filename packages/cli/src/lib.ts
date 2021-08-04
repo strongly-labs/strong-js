@@ -178,8 +178,6 @@ export const cannibalise = async (name: string) => {
       to: `"name": "@${name}/`,
     })
 
-    await rimraf(`${name}/packages/*`)
-
     const pkg = readJsonSync(`${name}/package.json`)
     const { cli, linkLocal, postinstall, ...scripts } = pkg.scripts
     const dependencies = packages.reduce(
@@ -249,6 +247,9 @@ export const createProject = async (
         template: 'strong-package',
         workspace: 'packages/*',
       })
+
+      await rimraf(`${name}/packages/!(example)`)
+
       spinner.succeed('Package packages/example created successfully')
     } catch (error) {
       spinner.fail('Package creation failed')
