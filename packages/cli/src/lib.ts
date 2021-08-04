@@ -221,6 +221,8 @@ export const createProject = async (
       to: name,
     }).pipe({ from: /strong-new-package/gm, to: 'example' })
 
+    fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
+
     spinner.succeed('Post-processed successfully')
   } catch (error) {
     spinner.fail('Post processing failed')

@@ -3,12 +3,13 @@
     {
       "module": "core",
       "operation": "link",
+      "from": ".strong",
       "to": ".strong"
     },
     {
       "module": "crud",
       "operation": "copy",
-      "from": "api",
+      "from": ".strong/api",
       "to": "pages/api/s"
     }
   ]
