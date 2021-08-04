@@ -181,7 +181,7 @@ export const cannibalise = async (name: string) => {
     const pkg = readJsonSync(`${name}/package.json`)
     const { cli, linkLocal, postinstall, ...scripts } = pkg.scripts
     const dependencies = packages.reduce(
-      (acc, curr) => ({ ...acc, [`@strong-js/${curr}`]: '*' }),
+      (acc, curr) => ({ ...acc, [`@strong-js/${curr}`]: 'latest' }),
       pkg.dependencies,
     )
     const postPkg = {
