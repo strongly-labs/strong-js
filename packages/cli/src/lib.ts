@@ -239,16 +239,21 @@ export const createProject = async (
 
     try {
       spinner.start(`Creating package ${chalk.blue.bold(name)}...`)
+
       process.chdir(name)
 
       await createPackage({
         org: name,
         name: 'example',
         template: 'strong-package',
-        workspace: 'packages/*',
+        workspace: 'tmp/*',
       })
 
-      await rimraf(`${name}/packages/!(example)`)
+      await rimraf(`${name}/packages/*`)
+
+      copy('tmp/example', 'packages/example')
+
+      await rimraf('tmp')
 
       spinner.succeed('Package packages/example created successfully')
     } catch (error) {
