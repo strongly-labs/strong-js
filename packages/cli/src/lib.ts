@@ -227,14 +227,31 @@ export const createProject = async (
     }
 
     try {
-      spinner.start(`Post-processing ${chalk.blue.bold(name)}...`)
+      spinner.start(`Cannibalising strong-js for ${chalk.blue.bold(name)}...`)
+
       await cannibalise(name)
 
-      // fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
-
       spinner.succeed('Cannibalised successfully')
+
+      // fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
     } catch (error) {
-      spinner.fail('Post processing failed')
+      spinner.fail('Cannibalisation failed')
+      throw error
+    }
+
+    try {
+      spinner.start(`Creating package ${chalk.blue.bold(name)}...`)
+      process.chdir(name)
+
+      await createPackage({
+        org: name,
+        name: 'example',
+        template: 'strong-package',
+        workspace: 'packages/*',
+      })
+      spinner.succeed('Package packages/example created successfully')
+    } catch (error) {
+      spinner.fail('Package creation failed')
       throw error
     }
 
@@ -242,8 +259,6 @@ export const createProject = async (
       spinner.start(
         `Installing dependencies... This can take a few minutes ⌛️`,
       )
-
-      process.chdir(name)
 
       await execa('yarn', ['install'])
 
