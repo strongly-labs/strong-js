@@ -9,6 +9,7 @@ import {
   readJsonSync,
   writeJson,
   readJson,
+  rename,
 } from 'fs-extra'
 import { astArrayPush, resolveRelative, resolveRoot } from './utils'
 import chalk from 'chalk'
@@ -236,8 +237,6 @@ export const createProject = async (
       await cannibalise(name)
 
       spinner.succeed('Cannibalised successfully')
-
-      // fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
     } catch (error) {
       spinner.fail('Cannibalisation failed')
       throw error
@@ -282,6 +281,12 @@ export const createProject = async (
 
     try {
       spinner.start('Running post install scripts...')
+
+      await rename(`backend/.env.example`, `backend/.env`)
+      await rename(
+        `apps/web/app-main/.env.example`,
+        `apps/web/app-main/.env.local`,
+      )
 
       await execa('yarn', ['data:gen'])
       await execa('yarn', ['build'])
