@@ -3,12 +3,15 @@ import Chance from 'chance'
 import { JsonObject } from 'type-fest'
 import execa from 'execa'
 import type { Ora } from 'ora'
-import { copySync, readJSONSync, pathExistsSync } from 'fs-extra'
+import { copySync, pathExistsSync, readJsonSync, writeJsonSync } from 'fs-extra'
 import { astArrayPush, resolveRelative, resolveRoot } from './utils'
 import chalk from 'chalk'
 
 const replaceInFiles = require('replace-in-files')
 const { parse, stringify } = require('envfile')
+const { promisify } = require('util')
+const rimraf = promisify(require('rimraf'))
+
 const chance = new Chance()
 
 interface StrongLink {
@@ -87,7 +90,7 @@ export const forApps = (path: string) => (
     const appDir = resolveRelative(appsPath, name)
     const path = fs.realpathSync(appDir)
     try {
-      const config = readJSONSync(path + '/strong.json')
+      const config = readJsonSync(path + '/strong.json')
 
       callback({
         name,
@@ -165,6 +168,27 @@ const postProcessNextConfig = (args: PostProcessArgs) => {
   )
 }
 
+export const cleanProject = async (path: string) => {
+  try {
+    const packages = fs.readdirSync(`${path}/packages`)
+    await rimraf(`${path}/packages/*`)
+    const pkg = readJsonSync(`${path}/package.json`)
+    const { cli, linkLocal, postinstall, ...scripts } = pkg.scripts
+    const dependencies = packages.reduce(
+      (acc, curr) => ({ ...acc, [`@strong-js/${curr}`]: '*' }),
+      pkg.dependencies,
+    )
+    const postPkg = {
+      ...pkg,
+      scripts,
+      dependencies,
+    }
+    writeJsonSync(`${path}/package.json`, postPkg)
+  } catch (error) {
+    throw error
+  }
+}
+
 export const createProject = async (
   name: string,
   config: JsonObject | null,
@@ -177,7 +201,14 @@ export const createProject = async (
     try {
       spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
 
-      await execa('git', ['clone', repo, name])
+      await execa('git', [
+        'clone',
+        '--single-branch',
+        '--branch',
+        'main',
+        repo,
+        name,
+      ])
 
       spinner.succeed('Template cloned successfully')
     } catch (error) {
@@ -191,11 +222,13 @@ export const createProject = async (
       // Post Processing - General
       await replaceInFiles({
         files: [`${name}/*`, `${name}/**/*`],
-        from: /strong-user-org/gm,
+        from: /strong-js/gm,
         to: name,
-      }).pipe({ from: /strong-new-package/gm, to: 'example' })
+      })
 
-      fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
+      await cleanProject(name)
+
+      // fs.renameSync(`${name}/backend/.env.example`, `${name}/backend/.env`)
 
       spinner.succeed('Post-processed successfully')
     } catch (error) {

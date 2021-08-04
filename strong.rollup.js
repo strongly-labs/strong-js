@@ -4,9 +4,9 @@ import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
 import { terser } from 'rollup-plugin-terser'
 
-const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
+const { promisify } = require('util')
 const rimraf = promisify(require('rimraf'))
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
