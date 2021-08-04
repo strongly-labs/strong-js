@@ -1,5 +1,14 @@
 # @strong-js/app-admin
 
+## 0.2.4
+
+### Patch Changes
+
+- [`9b42f60`](https://github.com/strongly-labs/strong-js/commit/9b42f606dc08c2c7176e6a936d92bd282a21a189) - Updated app linking
+
+- Updated dependencies [[`9b42f60`](https://github.com/strongly-labs/strong-js/commit/9b42f606dc08c2c7176e6a936d92bd282a21a189), [`9b42f60`](https://github.com/strongly-labs/strong-js/commit/9b42f606dc08c2c7176e6a936d92bd282a21a189), [`fbd8205`](https://github.com/strongly-labs/strong-js/commit/fbd820594fba97c440669ecbc530bddb0b2f6196), [`1adb1f0`](https://github.com/strongly-labs/strong-js/commit/1adb1f030303321e16a0abab6f5dc169b4cce98b)]:
+  - @strong-js/cli@0.1.4
+
 ## 0.2.3
 
 ### Patch Changes

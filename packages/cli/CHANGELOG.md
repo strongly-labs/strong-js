@@ -1,5 +1,17 @@
 # @strong-js/cli
 
+## 0.1.4
+
+### Patch Changes
+
+- [`9b42f60`](https://github.com/strongly-labs/strong-js/commit/9b42f606dc08c2c7176e6a936d92bd282a21a189) - Updated app linking
+
+* [`9b42f60`](https://github.com/strongly-labs/strong-js/commit/9b42f606dc08c2c7176e6a936d92bd282a21a189) - create backend .env file
+
+- [`fbd8205`](https://github.com/strongly-labs/strong-js/commit/fbd820594fba97c440669ecbc530bddb0b2f6196) - move project template url to config
+
+* [#19](https://github.com/strongly-labs/strong-js/pull/19) [`1adb1f0`](https://github.com/strongly-labs/strong-js/commit/1adb1f030303321e16a0abab6f5dc169b4cce98b) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Cannibalize
+
 ## 0.1.3
 
 ### Patch Changes
