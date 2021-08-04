@@ -5,10 +5,8 @@ import { JsonObject, PackageJson } from 'type-fest'
 
 const AST = require('abstract-syntax-tree')
 
-export const rootDir = fs.realpathSync(process.cwd())
-
 export const resolveRoot = (relativePath: string) =>
-  path.resolve(rootDir, relativePath)
+  path.resolve(fs.realpathSync(process.cwd()), relativePath)
 
 export const resolveRelative = (path1: string, path2: string) =>
   path.resolve(path1, path2)
