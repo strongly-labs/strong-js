@@ -205,7 +205,7 @@ export const createProject = async (
         'clone',
         '--single-branch',
         '--branch',
-        'cli',
+        'main',
         repo,
         name,
       ])
