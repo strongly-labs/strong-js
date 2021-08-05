@@ -1,9 +1,3 @@
 {
-  "links": [
-    {
-      "module": "core",
-      "operation": "link",
-      "to": ".strong"
-    }
-  ]
+  "packages": []
 }

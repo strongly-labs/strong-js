@@ -1,16 +1,3 @@
 {
-  "links": [
-    {
-      "module": "core",
-      "operation": "link",
-      "from": ".strong",
-      "to": ".strong"
-    },
-    {
-      "module": "crud",
-      "operation": "copy",
-      "from": ".strong/api",
-      "to": "pages/api/s"
-    }
-  ]
+  "packages": ["@strong-js/crud"]
 }

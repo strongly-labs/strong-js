@@ -21,15 +21,8 @@ const rimraf = promisify(require('rimraf'))
 
 const chance = new Chance()
 
-interface StrongLink {
-  module: string
-  operation: string
-  from?: string
-  to?: string
-}
-
 interface StrongConfig {
-  links: StrongLink[]
+  packages: string[]
 }
 
 interface AppManifest {

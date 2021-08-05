@@ -13,8 +13,16 @@ const linkPackage = async (packageName: string, spinner: Ora) => {
     if (fromExists) {
       forApps('apps/web')(async (app, error) => {
         if (!error) {
-          await link(fromPath, app.path)
-          spinner.succeed(`${packageName} linked with ${app.name} successfully`)
+          if (app?.config?.packages?.includes(packageName)) {
+            await link(fromPath, app.path)
+            spinner.succeed(
+              `${packageName} linked with ${app.name} successfully`,
+            )
+          } else {
+            spinner.info(
+              `${packageName} does not need to be linked with ${app.name}`,
+            )
+          }
         } else {
           spinner.fail(
             `Linking failed: ${packageName} could not be linked with ${app.name}:${app.path}`,
