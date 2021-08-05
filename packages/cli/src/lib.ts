@@ -280,7 +280,9 @@ export const createProject = async (
 
         await execa('yarn', ['data:gen'])
         await execa('yarn', ['build'])
-        await execa('npx', ['strong-js', 'link'])
+
+        // Link packages
+        await execa('npx', ['strong-js', 'link', '@strong-js/crud'])
 
         spinner.succeed('Project created successfuly!')
 
