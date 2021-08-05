@@ -11,6 +11,7 @@ import {
   readJson,
   rename,
 } from 'fs-extra'
+import glob from 'tiny-glob'
 import { astArrayPush, resolveRelative, resolveRoot } from './utils'
 import chalk from 'chalk'
 
@@ -82,13 +83,13 @@ export const copy = (from: string, to: string) => {
   }
 }
 
-export const forApps = (path: string) => (
+export const forApps = async (
   callback: (app: AppManifest, error?: any) => void,
 ) => {
-  const appsPath = resolveRoot(path)
-  fs.readdirSync(appsPath).forEach((name) => {
-    const appDir = resolveRelative(appsPath, name)
-    const path = fs.realpathSync(appDir)
+  const appsDir = resolveRoot('apps')
+  const apps = await glob(`${appsDir}/*/*`)
+  apps.forEach((name) => {
+    const path = fs.realpathSync(name)
     try {
       const config = readJsonSync(path + '/strong.json')
 

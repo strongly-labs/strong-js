@@ -11,7 +11,7 @@ const linkPackage = async (packageName: string, spinner: Ora) => {
     const fromExists = await pathExists(fromPath)
 
     if (fromExists) {
-      forApps('apps/web')(async (app, error) => {
+      forApps(async (app, error) => {
         if (!error) {
           if (app?.config?.packages?.includes(packageName)) {
             await link(fromPath, app.path)
