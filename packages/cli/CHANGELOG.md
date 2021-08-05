@@ -1,5 +1,13 @@
 # @strong-js/cli
 
+## 0.1.6
+
+### Patch Changes
+
+- [`611aea5`](https://github.com/strongly-labs/strong-js/commit/611aea54f89c1afcd5af656458a1bcbbbd23f0f8) - refactored
+
+* [`6f9571b`](https://github.com/strongly-labs/strong-js/commit/6f9571bfb2c1ea08fcf86f4c8a1be9bce271255a) - Fix imports
+
 ## 0.1.5
 
 ### Patch Changes

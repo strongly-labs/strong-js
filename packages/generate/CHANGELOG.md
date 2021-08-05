@@ -1,5 +1,11 @@
 # @strong-js/generate
 
+## 0.1.3
+
+### Patch Changes
+
+- [`42dc982`](https://github.com/strongly-labs/strong-js/commit/42dc982edcac13b37c30f69f1696c03e9008c90d) - seperate server bundle for crud
+
 ## 0.1.2
 
 ### Patch Changes
