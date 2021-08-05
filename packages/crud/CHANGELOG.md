@@ -1,5 +1,15 @@
 # @strong-js/crud
 
+## 0.1.4
+
+### Patch Changes
+
+- [`ec76471`](https://github.com/strongly-labs/strong-js/commit/ec7647108bd6ea5d1431e1f14d271c051e7413d9) - Fix link process env
+
+* [`42dc982`](https://github.com/strongly-labs/strong-js/commit/42dc982edcac13b37c30f69f1696c03e9008c90d) - seperate server bundle for crud
+
+- [`6f9571b`](https://github.com/strongly-labs/strong-js/commit/6f9571bfb2c1ea08fcf86f4c8a1be9bce271255a) - Fix imports
+
 ## 0.1.3
 
 ### Patch Changes
