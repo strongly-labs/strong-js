@@ -24,7 +24,6 @@ const external = (id) => !id.startsWith('.') && !path.isAbsolute(id)
 const defaults = {
   freeze: false,
   esModule: true,
-  sourcemap: true,
   globals: { react: 'React', 'react-native': 'ReactNative' },
   exports: 'named',
 }
@@ -48,7 +47,12 @@ export const clearDist = (options = {}) => {
 }
 
 export const writeEntryFile = (options = {}) => {
-  const { moduleName = '', bin = false, hook = 'buildEnd' } = options
+  const {
+    moduleName = '',
+    bundleName = 'index.js',
+    bin = false,
+    hook = 'buildEnd',
+  } = options
 
   const baseLine = `module.exports = require('./${moduleName}`
   const contents = `${bin ? '#!/usr/bin/env node' : ''}
@@ -64,7 +68,7 @@ if (process.env.NODE_ENV === 'production') {
     name: 'write-entry-file',
     [hook]: async () => {
       try {
-        fs.writeFileSync(path.join(dist, 'index.js'), contents, {
+        fs.writeFileSync(path.join(dist, bundleName), contents, {
           ...(bin && { mode: 0o755 }),
         })
         return Promise.resolve()
@@ -91,6 +95,7 @@ export const getOutputFormats = (name) => {
         format,
         file: `${dist}/${name}.cjs.min.js`,
         plugins: [terser()],
+        sourcemap: true,
         ...defaults,
       })
     }
@@ -98,26 +103,35 @@ export const getOutputFormats = (name) => {
   return outputs
 }
 
-export const getRollupConfig = (packageName, bin = false) => ({
-  external: (id) => {
-    if (id.startsWith('regenerator-runtime')) {
-      return false
-    }
+export const getRollupConfig = (
+  packageName,
+  bin = false,
+  bundleName = 'index.js',
+  cjsOptions = {},
+) => {
+  const moduleName = cleanPackageName(packageName)
+  return {
+    external: (id) => {
+      if (id.startsWith('regenerator-runtime')) {
+        return false
+      }
 
-    return external(id)
-  },
-  plugins: [
-    resolve({ extensions }),
-    commonjs(),
-    json(),
-    babel({
-      extensions,
-      babelHelpers: 'bundled',
-    }),
-    writeEntryFile({
-      moduleName: cleanPackageName(packageName),
-      bin,
-    }),
-  ],
-  output: getOutputFormats(cleanPackageName(packageName)),
-})
+      return external(id)
+    },
+    plugins: [
+      resolve({ extensions }),
+      commonjs(cjsOptions),
+      json(),
+      babel({
+        extensions,
+        babelHelpers: 'bundled',
+      }),
+      writeEntryFile({
+        moduleName,
+        bundleName,
+        bin,
+      }),
+    ],
+    output: getOutputFormats(moduleName),
+  }
+}
