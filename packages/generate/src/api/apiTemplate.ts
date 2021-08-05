@@ -7,7 +7,7 @@ export const nextCrudApiTemplate = (
   prismaClientKey: string,
 ) => {
   return `
-import { apiHandler } from '@strong-js/crud'
+import { apiHandler } from '@strong-js/crud/dist/server'
 import { authorize } from '@strong-js/auth'
 import { Role } from '@prisma/client'
 

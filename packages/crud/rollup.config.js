@@ -2,6 +2,13 @@ import pkg from './package.json'
 import { getRollupConfig } from '../../strong.rollup'
 
 const mainBundleConfig = getRollupConfig(pkg.name)
+
+const serverBundleConfig = getRollupConfig(
+  `${pkg.name}-server`,
+  false,
+  'server.js',
+)
+
 const supportBundleConfig = getRollupConfig(
   `${pkg.name}-support`,
   false,
@@ -16,5 +23,9 @@ export default [
   {
     input: './src/support',
     ...supportBundleConfig,
+  },
+  {
+    input: './src/server',
+    ...serverBundleConfig,
   },
 ]
