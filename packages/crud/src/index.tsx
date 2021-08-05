@@ -2,7 +2,6 @@ import * as React from 'react'
 import { List } from './List'
 import { Editor } from './Editor'
 import { ListProvider } from './ListContext'
-export { link } from './support'
 export { apiHandler } from './lib/apiHandler'
 interface CrudProps {
   rootSchema: Context['rootSchema']

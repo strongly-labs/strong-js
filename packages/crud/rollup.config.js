@@ -1,11 +1,20 @@
 import pkg from './package.json'
 import { getRollupConfig } from '../../strong.rollup'
 
-const moduleConfig = getRollupConfig(pkg.name)
+const mainBundleConfig = getRollupConfig(pkg.name)
+const supportBundleConfig = getRollupConfig(
+  `${pkg.name}-support`,
+  false,
+  'support.js',
+)
 
 export default [
   {
     input: './src/index.tsx',
-    ...moduleConfig,
+    ...mainBundleConfig,
+  },
+  {
+    input: './src/support',
+    ...supportBundleConfig,
   },
 ]

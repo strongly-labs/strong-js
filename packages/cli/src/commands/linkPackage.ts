@@ -6,7 +6,8 @@ import { forApps } from '../lib'
 const linkPackage = async (packageName: string, spinner: Ora) => {
   spinner.start(`Linking ${packageName}`)
   try {
-    const { link } = require(packageName)
+    const { link } = require(`${packageName}/dist/support`)
+
     const fromPath = resolveRoot('.strong')
     const fromExists = await pathExists(fromPath)
 
