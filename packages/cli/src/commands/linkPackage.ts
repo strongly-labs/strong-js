@@ -1,5 +1,5 @@
 import { Ora } from 'ora'
-import { pathExists } from 'fs-extra'
+import { ensureSymlink, pathExists } from 'fs-extra'
 import { resolveRoot } from '../utils'
 import { forApps } from '../lib'
 
@@ -12,6 +12,8 @@ const linkPackage = async (packageName: string, spinner: Ora) => {
 
     if (fromExists) {
       forApps(async (app, error) => {
+        await ensureSymlink(fromPath, `${app.path}/.strong`, 'junction')
+
         if (!error) {
           if (app?.config?.packages?.includes(packageName)) {
             await link(fromPath, app.path)

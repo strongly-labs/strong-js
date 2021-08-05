@@ -239,6 +239,11 @@ export const createProject = async (
         `apps/web/app-main/.env.local`,
       )
 
+      await rename(
+        `apps/mobile/app-one/.env.example`,
+        `apps/mobile/app-one/.env`,
+      )
+
       await execa('yarn', ['data:gen'])
       await execa('yarn', ['build'])
       await execa('npx', ['strong-js', 'link'])
