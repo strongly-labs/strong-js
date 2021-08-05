@@ -6,7 +6,7 @@ import { getRootConfig, getRootPackageJson } from './utils'
 import create from './commands/create'
 import logo from './logo'
 import init from './commands/init'
-import link from './commands/link'
+import linkPackage from './commands/linkPackage'
 
 const pkg = require('../package.json')
 
@@ -49,7 +49,7 @@ prog
 
     const spinner = ora(`Link apps`)
 
-    link(packageName, spinner)
+    linkPackage(packageName, spinner)
   })
 
 prog.parse(process.argv)
