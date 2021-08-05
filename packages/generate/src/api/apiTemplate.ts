@@ -7,13 +7,11 @@ export const nextCrudApiTemplate = (
   prismaClientKey: string,
 ) => {
   return `
-import NextCrud, {
-  PrismaAdapter,
-  HttpError,
-  RouteType,
-} from '@strong-js/crud/src/lib/apiHandler'
+import { apiHandler } from '@strong-js/crud'
 import { authorize } from '@strong-js/auth'
 import { Role } from '@prisma/client'
+
+const { PrismaAdapter, HttpError, RouteType } = apiHandler.NextCrudExports
 
 const resourceName = '${resourceName}'
 
@@ -64,7 +62,7 @@ const acl = {
  *       200:
  *         description: Updated ${prismaClientKey}
  */
-const handler = NextCrud({
+const handler = apiHandler.NextCrud({
   resourceName,
   adapter: new PrismaAdapter({
     modelName: '${prismaClientKey}',

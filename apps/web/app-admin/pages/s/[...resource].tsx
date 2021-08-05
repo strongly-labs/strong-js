@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/client'
-import { FullUser } from '@strong-js/auth'
+import type { FullUser } from '@strong-js/auth'
 import Crud from '@strong-js/crud'
 import AdminSchema from '../../.strong/admin.json'
 
@@ -14,7 +14,7 @@ interface PageProps {
   user: Partial<FullUser>
 }
 
-const config: Partial<ColumnConfig> = {
+const config = {
   exclude: ['image'],
   badges: {
     role: {
