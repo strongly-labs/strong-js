@@ -1,5 +1,15 @@
 # @strong-js/app-admin
 
+## 0.2.5
+
+### Patch Changes
+
+- [`c0adb6a`](https://github.com/strongly-labs/strong-js/commit/c0adb6a0af12bfa7b7fbc439d4f5f796777ccf45) - Update package linking
+
+- Updated dependencies [[`c0adb6a`](https://github.com/strongly-labs/strong-js/commit/c0adb6a0af12bfa7b7fbc439d4f5f796777ccf45)]:
+  - @strong-js/cli@0.1.5
+  - @strong-js/crud@0.1.2
+
 ## 0.2.4
 
 ### Patch Changes

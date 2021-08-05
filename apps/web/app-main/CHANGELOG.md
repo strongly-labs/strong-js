@@ -1,5 +1,11 @@
 # @strong-js/web
 
+## 0.2.2
+
+### Patch Changes
+
+- [`c0adb6a`](https://github.com/strongly-labs/strong-js/commit/c0adb6a0af12bfa7b7fbc439d4f5f796777ccf45) - Update package linking
+
 ## 0.2.1
 
 ### Patch Changes
