@@ -1,4 +1,4 @@
+import { copy } from 'fs-extra'
 export const link = async (strongDir: string, appDir: string) => {
-  console.log(strongDir, appDir)
-  return Promise.resolve()
+  await copy(`${strongDir}/api`, `${appDir}/pages/api/s`)
 }

@@ -1,19 +1,12 @@
 import fs from 'fs'
 import Chance from 'chance'
-import { JsonObject } from 'type-fest'
 import execa from 'execa'
-import type { Ora } from 'ora'
-import {
-  copySync,
-  pathExistsSync,
-  readJsonSync,
-  writeJson,
-  readJson,
-  rename,
-} from 'fs-extra'
 import glob from 'tiny-glob'
-import { astArrayPush, resolveRelative, resolveRoot } from './utils'
 import chalk from 'chalk'
+import { readJsonSync, writeJson, readJson, rename, copy } from 'fs-extra'
+import type { Ora } from 'ora'
+import type { JsonObject } from 'type-fest'
+import { astArrayPush, resolveRoot } from './utils'
 
 const replaceInFiles = require('replace-in-files')
 const { parse, stringify } = require('envfile')
@@ -47,40 +40,6 @@ interface PostProcessArgs {
   envFileNames: string[]
   nextConfigFileName: string
   zoneHost: string
-}
-
-export const safeLink = (from: string, to: string): boolean => {
-  const fromExists = pathExistsSync(from)
-  const toExists = pathExistsSync(to)
-
-  if (toExists) {
-    return false
-  }
-
-  if (!fromExists) {
-    throw Error(`Source path ${from} does not exist`)
-  }
-
-  try {
-    fs.symlinkSync(from, to, 'junction')
-    return true
-  } catch (error) {
-    throw error
-  }
-}
-
-export const copy = (from: string, to: string) => {
-  const fromExists = pathExistsSync(from)
-
-  if (!fromExists) {
-    throw Error(`Source path ${from} does not exist`)
-  }
-
-  try {
-    copySync(from, to)
-  } catch (error) {
-    throw error
-  }
 }
 
 export const forApps = async (
@@ -249,9 +208,7 @@ export const createProject = async (
       })
 
       await rimraf(`packages/*`)
-
-      copy('tmp/example', 'packages/example')
-
+      await copy('tmp/example', 'packages/example')
       await rimraf('tmp')
 
       spinner.succeed('Package packages/example created successfully')
@@ -310,7 +267,7 @@ export const createPackage = async (manifest: PackageManifest) => {
     const to = manifest.workspace.replace('*', manifest.name)
     const port = chance.integer({ min: 3000, max: 4000 })
 
-    copy(from, to)
+    await copy(from, to)
 
     // Post Processing - General
     await replaceInFiles({
