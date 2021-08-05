@@ -1,5 +1,11 @@
 # @strong-js/crud
 
+## 0.1.3
+
+### Patch Changes
+
+- [`c2d3133`](https://github.com/strongly-labs/strong-js/commit/c2d31332b034fe7660c9036dcb4975061e356a43) - Fix api generation
+
 ## 0.1.2
 
 ### Patch Changes
