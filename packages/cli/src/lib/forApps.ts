@@ -1,6 +1,6 @@
 import glob from 'tiny-glob'
 import { readJsonSync, realpathSync } from 'fs-extra'
-import { resolveRoot } from 'packages/cli/dist/utils'
+import { resolveRoot } from '../utils'
 import { AppManifest } from './types'
 
 export const forApps = async (
