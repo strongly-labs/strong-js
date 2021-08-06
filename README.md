@@ -1,6 +1,6 @@
-# Strong-js
+# Full Stack React
 
-Strong-JS is a truly fullstack React App development framework whcih brings powerful tools and frameworks (React Native, NextJS, Prisma) together with minimal glue to enable rapid platform application development across platforms.
+Strong-JS is a truly fullstack React App development framework which brings powerful tools and frameworks (React Native, NextJS, Prisma) together with minimal glue to enable rapid platform application development across platforms.
 
 ## Data Driven
 
