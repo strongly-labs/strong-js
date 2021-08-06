@@ -38,5 +38,6 @@
   "peerDependencies": {
     "@types/rimraf": "^3.0.1",
     "rimraf": "^3.0.2"
-  }
+  },
+  "devDependencies": {}
 }

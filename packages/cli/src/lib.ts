@@ -233,9 +233,9 @@ export const createProject = async (
         spinner.start(`Pruning files ${chalk.blue.bold(name)}...`)
 
         await rimraf('.git')
-        await remove('.github/labels.yml')
+        await remove('.github/label.yml')
 
-        const changesets = await glob(`${name}/.changeset/(!README).MD`)
+        const changesets = await glob(`${name}/.changeset/!(README).MD`)
 
         for (const changeset of changesets) {
           await remove(changeset)
