@@ -1,6 +1,6 @@
-# Strong-js Meta Framework
+# Strong-js
 
-Strong-js brings powerful tools and frameworks together with minimal glue to enable rapid cross platform application development.
+Strong-JS is a truly fullstack React App development framework whcih brings powerful tools and frameworks (React Native, NextJS, Prisma) together with minimal glue to enable rapid platform application development across platforms.
 
 ## Data Driven
 
