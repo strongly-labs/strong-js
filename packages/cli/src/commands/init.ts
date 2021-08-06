@@ -1,4 +1,4 @@
-import { createProject } from './../lib'
+import { createProject } from '../lib'
 import ora from 'ora'
 
 import {
