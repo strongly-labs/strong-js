@@ -1,6 +1,10 @@
-# Strong-js Meta Framework
+# Full Stack React
 
-Strong-js brings powerful tools and frameworks together with minimal glue to enable rapid cross platform application development.
+Strong-JS is a truly fullstack React App development framework which brings powerful tools and frameworks (React Native, NextJS, Prisma) together with minimal glue to enable rapid platform application development across platforms.
+
+## Mini Apps
+
+Using the Strong-JS cli you can create multiple NextJS zones (mini apps), which are stitched together automatically to share resources and scale independently. At the moment only one React Native application is supported but React Native mini apps are on the Roadmap for near future.  
 
 ## Data Driven
 
