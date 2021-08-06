@@ -1,5 +1,11 @@
 # @strong-js/generate
 
+## 0.1.4
+
+### Patch Changes
+
+- [`ca6f35f`](https://github.com/strongly-labs/strong-js/commit/ca6f35f169b7997f33f24c889cae9fefc3967f18) - move dependencies and fix cli pruning
+
 ## 0.1.3
 
 ### Patch Changes
