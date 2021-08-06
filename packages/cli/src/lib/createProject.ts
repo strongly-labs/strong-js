@@ -21,7 +21,7 @@ export const createProject = async (
     const repo = repos.projectTemplate as JsonObject
     const clone = async () => {
       try {
-        spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
+        spinner.start(`Cloning ${chalk.blue.bold(repo.url)}...`)
 
         await execa('git', [
           'clone',
@@ -34,7 +34,7 @@ export const createProject = async (
 
         spinner.succeed('Template cloned successfully')
       } catch (error) {
-        spinner.fail('Failed to clone template repo ' + repo)
+        spinner.fail('Failed to clone template repo ' + repo.url)
         throw error
       }
     }
