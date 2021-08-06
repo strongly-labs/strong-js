@@ -235,7 +235,7 @@ export const createProject = async (
         await rimraf('.git')
         await remove('.github/label.yml')
 
-        const changesets = await glob(`${name}/.changeset/!(README).MD`)
+        const changesets = await glob(`.changeset/!(README).MD`)
 
         for (const changeset of changesets) {
           await remove(changeset)
@@ -244,7 +244,7 @@ export const createProject = async (
         spinner.succeed('Files pruned successfully')
       } catch (error) {
         spinner.fail('Failed to prune')
-        throw console.error()
+        throw error
       }
     }
 
