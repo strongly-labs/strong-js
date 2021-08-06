@@ -12,6 +12,15 @@ const pkg = require('../package.json')
 
 const prog = sade('strong-js')
 
+const buildConfig = {
+  repos: {
+    projectTemplate: {
+      url: 'https://github.com/strongly-labs/strong-js.git',
+      branch: 'main',
+    },
+  },
+}
+
 prog
   .version(pkg.version)
   .command('create')
@@ -20,8 +29,8 @@ prog
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)
     const root = getRootPackageJson()
-    const config = getRootConfig()
-    create(root, config)
+    const rootConfig = getRootConfig()
+    create(root, rootConfig)
   })
 
 prog
@@ -31,18 +40,16 @@ prog
   .action(() => {
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)
-    const config = {
-      repos: {
-        projectTemplate: 'https://github.com/strongly-labs/strong-js.git',
-      },
-    }
-    init(config)
+
+    init(buildConfig)
   })
 
 prog
   .version(pkg.version)
   .command('link <package-name>')
-  .describe('Links root/* with apps/* based on the config file strong.json')
+  .describe(
+    'Link <package-name> with apps/* based on the config file strong.json',
+  )
   .action(async (packageName: string) => {
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)

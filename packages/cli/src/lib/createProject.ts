@@ -18,7 +18,7 @@ export const createProject = async (
   const repos = config?.repos as JsonObject
 
   if (repos.projectTemplate) {
-    const repo = repos.projectTemplate as string
+    const repo = repos.projectTemplate as JsonObject
     const clone = async () => {
       try {
         spinner.start(`Cloning ${chalk.blue.bold(repo)}...`)
@@ -27,8 +27,8 @@ export const createProject = async (
           'clone',
           '--single-branch',
           '--branch',
-          'main',
-          repo,
+          repo.branch as string,
+          repo.url as string,
           name,
         ])
 
