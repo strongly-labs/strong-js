@@ -4,7 +4,7 @@ Strong-JS is a truly fullstack React App development framework which brings powe
 
 ## Mini Apps
 
-Using the Strong-JS cli you can create multiple NextJS zones (mini apps), which are stitched together automatically to share resources and scale independently. At the moment only one React Native application is supported but React Native mini apps are on the Roadmap for near future.  
+Using the Strong-JS cli you can create multiple NextJS zones (mini apps), which are stitched together automatically to share resources and scale independently. At the moment only one React Native application is supported but React Native mini apps are on the Roadmap for near future.
 
 ## Data Driven
 
@@ -15,12 +15,7 @@ The idea is to allow developers to focus on what makes their product unique rath
 
 Strong-js enables developing features as isolated packages without the overhead of managing multiple repositories and seperate workflows.
 
-This is as simple as:
-
-1. Run `st watch`
-2. Then run `st create package <package-name>`
-3. Add your brand new package as a dependency in your app's `package.json`
-4. Start developing inside `packages/<package-name>/src`.
+The cli command `create` allows you to choose between creating an app (NextJS Zone) or a package. Choosing the latter creates a new typescript package with roll-up preconfigured.
 
 Your package will be built and updates made available to apps on save, in real time. And can manage releases for your packages using the [changesets](https://github.com/atlassian/changesets)
 
