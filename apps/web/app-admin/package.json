@@ -1,0 +1,35 @@
+{
+  "name": "@strong-js/app-admin",
+  "version": "0.2.8",
+  "author": "Strong-js <contact@strongly.com.au>",
+  "private": true,
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "kill": "sudo kill -9 $(sudo lsof -t -i:4000)",
+    "dev": "next dev -p 4000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@strong-js/auth": "*",
+    "@strong-js/crud": "*",
+    "@strong-js/cli": "*",
+    "next": "11.0.1",
+    "next-auth": "^3.27.3"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/eslint": "7.28.0",
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.2",
+    "eslint": "7.31.0",
+    "eslint-config-next": "11.0.1",
+    "typescript": "4.3.5"
+  }
+}

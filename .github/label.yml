@@ -1,0 +1,42 @@
+repo:
+  - ./*
+
+cypress:
+  - cypress/*
+  - cypress/**/*
+
+web:
+  - apps/web/*
+  - apps/web/**/*
+
+mobile:
+  - apps/mobile/*
+  - apps/mobile/**/*
+
+backend:
+  - backend/*
+  - backend/**/*
+
+auth:
+  - packages/auth/*
+  - packages/auth/**/*
+
+auth-mobile:
+  - packages/auth-mobile/*
+  - packages/auth-mobile/**/*
+
+cli:
+  - packages/cli/*
+  - packages/cli/**/*
+
+crud:
+  - packages/crud/*
+  - packages/crud/**/*
+
+data:
+  - packages/data/*
+  - packages/data/**/*
+
+generate:
+  - packages/generate/*
+  - packages/generate/**/*

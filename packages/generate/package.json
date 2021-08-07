@@ -1,0 +1,43 @@
+{
+  "name": "@strong-js/generate",
+  "version": "0.1.4",
+  "description": "Strong-js Codegen",
+  "author": "Strongly Labs",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "bin": {
+    "prisma-strong-generator": "./dist/index.js"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
+    "build:js": "rollup -c",
+    "build:watch": "rollup -w -c",
+    "build": "npm run build:types && npm run build:js",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongly-labs/strong-js.git",
+    "directory": "packages/generate"
+  },
+  "dependencies": {
+    "@prisma/generator-helper": "^2.27.0",
+    "@prisma/sdk": "^2.27.0",
+    "superjson": "^1.7.4",
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@types/rimraf": "^3.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,47 @@
+{
+  "name": "@strong-js/app-mobile",
+  "version": "1.1.2",
+  "author": "Strong-js <contact@strongly.com.au>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"DEV\" ",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "fix:eslint": "yarn lint --fix",
+    "fix:prettier": "prettier --write .",
+    "fix": "yarn fix:eslint && yarn fix:prettier"
+  },
+  "dependencies": {
+    "@strong-js/auth-mobile": "*",
+    "isomorphic-unfetch": "^3.1.0",
+    "react-native": "0.64.2",
+    "react-native-app-auth": "^6.4.0",
+    "react-native-config": "^1.4.2",
+    "react-native-mmkv-storage": "^0.6.0"
+  },
+  "peerDependencies": {
+    "react": "17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/babel__core": "^7.1.14",
+    "@types/eslint": "^7.2.13",
+    "@types/react": "17.0.2",
+    "@types/react-native": "^0.64.11",
+    "@types/react-test-renderer": "^17.0.1",
+    "eslint": "^7.14.0",
+    "eslint-plugin-react-native-a11y": "^2.0.4",
+    "metro-react-native-babel-preset": "^0.66.1",
+    "react-test-renderer": "17.0.2",
+    "typescript": "^4.3.5"
+  },
+  "resolutions": {
+    "@types/react": "^17"
+  }
+}
