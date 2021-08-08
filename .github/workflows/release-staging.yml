@@ -1,0 +1,51 @@
+name: Release
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  release:
+    environment: staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          version: 14.x
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+        env:
+          PRISMA_SKIP_POSTINSTALL_GENERATE: true
+
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            email=strongly.com.au@gmail.com
+            //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
+          EOF
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release Pull Request or Publish to npm
+        uses: changesets/action@master
+        with:
+          publish: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publishing canary releases to npm registry
+        if: steps.changesets.outputs.published != 'true'
+        run: |
+          git checkout main
+          yarn version:canary
+          yarn release:canary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
