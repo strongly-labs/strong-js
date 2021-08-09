@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import getActions from './lib/getActions';
-import * as React from 'react';
-import useSwr from 'swr';
-import { plural, singular } from 'pluralize';
+import getActions from './lib/getActions'
+import * as React from 'react'
+import useSwr from 'swr'
+import { plural, singular } from 'pluralize'
 
-import { capitalize, fetcher, getIncludes } from './lib/utils';
+import { capitalize, fetcher, getIncludes } from '@strong-js/common'
 
 const defaultColumnConfig: ColumnConfig = {
   idColumn: 'id',
   editable: true,
-};
+}
 
 const value = {
   state: {
@@ -30,12 +30,12 @@ const value = {
   },
   resource: '',
   config: defaultColumnConfig,
-};
+}
 
-const API_PREFIX = '/admin/api/s';
+const API_PREFIX = '/admin/api/s'
 
-export const ListContext = React.createContext<Context>(value);
-ListContext.displayName = 'ListContext';
+export const ListContext = React.createContext<Context>(value)
+ListContext.displayName = 'ListContext'
 
 export const ListProvider = ({
   resource,
@@ -47,55 +47,55 @@ export const ListProvider = ({
   children,
 }: React.PropsWithChildren<ListProviderProps>) => {
   const [schema, setSchema] = React.useState<FormField | null | undefined>(
-    prefetchedSchema
-  );
-  const [actions, setActions] = React.useState<CrudActions | null>(null);
-  const [data, setData] = React.useState<any>(prefetchedData);
-  const [selected, setSelected] = React.useState(null);
-  const [editorOpen, setEditorOpen] = React.useState(false);
-  const [showFilters, setShowFilters] = React.useState(false);
+    prefetchedSchema,
+  )
+  const [actions, setActions] = React.useState<CrudActions | null>(null)
+  const [data, setData] = React.useState<any>(prefetchedData)
+  const [selected, setSelected] = React.useState(null)
+  const [editorOpen, setEditorOpen] = React.useState(false)
+  const [showFilters, setShowFilters] = React.useState(false)
 
   const { data: swrData, error, mutate } = useSwr(
     actions?.getAll() ?? null,
-    fetcher
-  );
+    fetcher,
+  )
 
   React.useEffect(() => {
     try {
       if (!prefetchedSchema) {
-        const modelName = capitalize(singular(resource));
+        const modelName = capitalize(singular(resource))
         const modelSchema = rootSchema?.json.find(
-          ({ name }) => name === modelName
-        );
-        setSchema(modelSchema);
+          ({ name }) => name === modelName,
+        )
+        setSchema(modelSchema)
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  }, [resource]);
+  }, [resource])
 
   React.useEffect(() => {
     if (swrData && !error) {
-      setData(swrData);
+      setData(swrData)
     } else {
-      setData(prefetchedData);
+      setData(prefetchedData)
     }
-  }, [swrData, error]);
+  }, [swrData, error])
 
   React.useEffect(() => {
-    const include = getIncludes(schema);
+    const include = getIncludes(schema)
 
     const routes = (field: string) =>
-      field ? `${API_PREFIX}/${plural(field.toLowerCase())}` : null;
+      field ? `${API_PREFIX}/${plural(field.toLowerCase())}` : null
 
     setActions(
       getActions({
         route: routes(schema?.name ?? ''),
         ...(include && { include }),
         ...(schema?.foreignKeys && { parent, where: schema?.foreignKeys }),
-      })
-    );
-  }, [schema]);
+      }),
+    )
+  }, [schema])
 
   if (schema) {
     return (
@@ -123,7 +123,7 @@ export const ListProvider = ({
       >
         {children}
       </ListContext.Provider>
-    );
+    )
   }
-  return null;
-};
+  return null
+}

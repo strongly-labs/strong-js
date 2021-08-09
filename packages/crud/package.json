@@ -69,8 +69,9 @@
     "tslib": "^2.3.0"
   },
   "dependencies": {
-    "evergreen-ui": "^6.2.0",
+    "@strong-js/common": "*",
     "match-sorter": "^6.3.0",
+    "evergreen-ui": "^6.3.0",
     "react-hook-form": "^7.11.1",
     "react-table": "^7.7.0",
     "react-timeago": "^6.2.1",

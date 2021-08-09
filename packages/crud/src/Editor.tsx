@@ -14,7 +14,7 @@ import {
 } from 'evergreen-ui'
 
 import { ListContext, ListProvider } from './ListContext'
-import { Form } from './Form'
+import { Form } from '@strong-js/form'
 import { List } from './List'
 
 enum EditorTab {

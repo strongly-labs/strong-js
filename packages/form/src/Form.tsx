@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 
-import * as React from 'react';
+import * as React from 'react'
 import {
   useForm,
   Controller,
@@ -8,7 +8,7 @@ import {
   Control,
   UseFormSetValue,
   SubmitHandler,
-} from 'react-hook-form';
+} from 'react-hook-form'
 import {
   Pane,
   TextInputField,
@@ -16,29 +16,28 @@ import {
   Button,
   Strong,
   majorScale,
-} from 'evergreen-ui';
-import { fetcher } from './lib/utils';
-import { capitalize } from './lib/utils';
+} from 'evergreen-ui'
+import { fetcher, capitalize } from '@strong-js/common'
 
 interface FormProps {
-  action: SubmitHandler<any> | null;
-  onUpdate: (_: any) => void;
-  fields: (FormField | null)[] | null;
-  data: any;
-  horizontal?: boolean;
+  action: SubmitHandler<any> | null
+  onUpdate: (_: any) => void
+  fields: (FormField | null)[] | null
+  data: any
+  horizontal?: boolean
 }
 
 interface FieldProps {
-  control: Control<FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
-  data: any;
+  control: Control<FieldValues>
+  setValue: UseFormSetValue<FieldValues>
+  data: any
 }
 
 const mapField = ({ control, setValue, data }: FieldProps) => (
-  formField: FormField | null
+  formField: FormField | null,
 ) => {
   if (!formField || formField.hidden) {
-    return null;
+    return null
   }
   switch (formField.type) {
     case 'Text': {
@@ -59,7 +58,7 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
             />
           )}
         />
-      );
+      )
     }
     case 'DateTime': {
       return (
@@ -79,13 +78,13 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
             />
           )}
         />
-      );
+      )
     }
     case 'Select': {
-      const options = formField?.options?.map(label => ({
+      const options = formField?.options?.map((label) => ({
         label,
         value: label,
-      }));
+      }))
       return (
         <Controller
           key={formField.name}
@@ -101,7 +100,7 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
                 title={`Select ${field.name}`}
                 options={options}
                 selected={field.value}
-                onSelect={item => setValue(field.name, item.value)}
+                onSelect={(item) => setValue(field.name, item.value)}
               >
                 <Button type="button">
                   {field.value || `Select ${capitalize(field.name)}`}
@@ -110,13 +109,13 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
             </Pane>
           )}
         />
-      );
+      )
     }
     default: {
-      return null;
+      return null
     }
   }
-};
+}
 
 export const Form = ({
   fields,
@@ -126,11 +125,11 @@ export const Form = ({
   onUpdate,
 }: FormProps) => {
   if (fields) {
-    const { control, handleSubmit, setValue } = useForm();
+    const { control, handleSubmit, setValue } = useForm()
 
     const formFields = fields
       .filter(Boolean)
-      .map(mapField({ control, setValue, data }));
+      .map(mapField({ control, setValue, data }))
 
     const onSubmit = async (input: any) => {
       try {
@@ -138,20 +137,20 @@ export const Form = ({
           const { url, method, updates } = action({
             ...input,
             ...(data?.id && { id: data?.id }),
-          });
+          })
 
           if (url && method && updates) {
             const response = await fetcher(url, {
               method,
               body: JSON.stringify(updates),
-            });
-            onUpdate({ ...response, ...input });
+            })
+            onUpdate({ ...response, ...input })
           }
         }
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
+    }
 
     return (
       <Pane
@@ -183,7 +182,7 @@ export const Form = ({
           </Pane>
         </form>
       </Pane>
-    );
+    )
   }
-  return null;
-};
+  return null
+}

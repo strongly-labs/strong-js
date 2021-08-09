@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { getQueryString, mapForeignKeysWithData } from './utils'
+import { getQueryString, mapForeignKeysWithData } from '@strong-js/common'
 
 const getActions = ({
   route,
