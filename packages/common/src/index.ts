@@ -1,4 +1,3 @@
-
 import type { SubmitHandler } from 'react-hook-form'
 import type { BadgeOwnProps } from 'evergreen-ui'
 import type {
@@ -10,7 +9,6 @@ import type {
 } from 'react-table'
 
 declare global {
-  
   export interface ForeignKey {
     from: string[] | undefined
     to: string[] | undefined
@@ -53,7 +51,6 @@ declare global {
     where?: string
   }
 
-
   export interface CellValueBasedConfig {
     [k: string]:
       | BadgeOwnProps['color']
@@ -95,7 +92,10 @@ declare global {
   }
 
   export interface ListProviderProps
-    extends Omit<Context, 'schema' | 'routes' | 'state' | 'actions' | 'mutate'> {
+    extends Omit<
+      Context,
+      'schema' | 'routes' | 'state' | 'actions' | 'mutate'
+    > {
     state?: ListState
     actions?: CrudActions
     schema?: FormField | null
@@ -123,5 +123,6 @@ declare global {
       props?: Partial<TableToggleHideAllColumnProps> | undefined,
     ) => TableToggleHideAllColumnProps
   }
-
 }
+
+export * from './utils'

@@ -1,0 +1,30 @@
+{
+  "name": "@strong-js/common",
+  "version": "0.0.0",
+  "description": "New strong-js package",
+  "main": "dist/index.js",
+  "scripts": {
+    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
+    "build:js": "rollup -c",
+    "build:watch": "rollup -w -c",
+    "build": "npm run build:types && npm run build:js",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "evergreen-ui": "^6.3.0",
+    "react-hook-form": "^7.11.1"
+  },
+  "devDependencies": {}
+}

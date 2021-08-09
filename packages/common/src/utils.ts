@@ -8,6 +8,7 @@ export const FieldTypes: Record<string, string> = {
   Reference: 'Reference',
   Model: 'Model',
 }
+
 export const fetcher = (url: string, options?: Partial<RequestInit>) =>
   fetch(url, {
     ...options,
