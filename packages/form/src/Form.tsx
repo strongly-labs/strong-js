@@ -17,8 +17,7 @@ import {
   Strong,
   majorScale,
 } from 'evergreen-ui'
-import { fetcher } from '@strong-js/common'
-import { capitalize } from '@strong-js/common'
+import { fetcher, capitalize } from '@strong-js/common'
 
 interface FormProps {
   action: SubmitHandler<any> | null

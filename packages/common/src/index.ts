@@ -32,7 +32,7 @@ declare global {
     disabled?: string[]
     hidden?: string[]
   }
-  export interface getActionsProps {
+  export type getActionsProps = {
     route?: string | null
     include?: (string | undefined)[]
     where?: FormField['foreignKeys']
