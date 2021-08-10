@@ -29,8 +29,6 @@ jobs:
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
