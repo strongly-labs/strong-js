@@ -2,7 +2,7 @@
   "name": "@strong-js/crud",
   "author": "Strongly Labs",
   "description": "Strong-js crud UI",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [

@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/form-adapter-evergreen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "New strong-js package",
   "main": "dist/index.js",
