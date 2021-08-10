@@ -80,6 +80,7 @@ export const createProject = async (
 
         await rimraf('.git')
         await remove('.github/label.yml')
+        await remove('renovate.json')
 
         const changesets = await glob(`.changeset/!(README).md`)
 
