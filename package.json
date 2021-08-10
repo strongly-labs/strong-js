@@ -76,7 +76,7 @@
     "@types/rimraf": "3.0.1",
     "babel-plugin-polyfill-regenerator": "0.2.2",
     "concurrently": "6.2.1",
-    "lerna": "^4.0.0",
+    "lerna": "4.0.0",
     "prettier-plugin-prisma": "0.12.1",
     "prettier-plugin-sh": "0.7.1",
     "rimraf": "3.0.2",
