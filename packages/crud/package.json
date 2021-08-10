@@ -21,7 +21,7 @@
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
     "build": "yarn build:types && yarn build:js",
-    "prepublish": "npm run build",
+    "prepublish": "yarn workspace @strong-js/form build && yarn build",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",

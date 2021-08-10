@@ -10,7 +10,7 @@
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
     "build": "yarn build:types && yarn build:js",
-    "prepublish": "yarn build"
+    "prepublish": "yarn workspace @strong-js/common build && yarn build"
   },
   "files": [
     "README.md",
