@@ -64,7 +64,7 @@
     "@types/storybook__addon-info": "5.2.4",
     "babel-loader": "8.2.2",
     "husky": "7.0.1",
-    "react-is": "^17.0.2",
+    "react-is": "17.0.2",
     "size-limit": "5.0.2",
     "tslib": "2.3.0"
   },
