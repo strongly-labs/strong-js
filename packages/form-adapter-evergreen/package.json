@@ -1,6 +1,7 @@
 {
-  "name": "@strong-js/form",
+  "name": "@strong-js/form-adapter-evergreen",
   "version": "0.0.0",
+  "license": "MIT",
   "description": "New strong-js package",
   "main": "dist/index.js",
   "scripts": {
@@ -10,7 +11,7 @@
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
     "build": "yarn build:types && yarn build:js",
-    "prepublish": "yarn workspace @strong-js/common build && yarn build"
+    "prepublish": "yarn workspace @strong-js/form build && yarn build"
   },
   "files": [
     "README.md",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@strong-js/common": "*",
+    "evergreen-ui": "^6.3.0",
     "react-hook-form": "^7.11.1",
     "tslib": "^2.3.0"
   },

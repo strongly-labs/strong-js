@@ -26,7 +26,7 @@
     "watch": "yarn build && concurrently -n \"Types,Build\" -c \"blue.bold,yellow.bold\" \"yarn watch:types\" \"yarn watch:builds\"",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",
-    "build": "yarn lerna --include-dependencies run build",
+    "build": "yarn lerna run build",
     "prepublish": "yarn lerna run prepublish",
     "changeset": "changeset",
     "release": "changeset publish",

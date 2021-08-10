@@ -8,18 +8,38 @@ import {
   Control,
   UseFormSetValue,
   SubmitHandler,
+  ControllerRenderProps,
 } from 'react-hook-form'
-import {
-  Pane,
-  TextInputField,
-  SelectMenu,
-  Button,
-  Strong,
-  majorScale,
-} from 'evergreen-ui'
-import { fetcher, capitalize } from '@strong-js/common'
 
+import { fetcher } from '@strong-js/common'
+
+type HookFormField = ControllerRenderProps<FieldValues, string>
+type labelValuePair = {
+  label: string
+  value: string
+}
+
+export interface FormFieldProps {
+  hookFormField: HookFormField
+  formField: FormField
+}
+
+export interface SelectFieldProps extends Omit<FormFieldProps, 'formField'> {
+  options: labelValuePair[] | undefined
+  setValue: UseFormSetValue<FieldValues>
+}
+
+export interface RenderFormProps {
+  submitHandler: any
+  fields: (JSX.Element | null)[]
+}
+export interface FormUIAdapter {
+  RenderForm: React.FC<RenderFormProps>
+  SelectField: React.FC<SelectFieldProps>
+  TextField: React.FC<FormFieldProps>
+}
 interface FormProps {
+  adapter: FormUIAdapter
   action: SubmitHandler<any> | null
   onUpdate: (_: any) => void
   fields: (FormField | null)[] | null
@@ -28,17 +48,19 @@ interface FormProps {
 }
 
 interface FieldProps {
+  adapter: FormUIAdapter
   control: Control<FieldValues>
   setValue: UseFormSetValue<FieldValues>
   data: any
 }
 
-const mapField = ({ control, setValue, data }: FieldProps) => (
+const mapField = ({ adapter, control, setValue, data }: FieldProps) => (
   formField: FormField | null,
 ) => {
   if (!formField || formField.hidden) {
     return null
   }
+  const { SelectField, TextField } = adapter
   switch (formField.type) {
     case 'Text': {
       return (
@@ -49,13 +71,7 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
           defaultValue={data?.[formField.name] ?? ''}
           rules={{ required: formField.required }}
           render={({ field }) => (
-            <TextInputField
-              id={field.name}
-              label={capitalize(field.name)}
-              required={!formField.disabled && formField.required}
-              {...(formField.disabled && { disabled: true })}
-              {...field}
-            />
+            <TextField hookFormField={field} formField={formField} />
           )}
         />
       )
@@ -69,13 +85,7 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
           defaultValue={data?.[formField.name] ?? ''}
           rules={{ required: formField.required }}
           render={({ field }) => (
-            <TextInputField
-              id={field.name}
-              label={capitalize(field.name)}
-              required={!formField.disabled && formField.required}
-              {...(formField.disabled && { disabled: true })}
-              {...field}
-            />
+            <TextField hookFormField={field} formField={formField} />
           )}
         />
       )
@@ -92,21 +102,11 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
           control={control}
           defaultValue={data?.[formField.name] ?? ''}
           render={({ field }) => (
-            <Pane marginBottom={majorScale(3)}>
-              <Pane marginBottom={majorScale(1)}>
-                <Strong>{capitalize(field.name)}</Strong>
-              </Pane>
-              <SelectMenu
-                title={`Select ${field.name}`}
-                options={options}
-                selected={field.value}
-                onSelect={(item) => setValue(field.name, item.value)}
-              >
-                <Button type="button">
-                  {field.value || `Select ${capitalize(field.name)}`}
-                </Button>
-              </SelectMenu>
-            </Pane>
+            <SelectField
+              hookFormField={field}
+              options={options}
+              setValue={setValue}
+            />
           )}
         />
       )
@@ -119,17 +119,17 @@ const mapField = ({ control, setValue, data }: FieldProps) => (
 
 export const Form = ({
   fields,
-  horizontal,
   data,
   action,
   onUpdate,
+  adapter,
 }: FormProps) => {
   if (fields) {
     const { control, handleSubmit, setValue } = useForm()
-
+    const { RenderForm } = adapter
     const formFields = fields
       .filter(Boolean)
-      .map(mapField({ control, setValue, data }))
+      .map(mapField({ adapter, control, setValue, data }))
 
     const onSubmit = async (input: any) => {
       try {
@@ -153,35 +153,7 @@ export const Form = ({
     }
 
     return (
-      <Pane
-        display="flex"
-        flexDirection={'column'}
-        borderRadius={3}
-        textAlign="left"
-        width="100%"
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Pane
-            display="flex"
-            justifyContent="space-between"
-            flexDirection={horizontal ? 'row' : 'column'}
-            padding={16}
-          >
-            {formFields}
-          </Pane>
-          <Pane
-            background="blueTint"
-            padding={16}
-            display="flex"
-            justifyContent="flex-end"
-          >
-            <Button marginRight={16}>Canel</Button>
-            <Button type="submit" appearance="primary">
-              Save
-            </Button>
-          </Pane>
-        </form>
-      </Pane>
+      <RenderForm fields={formFields} submitHandler={handleSubmit(onSubmit)} />
     )
   }
   return null
