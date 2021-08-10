@@ -43,7 +43,7 @@
     "sade": "^1.7.4",
     "tiny-glob": "^0.2.9",
     "tslib": "^2.3.0",
-    "type-fest": "^1.2.2",
+    "type-fest": "^2.0.0",
     "unique-names-generator": "^4.6.0"
   },
   "publishConfig": {
