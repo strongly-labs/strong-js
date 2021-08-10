@@ -26,7 +26,7 @@
     "watch": "yarn build && concurrently -n \"Types,Build\" -c \"blue.bold,yellow.bold\" \"yarn watch:types\" \"yarn watch:builds\"",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",
-    "build": "yarn lerna run build",
+    "build": "yarn lerna --include-dependencies run build",
     "prepublish": "yarn lerna run prepublish",
     "changeset": "changeset",
     "release": "changeset publish",
@@ -42,10 +42,7 @@
     "studio": "npx prisma studio",
     "cli": "packages/cli/dist/index.js",
     "linkLocal": "ln -srf ./packages/generate/dist/index.js ./node_modules/.bin/prisma-strong-generator",
-    "postinstall": "yarn workspace @strong-js/generate build && yarn workspace @strong-js/cli build && lerna link && yarn linkLocal && yarn data:gen"
-  },
-  "resolutions": {
-    "@types/react": "^17"
+    "postinstall": "yarn workspace @strong-js/generate build && lerna link && yarn linkLocal && yarn data:gen"
   },
   "dependencies": {
     "@types/node": "^16.4.1",
@@ -73,7 +70,7 @@
     "@types/babel__preset-env": "^7.9.2",
     "@types/babel__traverse": "^7.14.2",
     "@types/concurrently": "^6.2.1",
-    "@types/react": "17.0.2",
+    "@types/react": "^17.0.16",
     "@types/react-dom": "17.0.2",
     "@types/rimraf": "^3.0.1",
     "babel-plugin-polyfill-regenerator": "^0.2.2",
