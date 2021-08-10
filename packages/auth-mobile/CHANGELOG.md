@@ -1,5 +1,11 @@
 # @strong-js/auth-mobile
 
+## 0.1.2
+
+### Patch Changes
+
+- [#36](https://github.com/strongly-labs/strong-js/pull/36) [`fd5f727`](https://github.com/strongly-labs/strong-js/commit/fd5f7279c09d07707a07bbb3f557d3608e03d80b) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Form UI seperation with adapter-evergreen
+
 ## 0.1.1
 
 ### Patch Changes
