@@ -16,11 +16,11 @@
   },
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
-    "type-check:watch": "npm run type-check -- --watch",
+    "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
-    "build": "npm run build:types && npm run build:js",
+    "build": "yarn build:types && yarn build:js",
     "prepublish": "npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",

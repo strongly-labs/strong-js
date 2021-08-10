@@ -22,7 +22,7 @@
     "lerna": "lerna --scope=$(./scripts/get-glob.js ./packages)",
     "lerna-apps": "lerna --scope=$(./scripts/get-glob.js ./apps/web)",
     "watch:types": "yarn lerna run type-check:watch --stream --parallel",
-    "watch:builds": "yarn lerna run build:watch --stream",
+    "watch:builds": "yarn lerna run build:watch --stream --parallel",
     "watch": "yarn build && concurrently -n \"Types,Build\" -c \"blue.bold,yellow.bold\" \"yarn watch:types\" \"yarn watch:builds\"",
     "test": "yarn lerna run test --",
     "lint": "yarn lerna run lint -- --fix",

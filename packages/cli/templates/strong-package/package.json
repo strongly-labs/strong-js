@@ -5,12 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
-    "type-check:watch": "npm run type-check -- --watch",
+    "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
-    "build": "npm run build:types && npm run build:js",
-    "prepublish": "npm run build"
+    "build": "yarn build:types && yarn build:js",
+    "prepublish": "yarn build"
   },
   "files": [
     "README.md",
