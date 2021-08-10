@@ -1,5 +1,11 @@
 # @strong-js/cli
 
+## 0.1.9
+
+### Patch Changes
+
+- [`a79553d`](https://github.com/strongly-labs/strong-js/commit/a79553df80c57916b2a77837fcd72337ee3b46e2) - Fixed init - package template was missing babel preset react
+
 ## 0.1.8
 
 ### Patch Changes
