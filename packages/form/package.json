@@ -1,9 +1,7 @@
 {
-  "name": "@strong-js/data",
-  "version": "0.1.3",
-  "description": "Strong-js Data",
-  "license": "MIT",
-  "author": "Strongly Labs",
+  "name": "@strong-js/form",
+  "version": "0.0.0",
+  "description": "New strong-js package",
   "main": "dist/index.js",
   "scripts": {
     "type-check": "tsc --noEmit --project ./tsconfig.build.json",
@@ -12,24 +10,22 @@
     "build:js": "rollup -c",
     "build:watch": "rollup -w -c",
     "build": "yarn build:types && yarn build:js",
-    "prepublish": "yarn build"
+    "prepublish": "yarn workspace @strong-js/common build && yarn build"
   },
   "files": [
     "README.md",
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/strongly-labs/strong-js.git",
-    "directory": "packages/data"
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "dependencies": {
-    "@prisma/client": "~2.27.0",
-    "prisma": "~2.27.0",
+    "@strong-js/common": "*",
+    "react-hook-form": "^7.11.1",
     "tslib": "^2.3.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {}
+  }
 }

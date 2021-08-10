@@ -14,7 +14,9 @@ import {
 } from 'evergreen-ui'
 
 import { ListContext, ListProvider } from './ListContext'
-import { Form } from './Form'
+import * as FormAdapter from '@strong-js/form-adapter-evergreen'
+
+import { Form } from '@strong-js/form'
 import { List } from './List'
 
 enum EditorTab {
@@ -125,6 +127,7 @@ export const Editor = () => {
             alignItems="center"
           >
             <Form
+              adapter={FormAdapter}
               action={actions?.upsert ?? null}
               onUpdate={onUpdate}
               fields={fields}
