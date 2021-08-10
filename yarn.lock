@@ -15931,10 +15931,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier-plugin-prisma@0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-prisma/-/prettier-plugin-prisma-0.15.0.tgz#c3afd7b011e8a247ec55662ac506b4dd092fc13b"
-  integrity sha512-BMXs0Eaq0v0fHxSvGxjRAegn6Xq+QqfApb4lFEUfw1Bi1f2py6CP1a2hCgWrzLx7G9qI3lUSNJ8yy/bX0Cju/w==
+prettier-plugin-prisma@2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-prisma/-/prettier-plugin-prisma-2.29.0.tgz#e15f50fc70145ab38a8834c26dc95336f207e041"
+  integrity sha512-ct+ER3R+WB/l5/lwB6k28v9enmwxKBCUkPTWYkCUc8x4+KT6pbZTNnD+mogqioJjq3PTFNgZebpbrCj5314KHA==
 
 prettier-plugin-sh@0.7.1:
   version "0.7.1"
