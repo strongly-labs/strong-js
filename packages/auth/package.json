@@ -25,8 +25,7 @@
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.9",
-    "@types/pluralize": "0.0.29",
-    "@types/nodemailer": "6.4.4"
+    "@types/pluralize": "0.0.29"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^0.5.2",

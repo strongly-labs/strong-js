@@ -2,6 +2,7 @@ import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server-micro'
 import { PrismaClient } from '@prisma/client'
 import { NextApiRequest, NextApiResponse } from 'next'
+
 import { buildSchema } from 'type-graphql'
 import { authChecker } from '@strong-js/auth'
 import resolvers from './resolvers'
@@ -11,9 +12,26 @@ export const config = {
     bodyParser: false,
   },
 }
+const prisma = new PrismaClient()
 
 const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
-  const prisma = new PrismaClient()
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+
+  res.setHeader('access-control-allow-methods', 'POST')
+
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://studio.apollographql.com',
+  )
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  )
+  if (req.method === 'OPTIONS') {
+    res.end()
+    return false
+  }
+
   const typeSchema = await buildSchema({
     resolvers: [resolvers.UserRelationsResolver, resolvers.UserCrudResolver],
     authChecker,
@@ -24,6 +42,8 @@ const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
     schema: typeSchema,
     context: ({ req }) => ({ prisma, req }),
   })
+
+  await apolloServer.start()
 
   return apolloServer.createHandler({ path: '/api/graphql' })(req, res)
 }
