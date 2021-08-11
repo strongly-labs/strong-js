@@ -15,7 +15,7 @@
     "directory": "packages/crud"
   },
   "scripts": {
-    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check": "tsc --project ./tsconfig.build.json",
     "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
