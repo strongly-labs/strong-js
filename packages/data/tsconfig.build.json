@@ -3,7 +3,8 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "dist",
-    "lib": ["dom", "dom.iterable", "esnext", "es2018", "esnext.asynciterable"]
+    "lib": ["dom", "dom.iterable", "esnext", "es2018", "esnext.asynciterable"],
+    "skipLibCheck": true
   },
   "include": ["src", "types"]
 }
