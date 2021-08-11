@@ -1,5 +1,12 @@
 # @strong-js/app-mobile
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`fd5f727`](https://github.com/strongly-labs/strong-js/commit/fd5f7279c09d07707a07bbb3f557d3608e03d80b)]:
+  - @strong-js/auth-mobile@0.1.2
+
 ## 1.1.2
 
 ### Patch Changes

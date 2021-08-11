@@ -1,11 +1,11 @@
 {
   "name": "@strong-js/form-adapter-evergreen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "New strong-js package",
   "main": "dist/index.js",
   "scripts": {
-    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check": "tsc --project ./tsconfig.build.json",
     "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
@@ -26,6 +26,12 @@
     "evergreen-ui": "^6.3.0",
     "react-hook-form": "^7.11.1",
     "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@strong-js/form": "*",
+    "@babel/preset-env": "7.15.0",
+    "@babel/preset-react": "7.14.5",
+    "@babel/preset-typescript": "7.15.0"
   },
   "publishConfig": {
     "access": "public"

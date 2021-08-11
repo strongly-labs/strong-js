@@ -1,5 +1,19 @@
 # @strong-js/cli
 
+## 0.1.9
+
+### Patch Changes
+
+- [`a79553d`](https://github.com/strongly-labs/strong-js/commit/a79553df80c57916b2a77837fcd72337ee3b46e2) - Fixed init - package template was missing babel preset react
+
+## 0.1.8
+
+### Patch Changes
+
+- [#34](https://github.com/strongly-labs/strong-js/pull/34) [`04a3db2`](https://github.com/strongly-labs/strong-js/commit/04a3db28e0a30987bec5e9ddec28bb245cc464b5) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Extracted common and form into seperate packages
+
+* [#36](https://github.com/strongly-labs/strong-js/pull/36) [`fd5f727`](https://github.com/strongly-labs/strong-js/commit/fd5f7279c09d07707a07bbb3f557d3608e03d80b) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Form UI seperation with adapter-evergreen
+
 ## 0.1.7
 
 ### Patch Changes

@@ -1,12 +1,12 @@
 {
   "name": "@strong-js/auth",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Strong-js Auth",
   "author": "Strongly Labs",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check": "tsc --project ./tsconfig.build.json",
     "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
@@ -24,14 +24,14 @@
     "directory": "packages/auth"
   },
   "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.9",
-    "@types/pluralize": "^0.0.29",
-    "@types/nodemailer": "^6.4.4"
+    "@apidevtools/json-schema-ref-parser": "9.0.9",
+    "@types/pluralize": "0.0.29",
+    "@types/nodemailer": "6.4.4"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^0.5.2",
     "@premieroctet/next-crud": "^1.1.0",
-    "@strong-js/data": "^0.1.1",
+    "@strong-js/data": "^0.1.4",
     "tslib": "^2.3.0",
     "next-auth": "^3.27.0"
   },

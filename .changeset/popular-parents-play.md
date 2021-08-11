@@ -1,5 +1,5 @@
 ---
-'@strong-js/app-main': patch
+'@strong-js/app-admin': patch
 '@strong-js/auth': patch
 '@strong-js/auth-mobile': patch
 '@strong-js/cli': patch
@@ -8,7 +8,8 @@
 '@strong-js/data': patch
 '@strong-js/form': patch
 '@strong-js/form-adapter-evergreen': patch
+'@strong-js/form-adapter-material-ui': patch
 '@strong-js/generate': patch
 ---
 
-Form UI seperation with adapter-evergreen
+Improved watch, added DateField and improved material ui adapter

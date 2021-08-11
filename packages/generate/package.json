@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/generate",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Strong-js Codegen",
   "author": "Strongly Labs",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "prisma-strong-generator": "./dist/index.js"
   },
   "scripts": {
-    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check": "tsc --project ./tsconfig.build.json",
     "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
