@@ -37,8 +37,11 @@
     "@types/react-test-renderer": "17.0.1",
     "eslint": "7.32.0",
     "eslint-plugin-react-native-a11y": "2.0.4",
+    "jest": "^27.0.6",
+    "jest-mock-extended": "^2.0.2-beta2",
     "metro-react-native-babel-preset": "0.66.2",
     "react-test-renderer": "17.0.2",
+    "ts-jest": "^27.0.4",
     "typescript": "4.3.5"
   },
   "resolutions": {

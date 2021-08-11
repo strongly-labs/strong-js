@@ -23,7 +23,9 @@ export const createPackage = async (manifest: PackageManifest) => {
       from: /strong-user-org/gm,
       to: manifest.org,
     })
+      .pipe({ from: /strong-new-package-web/gm, to: manifest.name })
       .pipe({ from: /strong-new-package/gm, to: manifest.name })
+
       .pipe({ from: /strong-port/gm, to: port })
 
     // Post Processing - Web
