@@ -23,6 +23,9 @@ export interface FormFieldProps {
   hookFormField: HookFormField
   formField: FormField
 }
+export interface DateFieldProps extends FormFieldProps {
+  onChange?: UseFormSetValue<FieldValues>
+}
 
 export interface SelectFieldProps extends FormFieldProps {
   options: labelValuePair[] | undefined
@@ -37,6 +40,7 @@ export interface FormUIAdapter {
   RenderForm: React.FC<RenderFormProps>
   SelectField: React.FC<SelectFieldProps>
   TextField: React.FC<FormFieldProps>
+  DateTimeField: React.FC<FormFieldProps | DateFieldProps>
 }
 interface FormProps {
   adapter: FormUIAdapter
@@ -60,7 +64,7 @@ const mapField = ({ adapter, control, setValue, data }: FieldProps) => (
   if (!formField || formField.hidden) {
     return null
   }
-  const { SelectField, TextField } = adapter
+  const { SelectField, TextField, DateTimeField } = adapter
   switch (formField.type) {
     case 'Text': {
       return (
@@ -85,7 +89,11 @@ const mapField = ({ adapter, control, setValue, data }: FieldProps) => (
           defaultValue={data?.[formField.name] ?? ''}
           rules={{ required: formField.required }}
           render={({ field }) => (
-            <TextField hookFormField={field} formField={formField} />
+            <DateTimeField
+              hookFormField={field}
+              formField={formField}
+              onChange={setValue}
+            />
           )}
         />
       )

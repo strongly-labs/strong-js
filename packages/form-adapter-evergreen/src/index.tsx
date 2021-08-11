@@ -25,6 +25,17 @@ export const TextField = (props: FormFieldProps) => (
   />
 )
 
+export const DateTimeField = (props: FormFieldProps) => (
+  <TextInputField
+    id={props.hookFormField.name}
+    label={capitalize(props.hookFormField.name)}
+    type="datetime-local"
+    required={!props.formField.disabled && props.formField.required}
+    {...(props.formField.disabled && { disabled: true })}
+    {...props.hookFormField}
+  />
+)
+
 export const SelectField = (props: SelectFieldProps) => (
   <Pane marginBottom={majorScale(3)}>
     <Pane marginBottom={majorScale(1)}>
