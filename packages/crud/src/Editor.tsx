@@ -14,7 +14,7 @@ import {
 } from 'evergreen-ui'
 
 import { ListContext, ListProvider } from './ListContext'
-import * as FormAdapter from '@strong-js/form-adapter-material-ui'
+import * as FormAdapter from '@strong-js/form-adapter-evergreen'
 
 import { Form } from '@strong-js/form'
 import { List } from './List'
