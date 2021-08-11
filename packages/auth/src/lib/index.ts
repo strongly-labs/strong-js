@@ -79,7 +79,7 @@ export const clients = [
 
 export const parseHeaders = (headers: IncomingMessage['headers']) => ({
   accessToken: headers?.authorization?.replace('Bearer ', ''),
-  provider: headers?.['stly-auth-provider'],
+  provider: headers?.['strong-auth-provider'],
 })
 
 export const newUser = async (

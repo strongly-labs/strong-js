@@ -1,8 +1,4 @@
-import type {
-  User,
-  Account,
-  Asset,
-} from '@prisma/client'
+import type { User, Account, Asset } from '@prisma/client'
 
 export type FullUser = User & {
   accounts: Account[]
@@ -47,7 +43,7 @@ const fetcher = (accessToken?: string | undefined, config?: any) => <T>(
       ...(accessToken && { authorization: 'Bearer ' + accessToken }),
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'stly-auth-provider': 'google',
+      'strong-auth-provider': 'google',
     },
     ...config,
   })

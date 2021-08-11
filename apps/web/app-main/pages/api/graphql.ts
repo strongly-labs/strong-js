@@ -25,7 +25,7 @@ const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
   )
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization, strong-auth-provider',
   )
   if (req.method === 'OPTIONS') {
     res.end()

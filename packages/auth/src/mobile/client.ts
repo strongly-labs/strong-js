@@ -30,18 +30,18 @@ interface HttpResponse<T> extends Response {
   json: () => Promise<T>
 }
 
-const fetcher =
-  (accessToken?: string | undefined, config?: any) =>
-  <T>(url: string): Promise<HttpResponse<T>> =>
-    fetch(url, {
-      headers: {
-        ...(accessToken && { authorization: 'Bearer ' + accessToken }),
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'stly-auth-provider': 'google',
-      },
-      ...config,
-    })
+const fetcher = (accessToken?: string | undefined, config?: any) => <T>(
+  url: string,
+): Promise<HttpResponse<T>> =>
+  fetch(url, {
+    headers: {
+      ...(accessToken && { authorization: 'Bearer ' + accessToken }),
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'strong-auth-provider': 'google',
+    },
+    ...config,
+  })
 
 export const newUser = async (
   authInfo: AuthorizeResult | RefreshResult,
