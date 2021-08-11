@@ -4,7 +4,7 @@
   "description": "New strong-js package",
   "main": "dist/index.js",
   "scripts": {
-    "type-check": "tsc --noEmit --project ./tsconfig.build.json",
+    "type-check": "tsc --project ./tsconfig.build.json",
     "type-check:watch": "yarn type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly --project ./tsconfig.build.json",
     "build:js": "rollup -c",
@@ -23,6 +23,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/preset-react": "7.14.5"
+    "@babel/preset-env": "7.15.0",
+    "@babel/preset-react": "7.14.5",
+    "@babel/preset-typescript": "7.15.0"
   }
 }

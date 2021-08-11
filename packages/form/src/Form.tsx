@@ -24,7 +24,7 @@ export interface FormFieldProps {
   formField: FormField
 }
 
-export interface SelectFieldProps extends Omit<FormFieldProps, 'formField'> {
+export interface SelectFieldProps extends FormFieldProps {
   options: labelValuePair[] | undefined
   setValue: UseFormSetValue<FieldValues>
 }
@@ -103,6 +103,7 @@ const mapField = ({ adapter, control, setValue, data }: FieldProps) => (
           defaultValue={data?.[formField.name] ?? ''}
           render={({ field }) => (
             <SelectField
+              formField={formField}
               hookFormField={field}
               options={options}
               setValue={setValue}
