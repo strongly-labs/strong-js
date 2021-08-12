@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.7",
+    "@apollo/react-hooks": "^4.0.0",
     "@strong-js/auth-mobile": "*",
     "graphql": "^15.5.1",
     "isomorphic-unfetch": "3.1.0",

@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { View, StyleSheet, Text } from 'react-native'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useLazyQuery } from '@apollo/client'
+import type { UserWhereUniqueInput } from '../.strong/graphql'
 
 interface IntroProps {
   id?: string
@@ -16,18 +17,18 @@ const GET_ME = gql`
 `
 const Intro: React.FC<IntroProps> = ({ id }) => {
   if (!id) return null
-  const userWhere = {
+  const userWhere: UserWhereUniqueInput = {
     id,
   }
-  const { loading, error, data } = useQuery(GET_ME, {
-    variables: {
-      userWhere,
-    },
-  })
+  const [loadMe, { called, loading, data }] = useLazyQuery(
+    GET_ME,
+    { variables: { userWhere } }
+  );
 
-  if (loading) return <Text>'Loading...'</Text>
-  if (error) return <Text>{`Error! ${error.message}`}</Text>
-
+  if (called && loading) return <p>Loading ...</p>
+  if (!called) {
+    return <button onClick={() => loadMe()}>Load me</button>
+  }
   return (
     <View style={styles.container}>
       <Text>Name: {data.name}</Text>
