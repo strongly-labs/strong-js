@@ -1,5 +1,18 @@
 # @strong-js/app-admin
 
+## 0.2.11
+
+### Patch Changes
+
+- [#64](https://github.com/strongly-labs/strong-js/pull/64) [`b9395f5`](https://github.com/strongly-labs/strong-js/commit/b9395f53b8785de22ab0963d8a26f50bb60fb6ee) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Improved watch, added DateField and improved material ui adapter
+
+* [#64](https://github.com/strongly-labs/strong-js/pull/64) [`43053ae`](https://github.com/strongly-labs/strong-js/commit/43053ae5fdb96347385e87ef837354626a702059) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - DX improvements and new package
+
+* Updated dependencies [[`938f4db`](https://github.com/strongly-labs/strong-js/commit/938f4dbb4e20809c217519120c7566318c63ffa6), [`56919c1`](https://github.com/strongly-labs/strong-js/commit/56919c16e10ceb06d16fdfd9d2fafbb9aaab9dcd), [`b9395f5`](https://github.com/strongly-labs/strong-js/commit/b9395f53b8785de22ab0963d8a26f50bb60fb6ee), [`eafef76`](https://github.com/strongly-labs/strong-js/commit/eafef763426d543ca5bbfd389e853b53d5ca1f6a), [`7438c35`](https://github.com/strongly-labs/strong-js/commit/7438c350346ca4497ba63462f5418f5765ae32fd), [`43053ae`](https://github.com/strongly-labs/strong-js/commit/43053ae5fdb96347385e87ef837354626a702059), [`4106f6f`](https://github.com/strongly-labs/strong-js/commit/4106f6f79c7df88378df9f7206c28566c9d14659)]:
+  - @strong-js/cli@0.1.10
+  - @strong-js/auth@0.1.3
+  - @strong-js/crud@0.1.6
+
 ## 0.2.10
 
 ### Patch Changes
