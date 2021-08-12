@@ -19,14 +19,16 @@ const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.setHeader('access-control-allow-methods', 'POST')
 
+  //https://studio.apollographql.com
   res.setHeader(
     'Access-Control-Allow-Origin',
     'https://studio.apollographql.com',
   )
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization, strong-auth-provider',
-  )
+  //Origin, X-Requested-With, Content-Type, Accept, Authorization,
+  //Accept-Encoding, Content-Encoding, Date, Connection, Keep-Alive, Transfer-Encoding,
+  //strong-auth-provider
+  res.setHeader('Access-Control-Allow-Headers', '*')
+
   if (req.method === 'OPTIONS') {
     res.end()
     return false
@@ -40,12 +42,17 @@ const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const apolloServer = new ApolloServer({
     schema: typeSchema,
-    context: ({ req }) => ({ prisma, req }),
+    context: ({ req: request }) => ({
+      prisma,
+      req: request,
+    }),
   })
 
   await apolloServer.start()
 
-  return apolloServer.createHandler({ path: '/api/graphql' })(req, res)
+  return apolloServer.createHandler({
+    path: '/api/graphql',
+  })(req, res)
 }
 
 export default apollo

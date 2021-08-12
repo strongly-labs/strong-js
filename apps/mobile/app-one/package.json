@@ -16,7 +16,10 @@
     "fix": "yarn fix:eslint && yarn fix:prettier"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.7",
+    "@apollo/react-hooks": "^4.0.0",
     "@strong-js/auth-mobile": "*",
+    "graphql": "^15.5.1",
     "isomorphic-unfetch": "3.1.0",
     "react-native": "0.64.2",
     "react-native-app-auth": "6.4.0",
@@ -35,6 +38,7 @@
     "@types/react": "17.0.16",
     "@types/react-native": "0.64.12",
     "@types/react-test-renderer": "17.0.1",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "7.32.0",
     "eslint-plugin-react-native-a11y": "2.0.4",
     "jest": "^27.0.6",
