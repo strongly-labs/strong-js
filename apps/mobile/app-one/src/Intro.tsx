@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { View, StyleSheet, Text, Button, ActivityIndicator } from 'react-native'
-import { gql, useLazyQuery, useQuery } from '@apollo/client'
+import { View, StyleSheet, Text, ActivityIndicator } from 'react-native'
+import { gql, useQuery } from '@apollo/client'
 import type { UserWhereUniqueInput } from '../.strong/graphql'
 
 interface IntroProps {

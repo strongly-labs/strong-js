@@ -42,9 +42,9 @@ const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const apolloServer = new ApolloServer({
     schema: typeSchema,
-    context: ({ req }) => ({
+    context: ({ req: request }) => ({
       prisma,
-      req,
+      req: request,
     }),
   })
 
