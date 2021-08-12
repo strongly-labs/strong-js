@@ -21,7 +21,15 @@ import {
 
 import ENV from 'react-native-config'
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+  NormalizedCacheObject,
+} from '@apollo/client'
+
+import { setContext } from '@apollo/client/link/context'
 
 import {
   authorize,
@@ -41,9 +49,12 @@ const sharedContent = {
 }
 
 const host = ENV.API_HOST
+const httpLink = createHttpLink({
+  uri: `${ENV.API_HOST}/api/graphql`,
+})
 
-const client = new ApolloClient({
-  uri: 'localhost:3000/api/graphql',
+const publicClient = new ApolloClient({
+  link: httpLink,
   cache: new InMemoryCache(),
 })
 
@@ -85,6 +96,9 @@ const App = (): React.ReactElement => {
   const [auth, setAuth] = useStorage<AuthorizeResult | RefreshResult | null>(
     'auth',
   )
+  const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>(
+    publicClient,
+  )
 
   const signIn = async () => {
     setAuth(await authorize(config))
@@ -113,6 +127,27 @@ const App = (): React.ReactElement => {
       void getUser(auth, { host }).then((userData) => {
         setUser(userData)
       })
+
+      const authLink = setContext((_, { headers }) => {
+        // get the authentication token from local storage if it exists
+        // return the headers to the context so httpLink can read them
+        return {
+          headers: {
+            ...headers,
+            authorization: auth?.accessToken
+              ? `Bearer ${auth?.accessToken}`
+              : '',
+            'strong-auth-provider': 'google',
+          },
+        }
+      })
+
+      setClient(
+        new ApolloClient({
+          link: authLink.concat(httpLink),
+          cache: new InMemoryCache(),
+        }),
+      )
     }
   }, [auth])
 

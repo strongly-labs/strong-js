@@ -8,7 +8,7 @@
   },
   "scripts": {
     "kill": "sudo kill -9 $(sudo lsof -t -i:3000)",
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

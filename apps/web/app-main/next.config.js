@@ -17,4 +17,8 @@ module.exports = {
   async rewrites() {
     return rewrites
   },
+  webpack(config, _) {
+    config.devtool = 'eval-source-map'
+    return config
+  },
 }
