@@ -20,7 +20,10 @@ const apollo = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('access-control-allow-methods', 'POST')
 
   //https://studio.apollographql.com
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://studio.apollographql.com',
+  )
   //Origin, X-Requested-With, Content-Type, Accept, Authorization,
   //Accept-Encoding, Content-Encoding, Date, Connection, Keep-Alive, Transfer-Encoding,
   //strong-auth-provider

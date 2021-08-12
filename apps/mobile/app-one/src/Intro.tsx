@@ -29,7 +29,7 @@ const Intro: React.FC<IntroProps> = ({ id }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Hello from GraphQL {data.name}</Text>
+      <Text>Hello from GraphQL, {data?.user?.name}</Text>
     </View>
   )
 }
