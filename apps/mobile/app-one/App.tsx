@@ -106,6 +106,7 @@ const App = (): React.ReactElement => {
 
   const signOut = () => {
     setAuth(null)
+    setUser(null)
   }
 
   useEffect(() => {
@@ -148,6 +149,8 @@ const App = (): React.ReactElement => {
           cache: new InMemoryCache(),
         }),
       )
+    } else {
+      setClient(publicClient)
     }
   }, [auth])
 
