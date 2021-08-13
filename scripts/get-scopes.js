@@ -25,9 +25,9 @@ const dirGlob = async (pathGlob) => {
   return `{${scopes.join(',')}}`
 }
 
-const pathGlob = process.argv.slice(2)
-if (pathGlob.length > 0) {
-  dirGlob(pathGlob[0]).then((globStr) => process.stdout.write(globStr))
+const pathArg = process.argv.slice(2)
+if (pathArg.length > 0) {
+  dirGlob(pathArg[0]).then((globStr) => process.stdout.write(globStr))
 } else {
   process.stderr.write('No path provided')
 }

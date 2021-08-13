@@ -48,7 +48,7 @@ export const List = () => {
         <Checkbox indeterminate {...row.getToggleRowSelectedProps()} />
       ),
     }
-    const columns: any[] = [selectionColumn]
+    const enabledColumns: any[] = [selectionColumn]
 
     if (config?.editable) {
       const editColumn: Column = {
@@ -66,10 +66,10 @@ export const List = () => {
           />
         ),
       }
-      columns.push(editColumn)
+      enabledColumns.push(editColumn)
     }
 
-    return columns
+    return enabledColumns
   }, [config, setSelected, setEditorOpen])
 
   const columns = React.useMemo(
