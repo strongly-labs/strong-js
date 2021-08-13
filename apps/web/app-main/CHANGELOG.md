@@ -1,5 +1,18 @@
 # @strong-js/web
 
+## 0.2.5
+
+### Patch Changes
+
+- [`56919c1`](https://github.com/strongly-labs/strong-js/commit/56919c16e10ceb06d16fdfd9d2fafbb9aaab9dcd) - apollo server micro fixed and types synced
+
+* [`eafef76`](https://github.com/strongly-labs/strong-js/commit/eafef763426d543ca5bbfd389e853b53d5ca1f6a) - Fix mobile auth
+
+- [#76](https://github.com/strongly-labs/strong-js/pull/76) [`4106f6f`](https://github.com/strongly-labs/strong-js/commit/4106f6f79c7df88378df9f7206c28566c9d14659) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Add apollo client to mobile, Remove storybook, Upgrade Swagger-UI-React
+
+- Updated dependencies [[`56919c1`](https://github.com/strongly-labs/strong-js/commit/56919c16e10ceb06d16fdfd9d2fafbb9aaab9dcd), [`b9395f5`](https://github.com/strongly-labs/strong-js/commit/b9395f53b8785de22ab0963d8a26f50bb60fb6ee), [`eafef76`](https://github.com/strongly-labs/strong-js/commit/eafef763426d543ca5bbfd389e853b53d5ca1f6a), [`43053ae`](https://github.com/strongly-labs/strong-js/commit/43053ae5fdb96347385e87ef837354626a702059)]:
+  - @strong-js/auth@0.1.3
+
 ## 0.2.4
 
 ### Patch Changes
