@@ -1,11 +1,7 @@
 {
   "extends": "./tsconfig.build.json",
-  "include": ["packages", "types", "scripts"],
+  "include": ["types", "packages", "apps"],
   "compilerOptions": {
-    "allowJs": false,
-    "baseUrl": ".",
-    "paths": {
-      "$test/*": ["test/*"]
-    }
+    "noEmit": true
   }
 }

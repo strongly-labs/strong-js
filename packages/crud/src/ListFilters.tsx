@@ -16,7 +16,8 @@ export const GlobalFilter = ({
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
-}: UseGlobalFiltersOptions<{}> & UseGlobalFiltersInstanceProps<{}>) => {
+}: UseGlobalFiltersOptions<Record<string, unknown>> &
+  UseGlobalFiltersInstanceProps<Record<string, unknown>>) => {
   const count = preGlobalFilteredRows.length
   const [value, setValue] = React.useState<any>(globalFilter)
   const onChange = useAsyncDebounce((value) => {
@@ -38,7 +39,7 @@ export const GlobalFilter = ({
 export const DefaultColumnFilter = ({
   column,
 }: {
-  column: ColumnGroup & UseFiltersColumnProps<{}>
+  column: ColumnGroup & UseFiltersColumnProps<Record<string, unknown>>
 }) => {
   const { filterValue, setFilter, Header } = column
   return (
@@ -57,7 +58,7 @@ export const DefaultColumnFilter = ({
 export const SelectColumnFilter = ({
   column: { filterValue, setFilter, preFilteredRows, id },
 }: {
-  column: ColumnGroup & UseFiltersColumnProps<{}>
+  column: ColumnGroup & UseFiltersColumnProps<Record<string, unknown>>
 }) => {
   const options = React.useMemo(() => {
     const options = new Set()
@@ -91,7 +92,7 @@ export const SelectColumnFilter = ({
 export const SliderColumnFilter = ({
   column: { filterValue, setFilter, preFilteredRows, id },
 }: {
-  column: ColumnGroup & UseFiltersColumnProps<{}>
+  column: ColumnGroup & UseFiltersColumnProps<Record<string, unknown>>
 }) => {
   const [min, max] = React.useMemo(() => {
     let min = preFilteredRows.length ? preFilteredRows[0].values[id!] : 0
@@ -122,7 +123,7 @@ export const SliderColumnFilter = ({
 export const NumberRangeColumnFilter = ({
   column: { filterValue = [], preFilteredRows, setFilter, id },
 }: {
-  column: ColumnGroup & UseFiltersColumnProps<{}>
+  column: ColumnGroup & UseFiltersColumnProps<Record<string, unknown>>
 }) => {
   const [min, max] = React.useMemo(() => {
     let min = preFilteredRows.length ? preFilteredRows[0].values[id!] : 0

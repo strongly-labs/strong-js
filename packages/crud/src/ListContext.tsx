@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-empty-function */
 import getActions from './lib/getActions'
 import * as React from 'react'
 import useSwr from 'swr'

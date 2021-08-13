@@ -126,7 +126,7 @@ export const ListHeader = ({
 
 export const renderHeader: any = (
   showFilters: boolean,
-  column: HeaderGroup<{}>,
+  column: HeaderGroup<Record<string, unknown>>,
 ) => {
   if (showFilters && column.canFilter) {
     return column.render('Filter')
