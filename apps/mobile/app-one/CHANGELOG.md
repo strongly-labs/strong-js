@@ -1,5 +1,16 @@
 # @strong-js/app-mobile
 
+## 1.1.4
+
+### Patch Changes
+
+- [`7438c35`](https://github.com/strongly-labs/strong-js/commit/7438c350346ca4497ba63462f5418f5765ae32fd) - Fix hastemap collision and add jest to mobile app
+
+* [#76](https://github.com/strongly-labs/strong-js/pull/76) [`4106f6f`](https://github.com/strongly-labs/strong-js/commit/4106f6f79c7df88378df9f7206c28566c9d14659) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Add apollo client to mobile, Remove storybook, Upgrade Swagger-UI-React
+
+* Updated dependencies [[`b9395f5`](https://github.com/strongly-labs/strong-js/commit/b9395f53b8785de22ab0963d8a26f50bb60fb6ee), [`eafef76`](https://github.com/strongly-labs/strong-js/commit/eafef763426d543ca5bbfd389e853b53d5ca1f6a), [`43053ae`](https://github.com/strongly-labs/strong-js/commit/43053ae5fdb96347385e87ef837354626a702059), [`4106f6f`](https://github.com/strongly-labs/strong-js/commit/4106f6f79c7df88378df9f7206c28566c9d14659)]:
+  - @strong-js/auth-mobile@0.1.3
+
 ## 1.1.3
 
 ### Patch Changes

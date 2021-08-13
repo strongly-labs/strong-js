@@ -1,5 +1,13 @@
 # @strong-js/generate
 
+## 0.1.6
+
+### Patch Changes
+
+- [#64](https://github.com/strongly-labs/strong-js/pull/64) [`b9395f5`](https://github.com/strongly-labs/strong-js/commit/b9395f53b8785de22ab0963d8a26f50bb60fb6ee) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - Improved watch, added DateField and improved material ui adapter
+
+* [#64](https://github.com/strongly-labs/strong-js/pull/64) [`43053ae`](https://github.com/strongly-labs/strong-js/commit/43053ae5fdb96347385e87ef837354626a702059) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - DX improvements and new package
+
 ## 0.1.5
 
 ### Patch Changes
