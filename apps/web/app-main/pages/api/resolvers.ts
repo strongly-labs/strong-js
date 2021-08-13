@@ -26,7 +26,9 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
 // apply the config (it will apply decorators on the resolver class methods)
 applyResolversEnhanceMap(resolversEnhanceMap)
 
-export default {
+const resolvers = {
   UserRelationsResolver,
   UserCrudResolver,
 }
+
+export default resolvers
