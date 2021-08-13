@@ -72,7 +72,7 @@ export const ListProvider = ({
     } catch (error) {
       console.error(error)
     }
-  }, [resource])
+  }, [resource, prefetchedSchema, rootSchema])
 
   React.useEffect(() => {
     if (swrData && !error) {
@@ -80,7 +80,7 @@ export const ListProvider = ({
     } else {
       setData(prefetchedData)
     }
-  }, [swrData, error])
+  }, [swrData, error, prefetchedData])
 
   React.useEffect(() => {
     const include = getIncludes(schema)
@@ -95,7 +95,7 @@ export const ListProvider = ({
         ...(schema?.foreignKeys && { parent, where: schema?.foreignKeys }),
       }),
     )
-  }, [schema])
+  }, [schema, parent])
 
   if (schema) {
     return (

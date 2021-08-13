@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import { IncomingMessage } from 'http'
 import { Profile } from 'next-auth'
 import { AppOptions } from 'next-auth/internals'
@@ -244,7 +246,7 @@ export const authChecker: AuthChecker<Context> = async (
   if (email) {
     const user = await getFullUserByEmail(email, context?.prisma)
     if (user && typeof user?.role === 'string') {
-      const resourceId = String(args?.where?.id) // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+      const resourceId = String(args?.where?.id)
       const isOwner = resourceId
         ? user.id === resourceId ||
           Boolean(

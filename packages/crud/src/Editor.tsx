@@ -41,13 +41,16 @@ export const Editor = () => {
 
   const idColumn = config?.idColumn ?? 'id'
 
-  const selector = (item: Record<string, any>) => {
-    const itemId = item?.[idColumn] ?? null
-    if (itemId) {
-      return itemId === selected?.values?.id
-    }
-    return null
-  }
+  const selector = React.useCallback(
+    (item: Record<string, any>) => {
+      const itemId = item?.[idColumn] ?? null
+      if (itemId) {
+        return itemId === selected?.values?.id
+      }
+      return null
+    },
+    [idColumn, selected],
+  )
 
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const [editing, setEditing] = React.useState<any>(null)
@@ -62,7 +65,7 @@ export const Editor = () => {
         setSelectedIndex(0)
       }
     }
-  }, [selected, editorOpen])
+  }, [selected, editorOpen, data, selector, setSelected])
 
   const onUpdate = (updates: any) => {
     void mutate(

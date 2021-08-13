@@ -16,8 +16,6 @@ export const List = () => {
     state: { setSelected, setEditorOpen },
   } = React.useContext(ListContext)
 
-  const tableData = data ?? []
-
   const fields = schema?.items ?? []
 
   const fieldColumns = fields
@@ -34,45 +32,49 @@ export const List = () => {
       ...(field && getFilters(field)),
     }))
 
-  const selectionColumn: Column = {
-    id: '_selection',
-    Header: ({ getToggleAllPageRowsSelectedProps }) => (
-      <Checkbox
-        margin={0}
-        padding={0}
-        indeterminate
-        {...getToggleAllPageRowsSelectedProps()}
-      />
-    ),
-
-    Cell: ({ row }) => (
-      <Checkbox indeterminate {...row.getToggleRowSelectedProps()} />
-    ),
-  }
-  const systemColumns: any[] = [selectionColumn]
-
-  if (config?.editable) {
-    const editColumn: Column = {
-      id: '_edit',
-      Header: 'Edit',
-
-      Cell: ({ row, toggleAllRowsSelected }) => (
-        <IconButton
-          icon={EditIcon}
-          onClick={() => {
-            toggleAllRowsSelected(false)
-            setSelected(row)
-            setEditorOpen(true)
-          }}
+  const systemColumns = React.useMemo(() => {
+    const selectionColumn: Column = {
+      id: '_selection',
+      Header: ({ getToggleAllPageRowsSelectedProps }) => (
+        <Checkbox
+          margin={0}
+          padding={0}
+          indeterminate
+          {...getToggleAllPageRowsSelectedProps()}
         />
       ),
+
+      Cell: ({ row }) => (
+        <Checkbox indeterminate {...row.getToggleRowSelectedProps()} />
+      ),
     }
-    systemColumns.push(editColumn)
-  }
+    const columns: any[] = [selectionColumn]
+
+    if (config?.editable) {
+      const editColumn: Column = {
+        id: '_edit',
+        Header: 'Edit',
+
+        Cell: ({ row, toggleAllRowsSelected }) => (
+          <IconButton
+            icon={EditIcon}
+            onClick={() => {
+              toggleAllRowsSelected(false)
+              setSelected(row)
+              setEditorOpen(true)
+            }}
+          />
+        ),
+      }
+      columns.push(editColumn)
+    }
+
+    return columns
+  }, [config, setSelected, setEditorOpen])
 
   const columns = React.useMemo(
     () => [...systemColumns, ...(fieldColumns ?? [])],
-    [fields],
+    [fieldColumns, systemColumns],
   )
 
   const getCellContent = (val: any) => {
@@ -85,7 +87,7 @@ export const List = () => {
 
   const rows = React.useMemo(
     () =>
-      tableData?.map((record: any) =>
+      data?.map((record: any) =>
         Object.entries(record).reduce((acc, [key, val]) => {
           return {
             ...acc,
@@ -93,7 +95,7 @@ export const List = () => {
           }
         }, {}),
       ),
-    [tableData],
+    [data],
   )
 
   return <Table columns={columns} data={rows} />

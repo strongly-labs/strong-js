@@ -133,8 +133,8 @@ export const Form = ({
   onUpdate,
   adapter,
 }: FormProps) => {
+  const { control, handleSubmit, setValue } = useForm()
   if (fields) {
-    const { control, handleSubmit, setValue } = useForm()
     const { RenderForm } = adapter
     const formFields = fields
       .filter(Boolean)

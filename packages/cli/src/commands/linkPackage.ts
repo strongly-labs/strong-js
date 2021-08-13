@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-floating-promises, @typescript-eslint/no-unsafe-call */
+
 import { Ora } from 'ora'
 import { ensureSymlink, pathExists } from 'fs-extra'
 import { resolveRoot } from '../utils'
@@ -13,11 +15,11 @@ const linkPackage = async (packageName: string, spinner: Ora) => {
 
     if (fromExists) {
       forApps(async (app, error) => {
-        await ensureSymlink(fromPath, `${app.path}/.strong`, 'junction')
+        void (await ensureSymlink(fromPath, `${app.path}/.strong`, 'junction'))
 
         if (!error) {
           if (app?.config?.packages?.includes(packageName)) {
-            await link(fromPath, app.path)
+            void (await link(fromPath, app.path))
             spinner.succeed(
               `${packageName} linked with ${app.name} successfully`,
             )

@@ -1,4 +1,4 @@
-/* eslint-disable  @typescript-eslint/restrict-template-expressions */
+/* eslint-disable  @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-return */
 
 export const FieldTypes: Record<string, string> = {
   String: 'Text',

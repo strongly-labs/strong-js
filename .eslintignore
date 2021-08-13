@@ -6,3 +6,4 @@ packages/cli/templates
 **/dist/*
 **/.next
 **/.strong
+packages/**/*.d.ts
