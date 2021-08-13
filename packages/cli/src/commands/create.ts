@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires */
 import chalk from 'chalk'
 import ora from 'ora'
 import { JsonObject, PackageJson } from 'type-fest'

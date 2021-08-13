@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-call, no-useless-escape */
+
 import { readFileSync, writeFileSync } from 'fs-extra'
 import { astArrayPush } from '../utils'
 import { PostProcessArgs } from './types'
@@ -8,25 +10,19 @@ const nextZoneUrlKey = (packageName: string) =>
   `ZONE_${packageName.replace('-', '_').toUpperCase()}_URL`
 
 export const postProcessNextEnv = (args: PostProcessArgs) => {
-  try {
-    args.envFileNames?.forEach((envFileName) => {
-      console.log(`Updating ${args.mainZone}/${envFileName}...\n`)
-      const envFile = readFileSync(`${args.mainZone}/${envFileName}`, {
-        encoding: 'utf8',
-      })
-      const env = stringify({
-        ...parse(envFile),
-        [nextZoneUrlKey(args.packageName)]: `${args.zoneHost}:${
-          args.port || 0
-        }`,
-      })
-      writeFileSync(`${args.mainZone}/${envFileName}`, env, {
-        encoding: 'utf8',
-      })
+  args.envFileNames?.forEach((envFileName) => {
+    console.log(`Updating ${args.mainZone}/${envFileName}...\n`)
+    const envFile = readFileSync(`${args.mainZone}/${envFileName}`, {
+      encoding: 'utf8',
     })
-  } catch (error) {
-    throw error
-  }
+    const env = stringify({
+      ...parse(envFile),
+      [nextZoneUrlKey(args.packageName)]: `${args.zoneHost}:${args.port || 0}`,
+    })
+    writeFileSync(`${args.mainZone}/${envFileName}`, env, {
+      encoding: 'utf8',
+    })
+  })
 }
 
 export const postProcessNextConfig = (args: PostProcessArgs) => {

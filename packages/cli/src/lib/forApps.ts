@@ -4,7 +4,7 @@ import { resolveRoot } from '../utils'
 import { AppManifest } from './types'
 
 export const forApps = async (
-  callback: (app: AppManifest, error?: any) => void,
+  callback: (app: AppManifest, error?: any) => Promise<void>,
 ) => {
   const appsDir = resolveRoot('apps')
   const apps = await glob(`${appsDir}/*/*`)
@@ -13,13 +13,13 @@ export const forApps = async (
     try {
       const config = readJsonSync(path + '/strong.json')
 
-      callback({
+      void callback({
         name,
         path,
         config,
       })
     } catch (error) {
-      callback(
+      void callback(
         {
           name,
           path,

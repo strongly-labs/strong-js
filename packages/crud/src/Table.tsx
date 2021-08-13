@@ -33,7 +33,10 @@ import { ListHeader, renderHeader } from './ListHeader'
 
 const TableCell = ({ cell }: CellProps) => {
   const { config } = React.useContext(ListContext)
-  const { id, type }: Partial<FormField> & ColumnInstance<{}> = cell.column
+  const {
+    id,
+    type,
+  }: Partial<FormField> & ColumnInstance<Record<string, unknown>> = cell.column
 
   if (id === config?.idColumn) {
     return cell.value ? <Code size={300}>{cell.render('Cell')}</Code> : null

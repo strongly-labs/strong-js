@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
+
 import { createProject } from '../lib'
 import ora from 'ora'
 

@@ -115,13 +115,15 @@ const App = (): React.ReactElement => {
       const { refreshToken } = auth
       if (exp < Date.now() && refreshToken) {
         console.log('refreshing')
-        void refresh(config, { refreshToken }).then((refreshResult) => {
+        void refresh(config, {
+          refreshToken,
+        }).then((refreshResult) => {
           console.log('refreshResult', refreshResult)
           setAuth(refreshResult)
         })
       }
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (auth) {

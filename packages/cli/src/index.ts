@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-floating-promises */
+
 import sade from 'sade'
 import chalk from 'chalk'
 import ora from 'ora'
@@ -56,7 +58,7 @@ prog
 
     const spinner = ora(`Link apps`)
 
-    linkPackage(packageName, spinner)
+    await linkPackage(packageName, spinner)
   })
 
 prog.parse(process.argv)
