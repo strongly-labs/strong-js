@@ -39,15 +39,15 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
-        env:
-          PRISMA_SKIP_POSTINSTALL_GENERATE: true
-
       - name: Load ENV
         uses: c-py/action-dotenv-to-setenv@v2
         with:
           env-file: ./apps/web/app-main/.env.test
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+        env:
+          PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
       - name: Create Database
         run: |
