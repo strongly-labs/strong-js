@@ -12,12 +12,15 @@ jobs:
     container: cypress/browsers:node12.18.3-chrome87-ff82
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:13.3
+        volumes:
+          - ./db:/docker-entrypoint-initdb.d/
         env:
-          POSTGRES_DB: test
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_PORT: 5432
-          POSTGRES_USER: postgres
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: password
+          APP_DB_USER: postgres
+          APP_DB_PASS: postgres
+          APP_DB_NAME: test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -44,21 +47,24 @@ jobs:
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
-      - name: Import ENV
+      - name: Create Database
         shell: bash
-        run: < ${{ env.ENV_FILE }} >> $GITHUB_ENV
+        run: |
+          < ${{ env.ENV_FILE }} >> $GITHUB_ENV
+          npx prisma db push --accept-data-loss
         env:
           ENV_FILE: 'apps/web/app-main/.env.test'
-
-      - name: Create Database
-        run: |
-          npx prisma db push --accept-data-loss
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           build: yarn apps:web:build
           start: yarn apps:web:start
+        shell: bash
+        run: |
+          < ${{ env.ENV_FILE }} >> $GITHUB_ENV
+        env:
+          ENV_FILE: 'apps/web/app-main/.env.test'
 
       - name: Upload Screenshots if tests fail
         uses: actions/upload-artifact@v2
