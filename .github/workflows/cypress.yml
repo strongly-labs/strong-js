@@ -8,8 +8,23 @@ on:
 jobs:
   cypress:
     name: Build and run End to End Web tests on ${{ matrix.node }} and ${{ matrix.os }}
-    container: cypress/browsers:node12.18.3-chrome87-ff82
     runs-on: ${{ matrix.os }}
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     strategy:
       matrix:
         node: ['14.x']
@@ -29,7 +44,7 @@ jobs:
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
-      - name: Import ENV from .env.tst
+      - name: Import ENV
         shell: bash
         run: < ${{ env.ENV_FILE }} >> $GITHUB_ENV
         env:
@@ -37,7 +52,7 @@ jobs:
 
       - name: Create Database
         run: |
-          yarn up
+          npx prisma db push --accept-data-loss
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
