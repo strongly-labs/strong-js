@@ -7,7 +7,7 @@ import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/client'
 import type { FullUser } from '@strong-js/auth'
 import Crud from '@strong-js/crud'
-import AdminSchema from '../../.strong/admin.json'
+import AdminSchema from '../../../../../.strong/admin.json'
 
 import styles from '../../styles/Admin.module.css'
 
@@ -27,10 +27,11 @@ const config = {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req })
+  const user = session?.user as FullUser
 
   return {
     props: {
-      user: session?.user?.role === 'ADMIN' || null,
+      user: user?.role === 'ADMIN' || null,
     },
   }
 }

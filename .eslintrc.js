@@ -24,7 +24,11 @@ module.exports = {
           jsx: true,
         },
         ecmaVersion: 12,
-        project: ['./tsconfig.json', './packages/*/tsconfig.build.json'],
+        project: [
+          './tsconfig.json',
+          './cypress/tsconfig.json',
+          './packages/*/tsconfig.build.json',
+        ],
         sourceType: 'module',
       },
       rules: {

@@ -19,8 +19,8 @@ yalc.lock
 
 # cypress
 
-**/cypress/screenshots
-**/cypress/videos
+cypress/screenshots
+cypress/videos
 
 # strongly
 **/generated

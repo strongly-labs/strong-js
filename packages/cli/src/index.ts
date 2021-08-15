@@ -48,17 +48,17 @@ prog
 
 prog
   .version(pkg.version)
-  .command('link <package-name>')
-  .describe(
-    'Link <package-name> with apps/* based on the config file strong.json',
-  )
-  .action(async (packageName: string) => {
+  .command('link')
+  .option('-P, --packageName', 'name of the package to be linked')
+  .describe('Link packages with apps/* based on the config file strong.json')
+  .action(async (options: Record<string, string>) => {
     console.log(chalk.blue(logo))
     console.log(`Version: ${pkg.version}\n`)
 
     const spinner = ora(`Link apps`)
+    const { packageName } = options
 
-    await linkPackage(packageName, spinner)
+    await linkPackage(packageName || '', spinner)
   })
 
 prog.parse(process.argv)
