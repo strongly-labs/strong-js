@@ -6,7 +6,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "kill": "sudo kill -9 $(sudo lsof -t -i:strong-port)",
+    "kill": "sudo kill $(sudo lsof -t -i :strong-port)",
     "dev": "next dev -p strong-port",
     "build": "next build",
     "start": "next start",

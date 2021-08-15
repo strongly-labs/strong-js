@@ -7,7 +7,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "kill": "sudo kill -9 $(sudo lsof -t -i:3000)",
+    "kill": "sudo kill $(sudo lsof -t -i :3000)",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",

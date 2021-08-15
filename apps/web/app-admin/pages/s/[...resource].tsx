@@ -27,10 +27,11 @@ const config = {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req })
+  const user = session?.user as FullUser
 
   return {
     props: {
-      user: session?.user?.role === 'ADMIN' || null,
+      user: user?.role === 'ADMIN' || null,
     },
   }
 }
