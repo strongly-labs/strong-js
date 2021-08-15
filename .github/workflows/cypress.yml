@@ -47,24 +47,20 @@ jobs:
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
+      - name: Load ENV
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: ./apps/web/app-main/.env.test
+
       - name: Create Database
-        shell: bash
         run: |
-          < ${{ env.ENV_FILE }} >> $GITHUB_ENV
           npx prisma db push --accept-data-loss
-        env:
-          ENV_FILE: 'apps/web/app-main/.env.test'
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           build: yarn apps:web:build
           start: yarn apps:web:start
-        shell: bash
-        run: |
-          < ${{ env.ENV_FILE }} >> $GITHUB_ENV
-        env:
-          ENV_FILE: 'apps/web/app-main/.env.test'
 
       - name: Upload Screenshots if tests fail
         uses: actions/upload-artifact@v2
