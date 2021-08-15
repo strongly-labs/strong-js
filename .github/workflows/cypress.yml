@@ -12,12 +12,15 @@ jobs:
     container: cypress/browsers:node12.18.3-chrome87-ff82
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:13.3
+        volumes:
+          - ${{ github.workspace }}/db:/docker-entrypoint-initdb.d/
         env:
-          POSTGRES_DB: test
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_PORT: 5432
-          POSTGRES_USER: postgres
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: password
+          APP_DB_USER: postgres
+          APP_DB_PASS: postgres
+          APP_DB_NAME: test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
