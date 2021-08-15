@@ -7,7 +7,7 @@ on:
 
 jobs:
   cypress:
-    name: Build and run End to End Web tests on ${{ matrix.node }} and ${{ matrix.os }}
+    name: Cypress on ${{ matrix.node }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     container: cypress/browsers:node12.18.3-chrome87-ff82
     services:
