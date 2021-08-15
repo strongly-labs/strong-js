@@ -14,7 +14,7 @@ jobs:
       postgres:
         image: postgres:13.3
         volumes:
-          - ./db:/docker-entrypoint-initdb.d/
+          - ${{ github.workspace }}/db:/docker-entrypoint-initdb.d/
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: password
