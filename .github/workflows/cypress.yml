@@ -56,7 +56,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: yarn apps:web:build
+          build: yarn build && apps:web:build
           start: yarn apps:web:start
 
       - name: Upload Screenshots if tests fail

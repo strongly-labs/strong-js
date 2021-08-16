@@ -25,5 +25,8 @@ jobs:
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
+      - name: Build
+        run: yarn build
+
       - name: Lint
         run: yarn lint
