@@ -47,7 +47,7 @@
     "apps:web:build": "yarn lerna-apps-web run build && yarn cli link",
     "apps:web:start": "yarn lerna-apps-web run start --stream --parallel",
     "apps:web:kill": "yarn lerna-apps-web run kill --parallel",
-    "cy:build": "yarn build && apps:web:build",
+    "cy:build": "yarn build && yarn apps:web:build",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "studio": "npx prisma studio",
