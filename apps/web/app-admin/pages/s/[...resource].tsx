@@ -7,7 +7,7 @@ import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/client'
 import type { FullUser } from '@strong-js/auth'
 import Crud from '@strong-js/crud'
-import AdminSchema from '../../../../../.strong/admin.json'
+import AdminSchema from '../../.strong/admin.json'
 
 import styles from '../../styles/Admin.module.css'
 

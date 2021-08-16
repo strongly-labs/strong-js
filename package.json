@@ -44,7 +44,7 @@
     "data:gen": "npx prisma generate",
     "up": "yarn data:up && yarn data:push",
     "apps:web:dev": "yarn lerna-apps-web run dev --stream --parallel",
-    "apps:web:build": "yarn lerna-apps-web run build && yarn cli link",
+    "apps:web:build": "yarn cli link && yarn lerna-apps-web run build",
     "apps:web:start": "yarn lerna-apps-web run start --stream --parallel",
     "apps:web:kill": "yarn lerna-apps-web run kill --parallel",
     "cy:build": "yarn build && yarn apps:web:build",
