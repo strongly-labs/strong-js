@@ -32,5 +32,8 @@ jobs:
         env:
           PRISMA_SKIP_POSTINSTALL_GENERATE: true
 
+      - name: Build
+        run: yarn build
+
       - name: Test
         run: yarn test
