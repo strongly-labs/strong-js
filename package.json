@@ -59,7 +59,7 @@
     "@types/node": "16.4.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "typegraphql-prisma": "0.14.7"
+    "typegraphql-prisma": "0.14.8"
   },
   "devDependencies": {
     "@babel/core": "7.15.0",
@@ -98,7 +98,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "lerna": "4.0.0",
-    "prettier-plugin-prisma": "2.29.0",
+    "prettier-plugin-prisma": "2.29.1",
     "prettier-plugin-sh": "0.7.1",
     "rimraf": "3.0.2",
     "rollup": "2.56.2",
