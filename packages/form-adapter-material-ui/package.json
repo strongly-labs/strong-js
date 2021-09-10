@@ -1,6 +1,6 @@
 {
   "name": "@strong-js/form-adapter-material-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "New strong-js package",
   "main": "dist/index.js",
   "scripts": {
