@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, react-hooks/rules-of-hooks */
 import React from 'react'
 
 import { View, StyleSheet, Text, ActivityIndicator } from 'react-native'

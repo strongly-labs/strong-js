@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return, no-useless-catch */
+
 import Chance from 'chance'
 import { copy } from 'fs-extra'
 import type { JsonObject } from 'type-fest'

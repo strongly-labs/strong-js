@@ -1,16 +1,9 @@
-name: Unit Test
-on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-      - develop
+name: Lint
+on: push
+
 jobs:
   test:
-    name: Build and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+    name: Build and lint on Node ${{ matrix.node }} and ${{ matrix.os }}
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -35,5 +28,5 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Test
-        run: yarn test
+      - name: Lint
+        run: yarn lint

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import type { SubmitHandler } from 'react-hook-form'
 import type { BadgeOwnProps } from 'evergreen-ui'
 import type {

@@ -1,0 +1,9 @@
+public/
+.strong
+backend/db
+packages/cli/templates
+**/node_modules
+**/dist/*
+**/.next
+**/.strong
+packages/**/*.d.ts

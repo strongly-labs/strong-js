@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions */
+
 import chalk from 'chalk'
 import execa from 'execa'
 import { copy, remove, rename } from 'fs-extra'
@@ -34,7 +36,7 @@ export const createProject = async (
 
         spinner.succeed('Template cloned successfully')
       } catch (error) {
-        spinner.fail('Failed to clone template repo ' + repo.url)
+        spinner.fail(`Failed to clone template repo ${repo.url}`)
         throw error
       }
     }
@@ -129,7 +131,7 @@ export const createProject = async (
         await execa('yarn', ['build'])
 
         // Link packages
-        await execa('npx', ['strong-js', 'link', '@strong-js/crud'])
+        await execa('npx', ['strong-js', '-P', 'link', '@strong-js/crud'])
 
         spinner.succeed('Project created successfuly!')
 

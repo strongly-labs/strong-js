@@ -10,7 +10,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx",
     "fix:eslint": "yarn lint --fix",
     "fix:prettier": "prettier --write .",
     "fix": "yarn fix:eslint && yarn fix:prettier"
@@ -32,9 +32,10 @@
   "devDependencies": {
     "@babel/core": "7.15.0",
     "@babel/runtime": "7.14.8",
-    "@react-native-community/eslint-config": "3.0.0",
+    "@react-native-community/eslint-config": "^3.0.0",
     "@types/babel__core": "7.1.15",
     "@types/eslint": "7.28.0",
+    "@types/jest": "^27.0.1",
     "@types/react": "17.0.16",
     "@types/react-native": "0.64.12",
     "@types/react-test-renderer": "17.0.1",

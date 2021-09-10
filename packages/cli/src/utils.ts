@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
 import fs, { readJSONSync } from 'fs-extra'
 import path from 'path'
 import findWorkspaceRoot from 'find-yarn-workspace-root'
@@ -36,6 +37,9 @@ export const getWorkspaceGlobs = (root: PackageJson): string[] | null => {
   return null
 }
 
+export const keyExists = (obj: Record<string, unknown>, prop: string) =>
+  Object.prototype.hasOwnProperty.call(obj, prop)
+
 export const astArrayPush = (
   variableName: string,
   source: string,
@@ -50,12 +54,12 @@ export const astArrayPush = (
     if (
       node.type === 'VariableDeclaration' &&
       node.declarations.find(
-        (d: any) => d.id.hasOwnProperty('name') && d.id.name === variableName,
+        (d: any) => keyExists(d.id, 'name') && d.id.name === variableName,
       )
     ) {
       node.declarations = node.declarations.flatMap((declaration: any) => {
         if (
-          declaration.id.hasOwnProperty('name') &&
+          keyExists(declaration.id, 'name') &&
           declaration.id.name === variableName
         ) {
           declaration.init.elements = [

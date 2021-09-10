@@ -1,0 +1,73 @@
+name: End to End Web
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress:
+    name: Cypress on ${{ matrix.node }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    strategy:
+      matrix:
+        node: ['14.x']
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Load ENV
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: ./apps/web/app-main/.env.test
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+        env:
+          PRISMA_SKIP_POSTINSTALL_GENERATE: true
+
+      - name: Create Database
+        run: |
+          npx prisma db push --accept-data-loss
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn cy:build
+          start: yarn apps:web:start
+
+      - name: Upload Screenshots if tests fail
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: Upload Videos
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
