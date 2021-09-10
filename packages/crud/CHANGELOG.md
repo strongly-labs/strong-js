@@ -1,5 +1,16 @@
 # @strong-js/crud
 
+## 0.1.7
+
+### Patch Changes
+
+- [#86](https://github.com/strongly-labs/strong-js/pull/86) [`2dffbd5`](https://github.com/strongly-labs/strong-js/commit/2dffbd5a4f76ec16cf3ab164a071187f6f5f64e0) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - add cypress and changed cli link command
+
+- Updated dependencies [[`2dffbd5`](https://github.com/strongly-labs/strong-js/commit/2dffbd5a4f76ec16cf3ab164a071187f6f5f64e0)]:
+  - @strong-js/common@0.0.3
+  - @strong-js/form@0.0.3
+  - @strong-js/form-adapter-evergreen@0.0.3
+
 ## 0.1.6
 
 ### Patch Changes

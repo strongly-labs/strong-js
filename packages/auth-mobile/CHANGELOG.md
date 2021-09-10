@@ -1,5 +1,11 @@
 # @strong-js/auth-mobile
 
+## 0.1.4
+
+### Patch Changes
+
+- [#86](https://github.com/strongly-labs/strong-js/pull/86) [`2dffbd5`](https://github.com/strongly-labs/strong-js/commit/2dffbd5a4f76ec16cf3ab164a071187f6f5f64e0) Thanks [@zuhair-naqvi](https://github.com/zuhair-naqvi)! - add cypress and changed cli link command
+
 ## 0.1.3
 
 ### Patch Changes
