@@ -21,7 +21,7 @@
     "@strong-js/auth-mobile": "*",
     "graphql": "15.5.1",
     "isomorphic-unfetch": "3.1.0",
-    "react-native": "0.64.2",
+    "react-native": "0.66.3",
     "react-native-app-auth": "6.4.0",
     "react-native-config": "1.4.3",
     "react-native-mmkv-storage": "0.6.0"
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/core": "7.15.0",
     "@babel/runtime": "7.14.8",
-    "@react-native-community/eslint-config": "^3.0.0",
+    "@react-native-community/eslint-config": "3.0.1",
     "@types/babel__core": "7.1.15",
     "@types/eslint": "7.28.0",
     "@types/jest": "^27.0.1",
