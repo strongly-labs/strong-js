@@ -97,7 +97,7 @@ export const ListProvider = ({
     )
   }, [schema, parent])
 
-  if (schema) {
+  if (schema && data) {
     return (
       <ListContext.Provider
         value={{
