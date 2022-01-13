@@ -16,7 +16,7 @@
     "fix": "yarn fix:eslint && yarn fix:prettier"
   },
   "dependencies": {
-    "@apollo/client": "3.4.7",
+    "@apollo/client": "3.5.7",
     "@apollo/react-hooks": "4.0.0",
     "@strong-js/auth-mobile": "*",
     "graphql": "15.5.1",
@@ -30,8 +30,8 @@
     "react": "17.0.2"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
-    "@babel/runtime": "7.14.8",
+    "@babel/core": "7.16.7",
+    "@babel/runtime": "7.16.7",
     "@react-native-community/eslint-config": "3.0.1",
     "@types/babel__core": "7.1.15",
     "@types/eslint": "7.28.0",
