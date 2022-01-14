@@ -1,5 +1,16 @@
 # @strong-js/auth
 
+## 0.1.5
+
+### Patch Changes
+
+- [`e10adf9`](https://github.com/strongly-labs/strong-js/commit/e10adf933789c3e2983ee6d97dc89f3ab8195d02) Thanks [@strongly-dev](https://github.com/strongly-dev)! - upgraded prisma and nextjs
+
+* [`f3eff76`](https://github.com/strongly-labs/strong-js/commit/f3eff7681b0e053a896cc9cd3021518bd86d0112) Thanks [@strongly-dev](https://github.com/strongly-dev)! - fix upgrade issues
+
+* Updated dependencies [[`e10adf9`](https://github.com/strongly-labs/strong-js/commit/e10adf933789c3e2983ee6d97dc89f3ab8195d02), [`f3eff76`](https://github.com/strongly-labs/strong-js/commit/f3eff7681b0e053a896cc9cd3021518bd86d0112)]:
+  - @strong-js/data@0.1.7
+
 ## 0.1.4
 
 ### Patch Changes

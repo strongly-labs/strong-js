@@ -1,5 +1,14 @@
 # @strong-js/form
 
+## 0.0.4
+
+### Patch Changes
+
+- [`e10adf9`](https://github.com/strongly-labs/strong-js/commit/e10adf933789c3e2983ee6d97dc89f3ab8195d02) Thanks [@strongly-dev](https://github.com/strongly-dev)! - upgraded prisma and nextjs
+
+- Updated dependencies [[`e10adf9`](https://github.com/strongly-labs/strong-js/commit/e10adf933789c3e2983ee6d97dc89f3ab8195d02)]:
+  - @strong-js/common@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
