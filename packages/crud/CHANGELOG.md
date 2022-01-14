@@ -1,5 +1,11 @@
 # @strong-js/crud
 
+## 0.1.8
+
+### Patch Changes
+
+- [`cb80877`](https://github.com/strongly-labs/strong-js/commit/cb8087758d7daf6d2246d28c5b96466867b16e5e) Thanks [@strongly-dev](https://github.com/strongly-dev)! - Fixed list view bug
+
 ## 0.1.7
 
 ### Patch Changes
