@@ -24,9 +24,9 @@
     "directory": "packages/data"
   },
   "dependencies": {
-    "@prisma/client": "~2.29.0",
-    "prisma": "~2.29.0",
-    "tslib": "^2.3.0"
+    "@prisma/client": "3.7.0",
+    "prisma": "3.7.0",
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"
