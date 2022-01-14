@@ -29,10 +29,10 @@
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^0.5.2",
-    "@premieroctet/next-crud": "^1.1.0",
+    "@premieroctet/next-crud": "^2.1.3",
     "@strong-js/data": "^0.1.6",
-    "tslib": "^2.3.0",
-    "next-auth": "^3.27.0"
+    "next-auth": "^3.27.0",
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "next-auth": "^3.27.0"
