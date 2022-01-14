@@ -1,5 +1,11 @@
 # @strong-js/app-mobile
 
+## 1.1.6
+
+### Patch Changes
+
+- [`e2ffe62`](https://github.com/strongly-labs/strong-js/commit/e2ffe62d7ffe3c0df7606b2e2851089719944126) Thanks [@strongly-dev](https://github.com/strongly-dev)! - allow cjs
+
 ## 1.1.5
 
 ### Patch Changes
