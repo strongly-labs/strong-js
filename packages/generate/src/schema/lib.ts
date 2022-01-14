@@ -36,18 +36,27 @@ export const getField = (
   field: DMMF.Field,
   enums: DMMF.DatamodelEnum[],
 ): FormField | null => {
-  const { name, kind, type, isRequired, relationFromFields, relationToFields } =
-    field
+  const {
+    name,
+    kind,
+    type,
+    isRequired,
+    relationFromFields,
+    relationToFields,
+  } = field
 
   switch (kind) {
     case 'scalar': {
-      const fieldType = FieldTypes?.[type] ?? null
-      return {
-        name,
-        type: fieldType,
-        required: isRequired,
-        ...(hiddenFields.includes(name) && { hidden: true }),
+      if (typeof type === 'string') {
+        const fieldType = FieldTypes?.[type] ?? null
+        return {
+          name,
+          type: fieldType,
+          required: isRequired,
+          ...(hiddenFields.includes(name) && { hidden: true }),
+        }
       }
+      return null
     }
     case 'enum': {
       const fieldType = FieldTypes.Enum
@@ -61,19 +70,22 @@ export const getField = (
       }
     }
     case 'object': {
-      return {
-        name,
-        modelName: type,
-        type: FieldTypes.Related,
-        ...(Array.isArray(relationFromFields) &&
-          relationFromFields?.length > 0 && {
-            relationFromFields,
-          }),
-        ...(Array.isArray(relationToFields) &&
-          relationToFields?.length > 0 && {
-            relationToFields,
-          }),
+      if (typeof type === 'string') {
+        return {
+          name,
+          modelName: type,
+          type: FieldTypes.Related,
+          ...(Array.isArray(relationFromFields) &&
+            relationFromFields?.length > 0 && {
+              relationFromFields,
+            }),
+          ...(Array.isArray(relationToFields) &&
+            relationToFields?.length > 0 && {
+              relationToFields,
+            }),
+        }
       }
+      return null
     }
     case 'unsupported': {
       return null
