@@ -13,7 +13,10 @@
     "nohoist": [
       "**/react-native",
       "**/react-native/**",
-      "**/react-native-*"
+      "**/react-native-*",
+      "**/@react-native-*",
+      "@testing-library/react-native",
+      "@testing-library/jest-native"
     ]
   },
   "prisma": {
@@ -27,6 +30,7 @@
     "watch:builds": "yarn lerna run build:watch --stream --parallel",
     "watch": "yarn build && concurrently -n \"Types,Build\" -c \"blue.bold,yellow.bold\" \"yarn watch:types\" \"yarn watch:builds\"",
     "test": "yarn lerna run test --",
+    "test-apps": "yarn lerna-apps-all run test --",
     "lint-apps": "yarn lerna-apps-all run lint",
     "lint-cypress": "eslint ./cypress --ext .ts,.tsx --fix",
     "lint-packages": "eslint ./packages --ext .ts,.tsx --fix",
@@ -56,9 +60,9 @@
     "postinstall": "yarn workspace @strong-js/generate build && lerna link && yarn linkLocal && yarn data:gen"
   },
   "dependencies": {
-    "@types/node": "16.4.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "@types/node": "16.4.13",
     "typegraphql-prisma": "^0.18.3"
   },
   "devDependencies": {
@@ -98,7 +102,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "lerna": "4.0.0",
-    "prettier-plugin-prisma": "3.7.0",
+    "prettier-plugin-prisma": "~3.8.0",
     "prettier-plugin-sh": "0.7.1",
     "rimraf": "3.0.2",
     "rollup": "2.63.0",

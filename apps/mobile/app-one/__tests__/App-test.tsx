@@ -4,11 +4,32 @@
 
 import * as React from 'react'
 import 'react-native'
-import App from '../App'
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react-native'
+import Intro from '../src/Intro'
+
+jest.mock('react-native-app-auth', () => ({
+  authorize: jest.fn(),
+  refresh: jest.fn(),
+  AuthorizeResult: {},
+  RefreshResult: {},
+}))
+
+jest.mock('react-native-mmkv-storage', () => ({
+  create: () => ({
+    useStorage: () => [null, () => null],
+  }),
+  Loader: () => ({ withEncryption: () => ({ initialize: jest.fn() }) }),
+}))
+
+jest.mock('@apollo/client', () => ({
+  createHttpLink: jest.fn(),
+  gql: jest.fn(),
+  ApolloClient: jest.fn(),
+  InMemoryCache: jest.fn(),
+}))
 
 it('renders correctly', () => {
-  renderer.create(<App />)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+  const intro = render(<Intro />)
 })

@@ -19,10 +19,11 @@
     "@apollo/client": "3.5.7",
     "@apollo/react-hooks": "4.0.0",
     "@strong-js/auth-mobile": "*",
+    "cross-fetch": "3.1.4",
     "graphql": "15.5.1",
-    "isomorphic-unfetch": "3.1.0",
+    "react": "17.0.2",
     "react-native": "0.66.4",
-    "react-native-app-auth": "6.4.0",
+    "react-native-app-auth": "6.4.1",
     "react-native-config": "1.4.3",
     "react-native-mmkv-storage": "0.6.8"
   },
@@ -33,6 +34,8 @@
     "@babel/core": "7.16.7",
     "@babel/runtime": "7.16.7",
     "@react-native-community/eslint-config": "3.0.1",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-native": "^9.0.0",
     "@types/babel__core": "7.1.15",
     "@types/eslint": "7.28.0",
     "@types/jest": "^27.0.1",
@@ -46,10 +49,6 @@
     "jest-mock-extended": "2.0.2-beta2",
     "metro-react-native-babel-preset": "0.66.2",
     "react-test-renderer": "17.0.2",
-    "ts-jest": "27.1.2",
     "typescript": "4.3.5"
-  },
-  "resolutions": {
-    "@types/react": "17.0.16"
   }
 }
