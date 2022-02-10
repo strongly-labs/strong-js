@@ -29,7 +29,7 @@
   "dependencies": {
     "@prisma/generator-helper": "3.7.0",
     "@prisma/sdk": "3.7.0",
-    "superjson": "1.8.0",
+    "superjson": "1.8.1",
     "tslib": "2.3.1"
   },
   "publishConfig": {
