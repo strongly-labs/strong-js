@@ -19,7 +19,7 @@
     "@apollo/client": "3.5.7",
     "@apollo/react-hooks": "4.0.0",
     "@strong-js/auth-mobile": "*",
-    "cross-fetch": "3.1.4",
+    "cross-fetch": "3.1.5",
     "graphql": "15.5.1",
     "react": "17.0.2",
     "react-native": "0.66.4",
