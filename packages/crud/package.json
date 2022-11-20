@@ -50,7 +50,7 @@
     "@size-limit/preset-small-lib": "5.0.2",
     "@types/babel__core": "7.1.15",
     "@types/fs-extra": "^9.0.12",
-    "@types/react": "17.0.16",
+    "@types/react": "17.0.52",
     "@types/react-dom": "17.0.9",
     "@types/react-is": "17.0.2",
     "@types/react-table": "7.7.2",
