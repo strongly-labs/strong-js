@@ -18,7 +18,7 @@
     "@strong-js/crud": "*",
     "@strong-js/cli": "*",
     "next": "12",
-    "next-auth": "3.29.0"
+    "next-auth": "4.20.1"
   },
   "peerDependencies": {
     "react": "17.0.2",
