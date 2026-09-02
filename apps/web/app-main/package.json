@@ -20,7 +20,7 @@
     "@strong-js/auth": "*",
     "apollo-server-micro": "3.6.1",
     "babel-plugin-transform-typescript-metadata": "0.3.2",
-    "class-validator": "0.13.1",
+    "class-validator": "0.14.0",
     "graphql-fields": "2.0.3",
     "graphql-scalars": "1.10.0",
     "micro": "9.3.4",
