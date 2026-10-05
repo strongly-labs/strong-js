@@ -45,7 +45,7 @@
     }
   ],
   "devDependencies": {
-    "@babel/core": "7.16.7",
+    "@babel/core": "7.29.6",
     "@babel/preset-react": "7.16.7",
     "@size-limit/preset-small-lib": "5.0.2",
     "@types/babel__core": "7.1.15",
