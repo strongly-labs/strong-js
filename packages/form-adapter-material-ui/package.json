@@ -19,7 +19,7 @@
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.0.0",
     "@material-ui/pickers": "^3.3.10",
     "@strong-js/common": "*",
     "tslib": "^2.3.0"
